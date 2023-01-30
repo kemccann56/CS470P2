@@ -20,7 +20,7 @@ class RBTree():
         return self.searchHelper(self.root, k)
 
     def searchHelper(self, node, val):
-        if node == NULL or val == node.data:
+        if node == self.NULL or val == node.data:
             return node
         if val < node.data:
             return self.searchHelper(node.left, val)
