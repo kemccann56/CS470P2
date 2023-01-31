@@ -1,28 +1,9 @@
 from tkinter import *
 from queue import Queue
 from threading import Thread, Lock
+import avl_tree1
+import movement
 
-
-
-class Object:
-    def __init__(self,num):
-        self.shape = None
-        self.text = None
-        self.lineToParent = None
-        self.x = -1
-        self.y = -1
-        self.aniQueue = Queue()
-        self.moveQueue = Queue()
-        self.userNum = num
-
-class Movement:
-    def __init__(self,x,y,step=0,args=[],newLine=[],newObject=[]):
-        self.x = x
-        self.y = y
-        self.step = step
-        self.args = args
-        self.newLine = newLine
-        self.newObject = newObject
 
 ###############################################################################################
 # A thread that produces data
@@ -39,7 +20,7 @@ def example(aniList):
         if(not line.isspace() and len(line) > 0):
             #Only time you use aniList is to append Objects
             #Do not remove or move or anything else
-            aniList.append(Object(int(line)))
+            aniList.append(movement.Object(int(line)))
 
             #Everything in python is a pointer so populate your data structure with the aniList objects
             myList.append(aniList[-1])
@@ -49,37 +30,37 @@ def example(aniList):
     #hard Coding for example
     size = 50
 
-    myList[0].aniQueue.put(Movement(-1,-1,step,[],[],['oval',300,50,size,str(myList[0].userNum),'lightblue']))
+    myList[0].aniQueue.put(movement.Movement(-1,-1,step,[],[],['oval',300,50,size,str(myList[0].userNum),'lightblue']))
     myList[0].x = 300
     myList[0].y = 50
 
-    myList[1].aniQueue.put(Movement(-1,-1,step,[],[],['oval',150,200,size,str(myList[1].userNum),'lightblue']))
+    myList[1].aniQueue.put(movement.Movement(-1,-1,step,[],[],['oval',150,200,size,str(myList[1].userNum),'lightblue']))
     myList[1].x = 150
     myList[1].y = 200
     #Create line to parent node
-    myList[1].aniQueue.put(Movement(-1,-1,step,[],[myList[1].x + size, myList[1].y, myList[0].x, myList[0].y + size]))
+    myList[1].aniQueue.put(movement.Movement(-1,-1,step,[],[myList[1].x + size, myList[1].y, myList[0].x, myList[0].y + size]))
 
-    myList[2].aniQueue.put(Movement(-1,-1,step,[],[],['oval',450,200,size,str(myList[2].userNum),'lightblue']))
+    myList[2].aniQueue.put(movement.Movement(-1,-1,step,[],[],['oval',450,200,size,str(myList[2].userNum),'lightblue']))
     myList[2].x = 450
     myList[2].y = 200
     #Create line to parent node
-    myList[2].aniQueue.put(Movement(-1,-1,step,[],[myList[2].x, myList[2].y, myList[0].x + size, myList[0].y + size]))
+    myList[2].aniQueue.put(movement.Movement(-1,-1,step,[],[myList[2].x, myList[2].y, myList[0].x + size, myList[0].y + size]))
 
     step += 1
 
-    myList[3].aniQueue.put(Movement(-1,-1,step,[],[],['rectangle',125,300,size,str(myList[3].userNum),'lightblue']))
+    myList[3].aniQueue.put(movement.Movement(-1,-1,step,[],[],['rectangle',125,300,size,str(myList[3].userNum),'lightblue']))
     myList[3].x = 125
     myList[3].y = 300
     #Create line to parent node
-    myList[3].aniQueue.put(Movement(-1,-1,step,[],[myList[3].x + size/2, myList[3].y, myList[1].x + size/2, myList[1].y + size]))
+    myList[3].aniQueue.put(movement.Movement(-1,-1,step,[],[myList[3].x + size/2, myList[3].y, myList[1].x + size/2, myList[1].y + size]))
 
     step += 1
 
-    myList[4].aniQueue.put(Movement(-1,-1,step,[],[],['rectangle',175,300,size,str(myList[3].userNum),'lightblue']))
+    myList[4].aniQueue.put(movement.Movement(-1,-1,step,[],[],['rectangle',175,300,size,str(myList[3].userNum),'lightblue']))
     myList[4].x = 175
     myList[4].y = 300
     #Create line to parent node
-    myList[4].aniQueue.put(Movement(-1,-1,step,[],[myList[4].x + size/2, myList[4].y, myList[1].x + size/2, myList[1].y + size]))
+    myList[4].aniQueue.put(movement.Movement(-1,-1,step,[],[myList[4].x + size/2, myList[4].y, myList[1].x + size/2, myList[1].y + size]))
 
     step += 1
 
@@ -89,13 +70,13 @@ def example(aniList):
     myList[0].x, myList[1].x = myList[1].x, myList[0].x
     myList[0].y, myList[1].y = myList[1].y, myList[0].y
 
-    myList[0].aniQueue.put(Movement(myList[0].x, myList[0].y,step, ['delete_line']))
-    myList[1].aniQueue.put(Movement(myList[1].x, myList[1].y,step,[], [myList[1].x + size, myList[1].y, myList[0].x, myList[0].y + size]))
+    myList[0].aniQueue.put(movement.Movement(myList[0].x, myList[0].y,step, ['delete_line']))
+    myList[1].aniQueue.put(movement.Movement(myList[1].x, myList[1].y,step,[], [myList[1].x + size, myList[1].y, myList[0].x, myList[0].y + size]))
 
     step += 1
 
     #Remove example
-    myList[2].aniQueue.put(Movement(-1,-1, step,['delete_shape']))
+    myList[2].aniQueue.put(movement.Movement(-1,-1, step,['delete_shape']))
     myList.pop(2) #Do not remove it from aniList
 
     step += 1
@@ -119,7 +100,7 @@ def settingOrginExample(aniList):
         if(not line.isspace() and len(line) > 0):
             #Only time you use aniList is to append Objects
             #Do not remove or move or anything else
-            aniList.append(Object(int(line)))
+            aniList.append(movement.Object(int(line)))
 
             #Everything in python is a pointer so populate your data structure with the aniList objects
             myList.append(aniList[-1])
@@ -129,57 +110,57 @@ def settingOrginExample(aniList):
     #hard Coding for example
     size = 50
 
-    myList[0].aniQueue.put(Movement(-1,-1,step,[],[],['oval',orginx+300,orginy+50,size,str(myList[0].userNum),'lightblue']))
+    myList[0].aniQueue.put(movement.Movement(-1,-1,step,[],[],['oval',orginx+300,orginy+50,size,str(myList[0].userNum),'lightblue']))
     myList[0].x = orginx+300
     myList[0].y = orginy+50
 
-    myList[1].aniQueue.put(Movement(-1,-1,step,[],[],['oval',orginx+150,orginy+200,size,str(myList[1].userNum),'lightblue']))
+    myList[1].aniQueue.put(movement.Movement(-1,-1,step,[],[],['oval',orginx+150,orginy+200,size,str(myList[1].userNum),'lightblue']))
     myList[1].x = orginx+150
     myList[1].y = orginy+200
     #Create line to parent node
-    myList[1].aniQueue.put(Movement(-1,-1,step,[],[myList[1].x + size, myList[1].y, myList[0].x, myList[0].y + size]))
+    myList[1].aniQueue.put(movement.Movement(-1,-1,step,[],[myList[1].x + size, myList[1].y, myList[0].x, myList[0].y + size]))
 
-    myList[2].aniQueue.put(Movement(-1,-1,step,[],[],['oval',orginx+450,orginy+200,size,str(myList[2].userNum),'lightblue']))
+    myList[2].aniQueue.put(movement.Movement(-1,-1,step,[],[],['oval',orginx+450,orginy+200,size,str(myList[2].userNum),'lightblue']))
     myList[2].x = orginx+450
     myList[2].y = orginy+200
     #Create line to parent node
-    myList[2].aniQueue.put(Movement(-1,-1,step,[],[myList[2].x, myList[2].y, myList[0].x + size, myList[0].y + size]))
+    myList[2].aniQueue.put(movement.Movement(-1,-1,step,[],[myList[2].x, myList[2].y, myList[0].x + size, myList[0].y + size]))
 
     step += 1
 
-    myList[3].aniQueue.put(Movement(-1,-1,step,[],[],['rectangle',orginx+125,orginy+300,size,str(myList[3].userNum),'lightblue']))
+    myList[3].aniQueue.put(movement.Movement(-1,-1,step,[],[],['rectangle',orginx+125,orginy+300,size,str(myList[3].userNum),'lightblue']))
     myList[3].x = orginx+125
     myList[3].y = orginy+300
     #Create line to parent node
-    myList[3].aniQueue.put(Movement(-1,-1,step,[],[myList[3].x + size/2, myList[3].y, myList[1].x + size/2, myList[1].y + size]))
+    myList[3].aniQueue.put(movement.Movement(-1,-1,step,[],[myList[3].x + size/2, myList[3].y, myList[1].x + size/2, myList[1].y + size]))
 
     step += 1
 
-    myList[4].aniQueue.put(Movement(-1,-1,step,[],[],['rectangle',orginx+175,orginy+300,size,str(myList[3].userNum),'lightblue']))
+    myList[4].aniQueue.put(movement.Movement(-1,-1,step,[],[],['rectangle',orginx+175,orginy+300,size,str(myList[3].userNum),'lightblue']))
     myList[4].x = orginx+175
     myList[4].y = orginy+300
     #Create line to parent node
-    myList[4].aniQueue.put(Movement(-1,-1,step,[],[myList[4].x + size/2, myList[4].y, myList[1].x + size/2, myList[1].y + size]))
+    myList[4].aniQueue.put(movement.Movement(-1,-1,step,[],[myList[4].x + size/2, myList[4].y, myList[1].x + size/2, myList[1].y + size]))
 
     step += 1
 
     #Swap exapmle with color change
-    myList[0].aniQueue.put(Movement(-1, -1,step, ['red']))
-    myList[1].aniQueue.put(Movement(-1, -1,step, ['red']))
+    myList[0].aniQueue.put(movement.Movement(-1, -1,step, ['red']))
+    myList[1].aniQueue.put(movement.Movement(-1, -1,step, ['red']))
     myList[0], myList[1] = myList[1], myList[0]
 
     myList[0].x, myList[1].x = myList[1].x, myList[0].x
     myList[0].y, myList[1].y = myList[1].y, myList[0].y
 
-    myList[0].aniQueue.put(Movement(myList[0].x, myList[0].y,step, ['delete_line']))
-    myList[1].aniQueue.put(Movement(myList[1].x, myList[1].y,step,[], [myList[1].x + size, myList[1].y, myList[0].x, myList[0].y + size]))
-    myList[0].aniQueue.put(Movement(-1, -1,step, ['lightblue']))
-    myList[1].aniQueue.put(Movement(-1, -1,step, ['lightblue']))
+    myList[0].aniQueue.put(movement.Movement(myList[0].x, myList[0].y,step, ['delete_line']))
+    myList[1].aniQueue.put(movement.Movement(myList[1].x, myList[1].y,step,[], [myList[1].x + size, myList[1].y, myList[0].x, myList[0].y + size]))
+    myList[0].aniQueue.put(movement.Movement(-1, -1,step, ['lightblue']))
+    myList[1].aniQueue.put(movement.Movement(-1, -1,step, ['lightblue']))
 
     step += 1
 
     #Remove example
-    myList[2].aniQueue.put(Movement(-1,-1, step,['delete_shape']))
+    myList[2].aniQueue.put(movement.Movement(-1,-1, step,['delete_shape']))
     myList.pop(2) #Do not remove it from aniList
 
     step += 1
@@ -237,9 +218,9 @@ def start(step=0):
                         movexx = movex / delay
                         moveyy = movey / delay
                         for i in range(delay):
-                            aniObject.moveQueue.put(Movement(movexx, moveyy))
+                            aniObject.moveQueue.put(movement.Movement(movexx, moveyy))
                         if movexx * delay != movex:
-                            aniObject.moveQueue.put(Movement(movex - (movexx * delay), movey - (moveyy * delay)))
+                            aniObject.moveQueue.put(movement.Movement(movex - (movexx * delay), movey - (moveyy * delay)))
 
                     #If the newLine list is not empty then add it to the .moveQueue
                     if newCoords.newLine:
@@ -261,12 +242,12 @@ def start(step=0):
     #This method recursivley calls this start method passing the current step as an argument
     tk.after(1, start, step)
 
-
 ############################################################################################## Program starts here
 W, H = 1200, 500
 delay = 500
 tk = Tk()
 canvas = Canvas(tk,width=W,height=H)
+
 canvas.pack()
 mainAnimationList = []
 
@@ -274,10 +255,8 @@ mainAnimationList = []
 #Start algorithm thread with created list as argument
 mainAnimationList.append([])
 mainAnimationList.append([])
-t1 = Thread(target = example, args =(mainAnimationList[0], ))
-#t2 = Thread(target = settingOrginExample, args =(mainAnimationList[1], ))
+t1 = Thread(target = lambda: avl_tree1.start_avl_tree(mainAnimationList[0], 0, 0, 600, 500))
 t1.start()
-#t2.start()
 
 #TODO add more widgets
 #Start method contains Animation Loop
