@@ -243,7 +243,7 @@ def start(step=0):
     tk.after(1, start, step)
 
 ############################################################################################## Program starts here
-W, H = 1200, 500
+W, H = 1200, 750
 delay = 500
 tk = Tk()
 canvas = Canvas(tk,width=W,height=H)
@@ -255,7 +255,7 @@ mainAnimationList = []
 #Start algorithm thread with created list as argument
 mainAnimationList.append([])
 mainAnimationList.append([])
-t1 = Thread(target = lambda: avl_tree1.start_avl_tree(mainAnimationList[0], 0, 0, 600, 500))
+t1 = Thread(target = lambda: avl_tree1.start_avl_tree(mainAnimationList[0], 0, 0, W, H))
 t1.start()
 
 #TODO add more widgets
