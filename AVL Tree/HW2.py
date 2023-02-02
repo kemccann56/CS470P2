@@ -1,7 +1,7 @@
 from tkinter import *
 from queue import Queue
 from threading import Thread, Lock
-import avl_tree1
+import avl_tree
 import movement
 
 
@@ -255,7 +255,7 @@ mainAnimationList = []
 #Start algorithm thread with created list as argument
 mainAnimationList.append([])
 mainAnimationList.append([])
-t1 = Thread(target = lambda: avl_tree1.start_avl_tree(mainAnimationList[0], 0, 0, W, H))
+t1 = Thread(target = lambda: avl_tree.start_avl_tree(mainAnimationList[0], 0, 0, W, H))
 t1.start()
 
 #TODO add more widgets

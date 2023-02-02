@@ -3,7 +3,7 @@ import movement
 import time
 
 # A class to represent a node in an AVL tree
-class TreeNode():
+class AVLTreeNode():
     def __init__(self, object, parent):
         self.object           = object
         self.parent           = parent
@@ -17,7 +17,7 @@ class TreeNode():
 # Insertion: O(log(N))
 # Deletion: O(log(N))
 # Search: O(log(N))
-class AVLTree():
+class AVLTreeAnimation():
 
     # Initialize the global tree variables
     def __init__(self, size, xorigin, width, height, aniList):
@@ -33,6 +33,8 @@ class AVLTree():
     # Function that users should call to insert a value to the AVL tree
     def insert(self, key):
         self.root = self.insert_helper(key, self.root, None)
+        # Resize the tree based off of any rotations that occured
+        self.fix_tree(self.root)
 
     # Function that will insert the specified key into the tree using recursion
     def insert_helper(self, key, current_node, parent):
@@ -40,7 +42,7 @@ class AVLTree():
             # If the tree is empty, then create the root node
             new_object = movement.Object(key)
             self.aniList.append(new_object)
-            new_node = TreeNode(new_object, parent)
+            new_node = AVLTreeNode(new_object, parent)
 
             # Set the new objects x and y value
             if parent is None:
@@ -53,21 +55,22 @@ class AVLTree():
                 height = self.get_depth(new_node)
                 new_node.level = height
                 print(str(height) + " " + str(self.tree_height))
-                # If the new heigth is greater than the tree height we must resize
+                # If the new height is greater than the tree height we must resize
                 # the tree before adding the new node in the animation
                 if height > self.tree_height:
-                    self.resize_tree(parent, height)
+                    self.resize_tree(height)
                     self.tree_height += 1
+                    self.step += 1
 
                 # Set x and y values based on which side of the parent they are on
                 if new_object.userNum > parent.object.userNum:
                     new_object.x = parent.object.x + self.size
-                    new_object.y = parent.object.y + 100
+                    new_object.y = parent.object.y + 50
                     new_object.aniQueue.put(movement.Movement(-1,-1,self.step,[],
                     [parent.object.x + (self.size / 2), parent.object.y + self.size, new_object.x + (self.size / 2), new_object.y]))
                 else:
                     new_object.x = parent.object.x - self.size
-                    new_object.y = parent.object.y + 100
+                    new_object.y = parent.object.y + 50
                     new_object.aniQueue.put(movement.Movement(-1,-1,self.step,[],
                     [parent.object.x + (self.size / 2), parent.object.y + self.size, new_object.x + (self.size / 2), new_object.y]))
 
@@ -95,9 +98,11 @@ class AVLTree():
         # Get the new balance factor for the current node
         balance_factor = self.get_balance(current_node)
 
+        # Left side of the tree is to heavy, so rotate to the right
         if balance_factor > 1 and key < current_node.left_child_node.object.userNum:
             return self.right_rotate(current_node)
 
+        # Right side of the tree is to heavy, so rotate to the left
         if balance_factor < -1 and key > current_node.right_child_node.object.userNum:
             return self.left_rotate(current_node)
 
@@ -168,6 +173,48 @@ class AVLTree():
         # Return the new balanced root of the tree
         return root
 
+    # Function that will fix a tree that has been balanced
+    def fix_tree(self, subtree_root):
+        seperator = 2**(self.get_height(self.root) - 2)
+        level_seperators = [0]
+        for idx in range(1, self.tree_height):
+            level_seperators.append(seperator)
+            # print(seperator)
+            seperator = seperator / 2
+        self.fix_tree_helper(subtree_root, subtree_root, level_seperators)
+        return
+
+    # Recursive helper function for the tree
+    def fix_tree_helper(self, subtree_root, current_node, level_seperators):
+        if current_node is not None:
+            if current_node.parent is not None:
+                if current_node.object.userNum <= current_node.parent.object.userNum:
+                    current_node.object.aniQueue.put(movement.Movement(current_node.object.x, current_node.object.y, self.step, ['delete_line']))
+                    current_node.object.aniQueue.put(movement.Movement(current_node.parent.object.x - (self.size * level_seperators[self.get_depth(current_node) - 1]), current_node.parent.object.y + 50))
+                    current_node.object.x = current_node.parent.object.x - (self.size * level_seperators[self.get_depth(current_node) - 1])
+                    current_node.object.y = current_node.parent.object.y + 50
+                else:
+                    current_node.object.aniQueue.put(movement.Movement(current_node.object.x, current_node.object.y, self.step, ['delete_line']))
+                    current_node.object.aniQueue.put(movement.Movement(current_node.parent.object.x + (self.size * level_seperators[self.get_depth(current_node) - 1]), current_node.parent.object.y + 50))
+                    current_node.object.x = current_node.parent.object.x + (self.size * level_seperators[self.get_depth(current_node) - 1])
+                    current_node.object.y = current_node.parent.object.y + 50
+
+                # Create the new line
+                if current_node.parent is not None:
+                    current_node.object.aniQueue.put(movement.Movement(-1,-1,self.step,[],
+                    [current_node.parent.object.x + (self.size / 2), current_node.parent.object.y + self.size,
+                     current_node.object.x + (self.size / 2), current_node.object.y]))
+            else:
+                current_node.object.aniQueue.put(movement.Movement(current_node.object.x, current_node.object.y, self.step, ['delete_line']))
+                current_node.object.aniQueue.put(movement.Movement(self.xorigin + (self.width / 2) - (self.size / 2), self.height / 15))
+                current_node.object.x = self.xorigin + (self.width / 2) - (self.size / 2)
+                current_node.object.y = self.height / 15
+
+            self.fix_tree_helper(subtree_root, current_node.left_child_node, level_seperators)
+            self.fix_tree_helper(subtree_root, current_node.right_child_node, level_seperators)
+            return
+
+
     # Function that will perform a left rotation using the parent node
     #       z           y
     #        \         / \
@@ -179,14 +226,20 @@ class AVLTree():
         y = z.right_child_node
         T2 = y.left_child_node
         z.right_child_node = T2
+
+        if T2 is not None:
+            T2.parent = z
+
+        y.parent = z.parent
         y.left_child_node = z
+        z.parent = y
 
         # Calculate the new heights for the nodes
         z.height = 1 + max(self.get_height(z.left_child_node),
                            self.get_height(z.right_child_node))
         y.height = 1 + max(self.get_height(y.left_child_node),
                            self.get_height(y.right_child_node))
-
+        self.fix_tree(y)
         # Return the new top level node
         return y
 
@@ -203,6 +256,15 @@ class AVLTree():
         y.right_child_node = z
         z.left_child_node = T3
 
+        if T3 is not None:
+            T3.parent = z
+
+        y.parent = z.parent
+        y.right_child_node = z
+        z.parent = y
+
+        self.fix_tree(y)
+
         # Calculate the new heights for the nodes
         z.height = 1 + max(self.get_height(z.left_child_node),
                            self.get_height(z.right_child_node))
@@ -218,6 +280,15 @@ class AVLTree():
         if root is None:
             return 0
         return root.height
+
+    # Gets the depth of the node (Inverse of get height)
+    def get_depth(self, node):
+        depth = 0
+        current_node = node
+        while current_node is not None:
+            depth += 1
+            current_node = current_node.parent
+        return depth
 
     # Get the balance of the given node
     def get_balance(self, root):
@@ -236,60 +307,53 @@ class AVLTree():
             return root
         return self.get_successor(root.left_child_node)
 
-    # Gets the depth of the pasted in node
-    def get_depth(self, node):
-        depth = 0
-        current_node = node
-        while current_node is not None:
-            depth += 1
-            current_node = current_node.parent
-        return depth
+    # Implements a preorder traversal that will move the nodes to fit the new tree height
+    def preorder_resize(self, current_node):
+        # Root node will never have to be moved
+        if current_node is not None:
+            if current_node.object.userNum <= self.root.object.userNum:
+                # Move the node to its new location, based on its old location
+                current_node.object.aniQueue.put(movement.Movement(current_node.object.x, current_node.object.y,
+                                                                   self.step, ['delete_line']))
+                current_node.object.aniQueue.put(movement.Movement(self.root.object.x - ((self.root.object.x - current_node.object.x) * 2),
+                                                                   current_node.object.y))
+                current_node.object.x = self.root.object.x - ((self.root.object.x - current_node.object.x) * 2)
+            else:
+                # Move the node to its new location, based on its old location
+                current_node.object.aniQueue.put(movement.Movement(current_node.object.x, current_node.object.y,
+                                                                   self.step, ['delete_line']))
+                current_node.object.aniQueue.put(movement.Movement(self.root.object.x + ((current_node.object.x - self.root.object.x) * 2),
+                                                                   current_node.object.y))
+                current_node.object.x = self.root.object.x + ((current_node.object.x - self.root.object.x) * 2)
+            # Create the new line
+            if current_node.parent is not None:
+                current_node.object.aniQueue.put(movement.Movement(-1,-1,self.step,[],
+                [current_node.parent.object.x + (self.size / 2), current_node.parent.object.y + self.size,
+                 current_node.object.x + (self.size / 2), current_node.object.y]))
 
-    # Implements a preorder traversal that will resize the various nodes of the tree
-    def preorder_resize(self, root):
-        # if we have not reached the top of the tree
-        if root is not None:
-            # If we are not at the root node, then the nodes will need to be moved
-            if root.parent is not None:
-                # If the current node is less than the root value, we will move it in the negative direction
-                if root.object.userNum <= self.root.object.userNum:
-                    root.object.aniQueue.put(movement.Movement(root.object.x, root.object.y,self.step, ['delete_line']))
-                    root.object.aniQueue.put(movement.Movement(root.object.x - self.size, root.object.y, self.step, [], []))
-                    root.object.x = root.object.x - self.size
-                # If the current node is greated than the root value, we will move it in the positive direction
-                else:
-                    root.object.aniQueue.put(movement.Movement(root.object.x, root.object.y,self.step, ['delete_line']))
-                    root.object.aniQueue.put(movement.Movement(root.object.x + self.size, root.object.y, self.step, [], []))
-                    root.object.x = root.object.x + self.size
-                # Create the new line
-                root.object.aniQueue.put(movement.Movement(-1,-1,self.step,[],
-                    [root.parent.object.x + (self.size / 2), root.parent.object.y + self.size, root.object.x + (self.size / 2), root.object.y]))
-            self.preorder_resize(root.left_child_node)
-            self.preorder_resize(root.right_child_node)
+            self.preorder_resize(current_node.left_child_node)
+            self.preorder_resize(current_node.right_child_node)
 
-    # Function that will resize the tree
-    def resize_tree(self, starting_node, height):
-        # Get the root node to start the resizing
-        while starting_node.parent is not None:
-            starting_node = starting_node.parent
-        self.preorder_resize(starting_node)
+    # Function that will initiate the resize of the tree
+    def resize_tree(self, height):
+        self.preorder_resize(self.root)
         return
 
 # Function that will start the avl tree algorithm
 def start_avl_tree(aniList, x_origin, y_origin, width, height):
     # Initialize the AVL tree object
-    tree = AVLTree(50, x_origin, width, height, aniList)
-    # Tree is initially empty
-    root = None
+    tree = AVLTreeAnimation(30, x_origin, width, height, aniList)
 
     # Loop and wait for more elements to insert, delete, and search for
     while True:
         tree.insert(1)
         tree.insert(2)
-        tree.insert(0)
         tree.insert(3)
-        tree.insert(1.5)
-        tree.insert(0.5)
-        tree.insert(-1)
-
+        tree.insert(0)
+        tree.insert(0)
+        tree.insert(0)
+        tree.insert(0)
+        tree.insert(0)
+        tree.insert(0)
+        tree.insert(0)
         break
