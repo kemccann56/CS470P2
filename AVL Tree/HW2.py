@@ -265,3 +265,4 @@ startButton.pack()
 
 #Runs the animation in the background
 tk.mainloop()
+

@@ -1,6 +1,9 @@
 import sys
 import movement
 import time
+from queue import Queue
+
+elements_to_insert = Queue()
 
 # A class to represent a node in an AVL tree
 class AVLTreeNode():
@@ -33,8 +36,12 @@ class AVLTreeAnimation():
     # Function that users should call to insert a value to the AVL tree
     def insert(self, key):
         self.root = self.insert_helper(key, self.root, None)
+        """
+        # Reset the tree height since rotation might have been done
+        self.tree_height = self.get_height(self.root)
         # Resize the tree based off of any rotations that occured
         self.fix_tree(self.root)
+        """
 
     # Function that will insert the specified key into the tree using recursion
     def insert_helper(self, key, current_node, parent):
@@ -54,7 +61,7 @@ class AVLTreeAnimation():
                 # Check the height of the tree using the newly inserted leaf
                 height = self.get_depth(new_node)
                 new_node.level = height
-                print(str(height) + " " + str(self.tree_height))
+                # print(str(height) + " " + str(self.tree_height))
                 # If the new height is greater than the tree height we must resize
                 # the tree before adding the new node in the animation
                 if height > self.tree_height:
@@ -190,12 +197,12 @@ class AVLTreeAnimation():
             if current_node.parent is not None:
                 if current_node.object.userNum <= current_node.parent.object.userNum:
                     current_node.object.aniQueue.put(movement.Movement(current_node.object.x, current_node.object.y, self.step, ['delete_line']))
-                    current_node.object.aniQueue.put(movement.Movement(current_node.parent.object.x - (self.size * level_seperators[self.get_depth(current_node) - 1]), current_node.parent.object.y + 50))
+                    current_node.object.aniQueue.put(movement.Movement(current_node.parent.object.x - (self.size * level_seperators[self.get_depth(current_node) - 1]), current_node.parent.object.y + 50, self.step))
                     current_node.object.x = current_node.parent.object.x - (self.size * level_seperators[self.get_depth(current_node) - 1])
                     current_node.object.y = current_node.parent.object.y + 50
                 else:
                     current_node.object.aniQueue.put(movement.Movement(current_node.object.x, current_node.object.y, self.step, ['delete_line']))
-                    current_node.object.aniQueue.put(movement.Movement(current_node.parent.object.x + (self.size * level_seperators[self.get_depth(current_node) - 1]), current_node.parent.object.y + 50))
+                    current_node.object.aniQueue.put(movement.Movement(current_node.parent.object.x + (self.size * level_seperators[self.get_depth(current_node) - 1]), current_node.parent.object.y + 50, self.step))
                     current_node.object.x = current_node.parent.object.x + (self.size * level_seperators[self.get_depth(current_node) - 1])
                     current_node.object.y = current_node.parent.object.y + 50
 
@@ -206,7 +213,7 @@ class AVLTreeAnimation():
                      current_node.object.x + (self.size / 2), current_node.object.y]))
             else:
                 current_node.object.aniQueue.put(movement.Movement(current_node.object.x, current_node.object.y, self.step, ['delete_line']))
-                current_node.object.aniQueue.put(movement.Movement(self.xorigin + (self.width / 2) - (self.size / 2), self.height / 15))
+                current_node.object.aniQueue.put(movement.Movement(self.xorigin + (self.width / 2) - (self.size / 2), self.height / 15, self.step))
                 current_node.object.x = self.xorigin + (self.width / 2) - (self.size / 2)
                 current_node.object.y = self.height / 15
 
@@ -347,13 +354,19 @@ def start_avl_tree(aniList, x_origin, y_origin, width, height):
     # Loop and wait for more elements to insert, delete, and search for
     while True:
         tree.insert(1)
+        time.sleep(5)
         tree.insert(2)
-        tree.insert(3)
+        time.sleep(5)
         tree.insert(0)
-        tree.insert(0)
-        tree.insert(0)
-        tree.insert(0)
-        tree.insert(0)
-        tree.insert(0)
-        tree.insert(0)
+        time.sleep(5)
+        tree.insert(6)
+        """
+        time.sleep(5)
+        tree.insert(-1)
+        time.sleep(5)
+        tree.insert(-0.5)
+        time.sleep(5)
+        tree.insert(1.5)
+        """
+
         break
