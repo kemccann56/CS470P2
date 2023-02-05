@@ -42,12 +42,17 @@ class AVLTreeAnimation():
     Function that users should call to insert a value to the AVL tree
     """
     def insert(self, key):
+        # Perform a standard binary tree insert then rotate any unbalanced subtrees
         self.root = self.insert_helper(key, self.root, None)
+        # If the currently stored tree height is off by more than one, resize
+        # the tree to match it. This is included to prevent any unnecessary
+        # resizing.
         if self.tree_height > self.get_height(self.root) + 1:
             self.resize_tree(self.get_height(self.root))
 
     """
-    Function that will insert the specified key into the tree using recursion
+    Function that will recursively search for where the node should be inserted
+    and fix any newly unbalanced nodes on the way back up
     """
     def insert_helper(self, key, current_node, parent):
         if current_node is None: # Reached the bottom of the tree
@@ -66,8 +71,8 @@ class AVLTreeAnimation():
                     self.resize_tree(new_node.level)
                     self.tree_height += 1
                 # Calculate the nodes x and y coordinates
+                # The distance between a parent node and the child can be computed based off of the level in the tree
                 seperator = 2**(self.tree_height - 2)
-                # print(self.tree_height)
                 level_seperators = [0]
                 for idx in range(1, self.tree_height):
                     level_seperators.append(seperator)
@@ -86,12 +91,12 @@ class AVLTreeAnimation():
                 self.color_node(parent, 'lightblue', True)
             return new_node
         elif key <= current_node.object.userNum: # New node is to the left of the current one
-            if parent is not None:
+            if parent is not None: # Show that we are moving on from the parent node
                 self.color_node(parent, 'lightblue', False)
             self.color_node(current_node, 'gold', True)
             current_node.left_child_node = self.insert_helper(key, current_node.left_child_node, current_node)
         else: # New node is to the right of the current one
-            if parent is not None:
+            if parent is not None: # Show that we are moving on from the parent node
                 self.color_node(parent, 'lightblue', False)
             self.color_node(current_node, 'gold', True)
             current_node.right_child_node = self.insert_helper(key, current_node.right_child_node, current_node)
@@ -105,25 +110,25 @@ class AVLTreeAnimation():
         balance_factor = self.get_balance(current_node)
         if balance_factor > 1 and key < current_node.left_child_node.object.userNum:
             node = self.right_rotate(current_node)
-            self.fix_tree(node, True)
+            self.fix_tree(node, False)
             return node
         if balance_factor < -1 and key > current_node.right_child_node.object.userNum:
             node = self.left_rotate(current_node)
-            self.fix_tree(node, True)
+            self.fix_tree(node, False)
             return node
         if balance_factor > 1 and key > current_node.left_child_node.object.userNum:
             node = self.left_rotate(current_node.left_child_node)
-            self.fix_tree(node, True)
+            self.fix_tree(node, False)
             current_node.left_child_node = node
             node = self.right_rotate(node)
-            self.fix_tree(node, True)
+            self.fix_tree(node, False)
             return node
         if balance_factor < -1 and key < current_node.right_child_node.object.userNum:
             node = self.right_rotate(current_node.right_child_node)
-            self.fix_tree(node, True)
+            self.fix_tree(node, False)
             self.root.right_child_node = node
             node = self.left_rotate(current_node)
-            self.fix_tree(node, True)
+            self.fix_tree(node, False)
             return node
         # Subtree is balanced
         return current_node
@@ -228,28 +233,31 @@ class AVLTreeAnimation():
          T2   x       T2
     """
     def left_rotate(self, z):
-        self.color_node(z, 'gold', True)
+        # Get the nodes that will be rotated
         y = z.right_child_node
-        self.color_node(y, 'gold', True)
         T2 = y.left_child_node
-        z.right_child_node = T2
-
+        # Color all of the nodes that will be moved
+        self.color_node(z, 'red1', True)
+        self.color_node(y, 'red1', True)
         if T2 is not None:
-            T2.parent = z
-            self.color_node(T2, 'gold', True)
-
+            T2.parent = z # Set T2's parent if necessary
+            self.color_node(T2, 'red1', True)
+        if y.right_child_node is not None:
+            self.color_node(y.right_child_node, 'red1', True)
+        # Rotate the nodes
+        z.right_child_node = T2
         y.parent = z.parent
         y.left_child_node = z
         z.parent = y
-
+        # Update the root if necessary
         if z == self.root:
             self.root = y
-
-        # Calculate the new heights for the nodes
+        # Calculate the new heights for rotated nodes
         z.height = 1 + max(self.get_height(z.left_child_node),
                            self.get_height(z.right_child_node))
         y.height = 1 + max(self.get_height(y.left_child_node),
                            self.get_height(y.right_child_node))
+        # Return the new parent node
         return y
 
     """
@@ -261,49 +269,47 @@ class AVLTreeAnimation():
       x   T3         T3
     """
     def right_rotate(self, z):
-        # Perform the right rotation
-        self.color_node(z, 'gold', True)
+        # Get the nodes that will be rotated
         y = z.left_child_node
-        self.color_node(y, 'gold', True)
         T3 = y.right_child_node
         y.right_child_node = z
-        z.left_child_node = T3
-
+        # Color all of the nodes that will be moved
+        self.color_node(z, 'red1', True)
+        self.color_node(y, 'red1', True)
         if T3 is not None:
-            self.color_node(T3, 'gold', True)
-            T3.parent = z
-
+            self.color_node(T3, 'red1', True)
+            T3.parent = z # Set T3's parent if necessary
+        # Rotate the nodes
+        z.left_child_node = T3
         y.parent = z.parent
         y.right_child_node = z
         z.parent = y
-
         # Calculate the new heights for the nodes
         z.height = 1 + max(self.get_height(z.left_child_node),
                            self.get_height(z.right_child_node))
         y.height = 1 + max(self.get_height(y.left_child_node),
                            self.get_height(y.right_child_node))
-
-        # Return the new top level node
+        # Return the new parent node
         return y
 
     """
-    Return the height of the tree starting at the given node
+    Return the height of the subtree starting at the given node.
     """
-    def get_height(self, root):
+    def get_height(self, node):
         # If the tree is empty the height will be 0
-        if root is None:
+        if node is None:
             return 0
-        return root.height
+        return node.height
 
     """
-    Gets the depth of the node (Inverse of get height)
+    Gets the level that the node is currently at in the tree.
     """
     def get_depth(self, node):
         depth = 0
-        current_node = node
-        while current_node is not None:
+        # Move up the tree until we reach the root node
+        while node is not None:
             depth += 1
-            current_node = current_node.parent
+            node = node.parent
         return depth
 
     """
@@ -319,13 +325,13 @@ class AVLTreeAnimation():
                self.get_height(root.right_child_node)
 
     """
-    Get the smallest value in the tree
+    Gets the successor to the given node.
     """
-    def get_successor(self, root):
-        # If return either the root or the farthest value to the left
-        if root is None or root.left_child_node is None:
-            return root
-        return self.get_successor(root.left_child_node)
+    def get_successor(self, node):
+        # The node farthest to the left in the subtree will be the successor
+        if node is None or node.left_child_node is None:
+            return node
+        return self.get_successor(node.left_child_node)
 
     """
     Implements a preorder traversal that will move the nodes to fit the new tree height
@@ -349,7 +355,7 @@ class AVLTreeAnimation():
             self.preorder_resize(current_node.right_child_node)
 
     """
-    Function that will first resize the tree and then readd the parent-child lines.
+    Function that will first resize the tree and then re-add the parent-child lines.
     """
     def resize_tree(self, height):
         # Resize the entire tree (deletes all lines)
@@ -370,7 +376,6 @@ class AVLTreeAnimation():
             level_seperators.append(seperator)
             seperator = seperator / 2
         self.delete_lines_helper(subtree_root)
-        self.step += 1
         self.fix_tree_helper(subtree_root, subtree_root, level_seperators, increment_step)
         self.reset_color(subtree_root)
         if increment_step:
@@ -382,17 +387,23 @@ class AVLTreeAnimation():
     """
     def fix_tree_helper(self, subtree_root, current_node, level_seperators, increment_step):
         if current_node is not None:
-            if current_node.parent is not None:
+            if current_node.parent is not None: # If we are not at the root node
                 if current_node.object.userNum <= current_node.parent.object.userNum:
                     self.delete_line(current_node, increment_step)
-                    self.move_node(current_node.parent.object.x - (self.size * level_seperators[self.get_depth(current_node) - 1]), current_node.parent.object.y + self.y_distance, current_node, increment_step)
+                    self.move_node(current_node.parent.object.x - (self.size * level_seperators[self.get_depth(current_node) - 1]),
+                                   current_node.parent.object.y + self.y_distance,
+                                   current_node,
+                                   increment_step)
                     self.draw_line(current_node, increment_step)
                 else:
                     self.delete_line(current_node, increment_step)
-                    self.move_node(current_node.parent.object.x + (self.size * level_seperators[self.get_depth(current_node) - 1]), current_node.parent.object.y + self.y_distance, current_node, increment_step)
+                    self.move_node(current_node.parent.object.x + (self.size * level_seperators[self.get_depth(current_node) - 1]),
+                                   current_node.parent.object.y + self.y_distance,
+                                   current_node,
+                                   increment_step)
                     self.draw_line(current_node, increment_step)
-            else:
-                self.delete_line(current_node, True)
+            else: # Node is the root so remove any line that was attatched to it
+                self.delete_line(current_node, increment_step)
                 self.move_node(self.xorigin + (self.width / 2) - (self.size / 2), self.height / 15, current_node, increment_step)
 
             self.fix_tree_helper(subtree_root, current_node.left_child_node, level_seperators, increment_step)
@@ -495,4 +506,5 @@ def start_avl_tree(aniList, x_origin, y_origin, width, height):
         tree.insert(5)
         tree.insert(6)
         tree.insert(7)
+        tree.search(7)
         break
