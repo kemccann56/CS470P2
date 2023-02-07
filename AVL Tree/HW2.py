@@ -221,6 +221,13 @@ def start(step=0):
                     #Movement objects on the aniQueue get divided by the delay and added to the moveQueue
                     #-1 in the x value will skip the movement
                     if newCoords.x != -1:
+                        file = open("output.txt", "a")
+                        file.write("userNum: " + str(aniObject.userNum) + "\n")
+                        file.write("New coord: " + str(newCoords.x) + " " + str(newCoords.y) + "\n")
+                        file.close()
+                        file = open("output.txt", "a")
+                        file.write("Old coord: " + str(oldCoords[0]) + " " + str(oldCoords[1]) + "\n")
+                        file.close()
                         movex = newCoords.x - oldCoords[0]
                         movey = newCoords.y - oldCoords[1]
                         movexx = movex / delay
@@ -248,7 +255,7 @@ def start(step=0):
     #This method recursivley calls this start method passing the current step as an argument
     tk.after(1, start, step)
 ############################################################################################## Program starts here
-W, H = 1200, 750
+W, H = 1500, 1000
 delay = 500
 tk = Tk()
 canvas = Canvas(tk,width=W,height=H)

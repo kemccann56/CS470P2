@@ -223,6 +223,7 @@ def start(step=0):
                         if arg == 'delete_line':
                             canvas.delete(aniObject.lineToParent)
                         elif arg == 'delete_shape':
+                            print("Deleting shape")
                             canvas.delete(aniObject.shape)
                             canvas.delete(aniObject.text)
                             canvas.delete(aniObject.lineToParent)
@@ -231,7 +232,8 @@ def start(step=0):
 
                     #Movement objects on the aniQueue get divided by the delay and added to the moveQueue
                     #-1 in the x value will skip the movement
-                    if newCoords.x != -1:
+                    if newCoords.x != -1 and oldCoords:
+                        print(newCoords.x)
                         movex = newCoords.x - oldCoords[0]
                         movey = newCoords.y - oldCoords[1]
                         movexx = movex / delay

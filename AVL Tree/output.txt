@@ -1,0 +1,2112 @@
+Moving node: 1
+Moving node: 1
+Moving node: 0
+Moving node: 2
+Moving node: 1
+Moving node: 0
+Moving node: 2
+Moving node: 3
+Moving node: 3
+Moving node: 2
+Moving node: 4
+Moving node: 2
+Moving node: 1.5
+Moving node: 3
+Moving node: 4
+Moving node: 2
+Moving node: 1
+Moving node: 0
+Moving node: 1.5
+Moving node: 3
+Moving node: 4
+userNum: 1
+New coord: 580.0 50.0
+Old coord: 580.0 50.0
+userNum: 1
+New coord: 580.0 50.0
+Old coord: 580.0 50.0
+userNum: 1
+New coord: 580.0 50.0
+Old coord: 580.0 50.0
+userNum: 2
+New coord: 620.0 100.0
+Old coord: 620.0 100.0
+userNum: 0
+New coord: 540.0 100.0
+Old coord: 540.0 100.0
+userNum: 1
+New coord: 580.0 50.0
+Old coord: 580.0 50.0
+userNum: 2
+New coord: 660.0 100.0
+Old coord: 620.0 100.0
+userNum: 0
+New coord: 500.0 100.0
+Old coord: 540.0 100.0
+userNum: 1
+New coord: 580.0 50.0
+Old coord: 580.0 50.0
+userNum: 2
+New coord: 660.0 100.0
+Old coord: 660.0000000000205 100.0
+userNum: 0
+New coord: 500.0 100.0
+Old coord: 499.9999999999881 100.0
+userNum: 3
+New coord: 700.0 150.0
+Old coord: 700.0 150.0
+userNum: 1
+New coord: 580.0 50.0
+Old coord: 580.0 50.0
+userNum: 2
+New coord: 740.0 100.0
+Old coord: 660.0000000000205 100.0
+userNum: 0
+New coord: 420.0 100.0
+Old coord: 499.9999999999881 100.0
+userNum: 3
+New coord: 820.0 150.0
+Old coord: 700.0 150.0
+userNum: 2
+New coord: 740.0 100.0
+Old coord: 740.0000000000045 100.0
+userNum: 3
+New coord: 820.0 150.0
+Old coord: 820.0000000000045 150.0
+userNum: 4
+New coord: 860.0 200.0
+Old coord: 860.0 200.0
+userNum: 2
+New coord: 740.0 100.0
+Old coord: 740.0000000000045 100.0
+userNum: 3
+New coord: 820.0 150.0
+Old coord: 820.0000000000045 150.0
+userNum: 4
+New coord: 860.0 200.0
+Old coord: 860.0 200.0
+userNum: 2
+New coord: 660.0 150.0
+Old coord: 740.0000000000045 100.0
+userNum: 3
+New coord: 740.0 100.0
+Old coord: 820.0000000000045 150.0
+userNum: 4
+New coord: 820.0 150.0
+Old coord: 860.0 200.0
+userNum: 2
+New coord: 660.0 150.0
+Old coord: 660.0000000000205 149.99999999999716
+userNum: 3
+New coord: 740.0 100.0
+Old coord: 740.0000000000205 100.00000000000284
+userNum: 4
+New coord: 820.0 150.0
+Old coord: 819.9999999999795 150.00000000000284
+userNum: 1.5
+New coord: 620.0 200.0
+Old coord: 620.0 200.0
+userNum: 2
+New coord: 660.0 150.0
+Old coord: 660.0000000000205 149.99999999999716
+userNum: 3
+New coord: 740.0 100.0
+Old coord: 740.0000000000205 100.00000000000284
+userNum: 4
+New coord: 820.0 150.0
+Old coord: 819.9999999999795 150.00000000000284
+userNum: 1.5
+New coord: 620.0 200.0
+Old coord: 620.0 200.0
+userNum: 2
+New coord: 740.0 100.0
+Old coord: 660.0000000000205 149.99999999999716
+userNum: 3
+New coord: 820.0 150.0
+Old coord: 740.0000000000205 100.00000000000284
+userNum: 4
+New coord: 860.0 200.0
+Old coord: 819.9999999999795 150.00000000000284
+userNum: 1.5
+New coord: 660.0 150.0
+Old coord: 620.0 200.0
+userNum: 1
+New coord: 580.0 50.0
+Old coord: 580.0 50.0
+userNum: 2
+New coord: 740.0 100.0
+Old coord: 740.0000000000045 100.0
+userNum: 0
+New coord: 420.0 100.0
+Old coord: 420.00000000000404 100.0
+userNum: 3
+New coord: 820.0 150.0
+Old coord: 820.0000000000045 150.0
+userNum: 4
+New coord: 860.0 200.0
+Old coord: 860.0 200.0
+userNum: 1.5
+New coord: 660.0 150.0
+Old coord: 660.0000000000205 150.00000000000284
+userNum: 1
+New coord: 580.0 50.0
+Old coord: 580.0 50.0
+userNum: 2
+New coord: 580.0 50.0
+Old coord: 740.0000000000045 100.0
+userNum: 0
+New coord: 420.0 100.0
+Old coord: 420.00000000000404 100.0
+userNum: 3
+New coord: 820.0 150.0
+Old coord: 820.0000000000045 150.0
+userNum: 4
+New coord: 860.0 200.0
+Old coord: 860.0 200.0
+userNum: 1.5
+New coord: 660.0 150.0
+Old coord: 660.0000000000205 150.00000000000284
+userNum: 1
+New coord: 420.0 100.0
+Old coord: 580.0 50.0
+userNum: 0
+New coord: 340.0 150.0
+Old coord: 420.00000000000404 100.0
+userNum: 3
+New coord: 740.0 100.0
+Old coord: 820.0000000000045 150.0
+userNum: 4
+New coord: 820.0 150.0
+Old coord: 860.0 200.0
+userNum: 1.5
+New coord: 500.0 150.0
+Old coord: 660.0000000000205 150.00000000000284
+Moving node: 1
+Moving node: 1
+Moving node: 0
+Moving node: 2
+Moving node: 1
+Moving node: 0
+Moving node: 2
+Moving node: 3
+Moving node: 3
+Moving node: 2
+Moving node: 4
+Moving node: 2
+Moving node: 1.5
+Moving node: 3
+Moving node: 4
+Moving node: 2
+Moving node: 1
+Moving node: 0
+Moving node: 1.5
+Moving node: 3
+Moving node: 4
+Moving node: 4
+userNum: 1
+New coord: 580.0 50.0
+Old coord: 580.0 50.0
+userNum: 1
+New coord: 580.0 50.0
+Old coord: 580.0 50.0
+userNum: 1
+New coord: 580.0 50.0
+Old coord: 580.0 50.0
+userNum: 2
+New coord: 620.0 100.0
+Old coord: 620.0 100.0
+userNum: 0
+New coord: 540.0 100.0
+Old coord: 540.0 100.0
+userNum: 1
+New coord: 580.0 50.0
+Old coord: 580.0 50.0
+userNum: 2
+New coord: 660.0 100.0
+Old coord: 620.0 100.0
+userNum: 0
+New coord: 500.0 100.0
+Old coord: 540.0 100.0
+userNum: 1
+New coord: 580.0 50.0
+Old coord: 580.0 50.0
+userNum: 2
+New coord: 660.0 100.0
+Old coord: 660.0000000000205 100.0
+userNum: 0
+New coord: 500.0 100.0
+Old coord: 499.9999999999881 100.0
+userNum: 3
+New coord: 700.0 150.0
+Old coord: 700.0 150.0
+userNum: 1
+New coord: 580.0 50.0
+Old coord: 580.0 50.0
+userNum: 2
+New coord: 740.0 100.0
+Old coord: 660.0000000000205 100.0
+userNum: 0
+New coord: 420.0 100.0
+Old coord: 499.9999999999881 100.0
+userNum: 3
+New coord: 820.0 150.0
+Old coord: 700.0 150.0
+userNum: 2
+New coord: 740.0 100.0
+Old coord: 740.0000000000045 100.0
+userNum: 3
+New coord: 820.0 150.0
+Old coord: 820.0000000000045 150.0
+userNum: 4
+New coord: 860.0 200.0
+Old coord: 860.0 200.0
+userNum: 2
+New coord: 740.0 100.0
+Old coord: 740.0000000000045 100.0
+userNum: 3
+New coord: 820.0 150.0
+Old coord: 820.0000000000045 150.0
+userNum: 4
+New coord: 860.0 200.0
+Old coord: 860.0 200.0
+userNum: 2
+New coord: 660.0 150.0
+Old coord: 740.0000000000045 100.0
+userNum: 3
+New coord: 740.0 100.0
+Old coord: 820.0000000000045 150.0
+userNum: 4
+New coord: 820.0 150.0
+Old coord: 860.0 200.0
+userNum: 2
+New coord: 660.0 150.0
+Old coord: 660.0000000000205 149.99999999999716
+userNum: 3
+New coord: 740.0 100.0
+Old coord: 740.0000000000205 100.00000000000284
+userNum: 4
+New coord: 820.0 150.0
+Old coord: 819.9999999999795 150.00000000000284
+userNum: 1.5
+New coord: 620.0 200.0
+Old coord: 620.0 200.0
+userNum: 2
+New coord: 660.0 150.0
+Old coord: 660.0000000000205 149.99999999999716
+userNum: 3
+New coord: 740.0 100.0
+Old coord: 740.0000000000205 100.00000000000284
+userNum: 4
+New coord: 820.0 150.0
+Old coord: 819.9999999999795 150.00000000000284
+userNum: 1.5
+New coord: 620.0 200.0
+Old coord: 620.0 200.0
+userNum: 2
+New coord: 740.0 100.0
+Old coord: 660.0000000000205 149.99999999999716
+userNum: 3
+New coord: 820.0 150.0
+Old coord: 740.0000000000205 100.00000000000284
+userNum: 4
+New coord: 860.0 200.0
+Old coord: 819.9999999999795 150.00000000000284
+userNum: 1.5
+New coord: 660.0 150.0
+Old coord: 620.0 200.0
+userNum: 1
+New coord: 580.0 50.0
+Old coord: 580.0 50.0
+userNum: 2
+New coord: 740.0 100.0
+Old coord: 740.0000000000045 100.0
+userNum: 0
+New coord: 420.0 100.0
+Old coord: 420.00000000000404 100.0
+userNum: 3
+New coord: 820.0 150.0
+Old coord: 820.0000000000045 150.0
+userNum: 4
+New coord: 860.0 200.0
+Old coord: 860.0 200.0
+userNum: 1.5
+New coord: 660.0 150.0
+Old coord: 660.0000000000205 150.00000000000284
+userNum: 1
+New coord: 580.0 50.0
+Old coord: 580.0 50.0
+userNum: 2
+New coord: 580.0 50.0
+Old coord: 740.0000000000045 100.0
+userNum: 0
+New coord: 420.0 100.0
+Old coord: 420.00000000000404 100.0
+userNum: 3
+New coord: 820.0 150.0
+Old coord: 820.0000000000045 150.0
+userNum: 4
+New coord: 860.0 200.0
+Old coord: 860.0 200.0
+userNum: 1.5
+New coord: 660.0 150.0
+Old coord: 660.0000000000205 150.00000000000284
+userNum: 1
+New coord: 420.0 100.0
+Old coord: 580.0 50.0
+userNum: 0
+New coord: 340.0 150.0
+Old coord: 420.00000000000404 100.0
+userNum: 3
+New coord: 740.0 100.0
+Old coord: 820.0000000000045 150.0
+userNum: 4
+New coord: 820.0 150.0
+Old coord: 860.0 200.0
+userNum: 1.5
+New coord: 500.0 150.0
+Old coord: 660.0000000000205 150.00000000000284
+userNum: 4
+New coord: 820.0 150.0
+Old coord: 819.9999999999795 150.00000000000284
+userNum: 4
+New coord: 820.0 150.0
+Old coord: 819.9999999999795 150.00000000000284
+userNum: 4
+New coord: 740.0 100.0
+Old coord: 819.9999999999795 150.00000000000284
+Moving node: 1
+Moving node: 1
+Moving node: 0
+Moving node: 2
+Moving node: 1
+Moving node: 0
+Moving node: 2
+Moving node: 3
+Moving node: 3
+Moving node: 2
+Moving node: 4
+Moving node: 2
+Moving node: 1.5
+Moving node: 3
+Moving node: 4
+Moving node: 2
+Moving node: 1
+Moving node: 0
+Moving node: 1.5
+Moving node: 3
+Moving node: 4
+Moving node: 4
+userNum: 1
+New coord: 580.0 50.0
+Old coord: 580.0 50.0
+userNum: 1
+New coord: 580.0 50.0
+Old coord: 580.0 50.0
+userNum: 1
+New coord: 580.0 50.0
+Old coord: 580.0 50.0
+userNum: 2
+New coord: 620.0 100.0
+Old coord: 620.0 100.0
+userNum: 0
+New coord: 540.0 100.0
+Old coord: 540.0 100.0
+userNum: 1
+New coord: 580.0 50.0
+Old coord: 580.0 50.0
+userNum: 2
+New coord: 660.0 100.0
+Old coord: 620.0 100.0
+userNum: 0
+New coord: 500.0 100.0
+Old coord: 540.0 100.0
+userNum: 1
+New coord: 580.0 50.0
+Old coord: 580.0 50.0
+userNum: 2
+New coord: 660.0 100.0
+Old coord: 660.0000000000205 100.0
+userNum: 0
+New coord: 500.0 100.0
+Old coord: 499.9999999999881 100.0
+userNum: 3
+New coord: 700.0 150.0
+Old coord: 700.0 150.0
+userNum: 1
+New coord: 580.0 50.0
+Old coord: 580.0 50.0
+userNum: 2
+New coord: 740.0 100.0
+Old coord: 660.0000000000205 100.0
+userNum: 0
+New coord: 420.0 100.0
+Old coord: 499.9999999999881 100.0
+userNum: 3
+New coord: 820.0 150.0
+Old coord: 700.0 150.0
+userNum: 2
+New coord: 740.0 100.0
+Old coord: 740.0000000000045 100.0
+userNum: 3
+New coord: 820.0 150.0
+Old coord: 820.0000000000045 150.0
+userNum: 4
+New coord: 860.0 200.0
+Old coord: 860.0 200.0
+userNum: 2
+New coord: 740.0 100.0
+Old coord: 740.0000000000045 100.0
+userNum: 3
+New coord: 820.0 150.0
+Old coord: 820.0000000000045 150.0
+userNum: 4
+New coord: 860.0 200.0
+Old coord: 860.0 200.0
+userNum: 2
+New coord: 660.0 150.0
+Old coord: 740.0000000000045 100.0
+userNum: 3
+New coord: 740.0 100.0
+Old coord: 820.0000000000045 150.0
+userNum: 4
+New coord: 820.0 150.0
+Old coord: 860.0 200.0
+userNum: 2
+New coord: 660.0 150.0
+Old coord: 660.0000000000205 149.99999999999716
+userNum: 3
+New coord: 740.0 100.0
+Old coord: 740.0000000000205 100.00000000000284
+userNum: 4
+New coord: 820.0 150.0
+Old coord: 819.9999999999795 150.00000000000284
+userNum: 1.5
+New coord: 620.0 200.0
+Old coord: 620.0 200.0
+userNum: 2
+New coord: 660.0 150.0
+Old coord: 660.0000000000205 149.99999999999716
+userNum: 3
+New coord: 740.0 100.0
+Old coord: 740.0000000000205 100.00000000000284
+userNum: 4
+New coord: 820.0 150.0
+Old coord: 819.9999999999795 150.00000000000284
+userNum: 1.5
+New coord: 620.0 200.0
+Old coord: 620.0 200.0
+userNum: 2
+New coord: 740.0 100.0
+Old coord: 660.0000000000205 149.99999999999716
+userNum: 3
+New coord: 820.0 150.0
+Old coord: 740.0000000000205 100.00000000000284
+userNum: 4
+New coord: 860.0 200.0
+Old coord: 819.9999999999795 150.00000000000284
+userNum: 1.5
+New coord: 660.0 150.0
+Old coord: 620.0 200.0
+userNum: 1
+New coord: 580.0 50.0
+Old coord: 580.0 50.0
+userNum: 2
+New coord: 740.0 100.0
+Old coord: 740.0000000000045 100.0
+userNum: 0
+New coord: 420.0 100.0
+Old coord: 420.00000000000404 100.0
+userNum: 3
+New coord: 820.0 150.0
+Old coord: 820.0000000000045 150.0
+userNum: 4
+New coord: 860.0 200.0
+Old coord: 860.0 200.0
+userNum: 1.5
+New coord: 660.0 150.0
+Old coord: 660.0000000000205 150.00000000000284
+userNum: 1
+New coord: 580.0 50.0
+Old coord: 580.0 50.0
+userNum: 2
+New coord: 580.0 50.0
+Old coord: 740.0000000000045 100.0
+userNum: 0
+New coord: 420.0 100.0
+Old coord: 420.00000000000404 100.0
+userNum: 3
+New coord: 820.0 150.0
+Old coord: 820.0000000000045 150.0
+userNum: 4
+New coord: 860.0 200.0
+Old coord: 860.0 200.0
+userNum: 1.5
+New coord: 660.0 150.0
+Old coord: 660.0000000000205 150.00000000000284
+userNum: 1
+New coord: 420.0 100.0
+Old coord: 580.0 50.0
+userNum: 0
+New coord: 340.0 150.0
+Old coord: 420.00000000000404 100.0
+userNum: 3
+New coord: 740.0 100.0
+Old coord: 820.0000000000045 150.0
+userNum: 4
+New coord: 820.0 150.0
+Old coord: 860.0 200.0
+userNum: 1.5
+New coord: 500.0 150.0
+Old coord: 660.0000000000205 150.00000000000284
+userNum: 4
+New coord: 820.0 150.0
+Old coord: 819.9999999999795 150.00000000000284
+userNum: 4
+New coord: 820.0 150.0
+Old coord: 819.9999999999795 150.00000000000284
+userNum: 4
+New coord: 740.0 100.0
+Old coord: 819.9999999999795 150.00000000000284
+Moving node: 1
+Moving node: 1
+Moving node: 0
+Moving node: 2
+Moving node: 1
+Moving node: 0
+Moving node: 2
+Moving node: 3
+Moving node: 3
+Moving node: 2
+Moving node: 4
+Moving node: 2
+Moving node: 1.5
+Moving node: 3
+Moving node: 4
+Moving node: 2
+Moving node: 1
+Moving node: 0
+Moving node: 1.5
+Moving node: 3
+Moving node: 4
+Moving node: 4
+userNum: 1
+New coord: 580.0 50.0
+Old coord: 580.0 50.0
+userNum: 1
+New coord: 580.0 50.0
+Old coord: 580.0 50.0
+userNum: 1
+New coord: 580.0 50.0
+Old coord: 580.0 50.0
+userNum: 2
+New coord: 620.0 100.0
+Old coord: 620.0 100.0
+userNum: 0
+New coord: 540.0 100.0
+Old coord: 540.0 100.0
+userNum: 1
+New coord: 580.0 50.0
+Old coord: 580.0 50.0
+userNum: 2
+New coord: 660.0 100.0
+Old coord: 620.0 100.0
+userNum: 0
+New coord: 500.0 100.0
+Old coord: 540.0 100.0
+userNum: 1
+New coord: 580.0 50.0
+Old coord: 580.0 50.0
+userNum: 2
+New coord: 660.0 100.0
+Old coord: 660.0000000000205 100.0
+userNum: 0
+New coord: 500.0 100.0
+Old coord: 499.9999999999881 100.0
+userNum: 3
+New coord: 700.0 150.0
+Old coord: 700.0 150.0
+userNum: 1
+New coord: 580.0 50.0
+Old coord: 580.0 50.0
+userNum: 2
+New coord: 740.0 100.0
+Old coord: 660.0000000000205 100.0
+userNum: 0
+New coord: 420.0 100.0
+Old coord: 499.9999999999881 100.0
+userNum: 3
+New coord: 820.0 150.0
+Old coord: 700.0 150.0
+userNum: 2
+New coord: 740.0 100.0
+Old coord: 740.0000000000045 100.0
+userNum: 3
+New coord: 820.0 150.0
+Old coord: 820.0000000000045 150.0
+userNum: 4
+New coord: 860.0 200.0
+Old coord: 860.0 200.0
+userNum: 2
+New coord: 740.0 100.0
+Old coord: 740.0000000000045 100.0
+userNum: 3
+New coord: 820.0 150.0
+Old coord: 820.0000000000045 150.0
+userNum: 4
+New coord: 860.0 200.0
+Old coord: 860.0 200.0
+userNum: 2
+New coord: 660.0 150.0
+Old coord: 740.0000000000045 100.0
+userNum: 3
+New coord: 740.0 100.0
+Old coord: 820.0000000000045 150.0
+userNum: 4
+New coord: 820.0 150.0
+Old coord: 860.0 200.0
+userNum: 2
+New coord: 660.0 150.0
+Old coord: 660.0000000000205 149.99999999999716
+userNum: 3
+New coord: 740.0 100.0
+Old coord: 740.0000000000205 100.00000000000284
+userNum: 4
+New coord: 820.0 150.0
+Old coord: 819.9999999999795 150.00000000000284
+userNum: 1.5
+New coord: 620.0 200.0
+Old coord: 620.0 200.0
+userNum: 2
+New coord: 660.0 150.0
+Old coord: 660.0000000000205 149.99999999999716
+userNum: 3
+New coord: 740.0 100.0
+Old coord: 740.0000000000205 100.00000000000284
+userNum: 4
+New coord: 820.0 150.0
+Old coord: 819.9999999999795 150.00000000000284
+userNum: 1.5
+New coord: 620.0 200.0
+Old coord: 620.0 200.0
+userNum: 2
+New coord: 740.0 100.0
+Old coord: 660.0000000000205 149.99999999999716
+userNum: 3
+New coord: 820.0 150.0
+Old coord: 740.0000000000205 100.00000000000284
+userNum: 4
+New coord: 860.0 200.0
+Old coord: 819.9999999999795 150.00000000000284
+userNum: 1.5
+New coord: 660.0 150.0
+Old coord: 620.0 200.0
+userNum: 1
+New coord: 580.0 50.0
+Old coord: 580.0 50.0
+userNum: 2
+New coord: 740.0 100.0
+Old coord: 740.0000000000045 100.0
+userNum: 0
+New coord: 420.0 100.0
+Old coord: 420.00000000000404 100.0
+userNum: 3
+New coord: 820.0 150.0
+Old coord: 820.0000000000045 150.0
+userNum: 4
+New coord: 860.0 200.0
+Old coord: 860.0 200.0
+userNum: 1.5
+New coord: 660.0 150.0
+Old coord: 660.0000000000205 150.00000000000284
+userNum: 1
+New coord: 580.0 50.0
+Old coord: 580.0 50.0
+userNum: 2
+New coord: 580.0 50.0
+Old coord: 740.0000000000045 100.0
+userNum: 0
+New coord: 420.0 100.0
+Old coord: 420.00000000000404 100.0
+userNum: 3
+New coord: 820.0 150.0
+Old coord: 820.0000000000045 150.0
+userNum: 4
+New coord: 860.0 200.0
+Old coord: 860.0 200.0
+userNum: 1.5
+New coord: 660.0 150.0
+Old coord: 660.0000000000205 150.00000000000284
+userNum: 1
+New coord: 420.0 100.0
+Old coord: 580.0 50.0
+userNum: 0
+New coord: 340.0 150.0
+Old coord: 420.00000000000404 100.0
+userNum: 3
+New coord: 740.0 100.0
+Old coord: 820.0000000000045 150.0
+userNum: 4
+New coord: 820.0 150.0
+Old coord: 860.0 200.0
+userNum: 1.5
+New coord: 500.0 150.0
+Old coord: 660.0000000000205 150.00000000000284
+userNum: 4
+New coord: 820.0 150.0
+Old coord: 819.9999999999795 150.00000000000284
+userNum: 4
+New coord: 820.0 150.0
+Old coord: 819.9999999999795 150.00000000000284
+userNum: 4
+New coord: 740.0 100.0
+Old coord: 819.9999999999795 150.00000000000284
+Moving node: 1
+Moving node: 1
+Moving node: 0
+Moving node: 2
+Moving node: 1
+Moving node: 0
+Moving node: 2
+Moving node: 3
+Moving node: 3
+Moving node: 2
+Moving node: 4
+Moving node: 2
+Moving node: 1.5
+Moving node: 3
+Moving node: 4
+Moving node: 2
+Moving node: 1
+Moving node: 0
+Moving node: 1.5
+Moving node: 3
+Moving node: 4
+Moving node: 4
+userNum: 1
+New coord: 580.0 50.0
+Old coord: 580.0 50.0
+userNum: 1
+New coord: 580.0 50.0
+Old coord: 580.0 50.0
+userNum: 1
+New coord: 580.0 50.0
+Old coord: 580.0 50.0
+userNum: 2
+New coord: 620.0 100.0
+Old coord: 620.0 100.0
+userNum: 0
+New coord: 540.0 100.0
+Old coord: 540.0 100.0
+userNum: 1
+New coord: 580.0 50.0
+Old coord: 580.0 50.0
+userNum: 2
+New coord: 660.0 100.0
+Old coord: 620.0 100.0
+userNum: 0
+New coord: 500.0 100.0
+Old coord: 540.0 100.0
+userNum: 1
+New coord: 580.0 50.0
+Old coord: 580.0 50.0
+userNum: 2
+New coord: 660.0 100.0
+Old coord: 660.0000000000205 100.0
+userNum: 0
+New coord: 500.0 100.0
+Old coord: 499.9999999999881 100.0
+userNum: 3
+New coord: 700.0 150.0
+Old coord: 700.0 150.0
+userNum: 1
+New coord: 580.0 50.0
+Old coord: 580.0 50.0
+userNum: 2
+New coord: 740.0 100.0
+Old coord: 660.0000000000205 100.0
+userNum: 0
+New coord: 420.0 100.0
+Old coord: 499.9999999999881 100.0
+userNum: 3
+New coord: 820.0 150.0
+Old coord: 700.0 150.0
+userNum: 2
+New coord: 740.0 100.0
+Old coord: 740.0000000000045 100.0
+userNum: 3
+New coord: 820.0 150.0
+Old coord: 820.0000000000045 150.0
+userNum: 4
+New coord: 860.0 200.0
+Old coord: 860.0 200.0
+userNum: 2
+New coord: 740.0 100.0
+Old coord: 740.0000000000045 100.0
+userNum: 3
+New coord: 820.0 150.0
+Old coord: 820.0000000000045 150.0
+userNum: 4
+New coord: 860.0 200.0
+Old coord: 860.0 200.0
+userNum: 2
+New coord: 660.0 150.0
+Old coord: 740.0000000000045 100.0
+userNum: 3
+New coord: 740.0 100.0
+Old coord: 820.0000000000045 150.0
+userNum: 4
+New coord: 820.0 150.0
+Old coord: 860.0 200.0
+userNum: 2
+New coord: 660.0 150.0
+Old coord: 660.0000000000205 149.99999999999716
+userNum: 3
+New coord: 740.0 100.0
+Old coord: 740.0000000000205 100.00000000000284
+userNum: 4
+New coord: 820.0 150.0
+Old coord: 819.9999999999795 150.00000000000284
+userNum: 1.5
+New coord: 620.0 200.0
+Old coord: 620.0 200.0
+userNum: 2
+New coord: 660.0 150.0
+Old coord: 660.0000000000205 149.99999999999716
+userNum: 3
+New coord: 740.0 100.0
+Old coord: 740.0000000000205 100.00000000000284
+userNum: 4
+New coord: 820.0 150.0
+Old coord: 819.9999999999795 150.00000000000284
+userNum: 1.5
+New coord: 620.0 200.0
+Old coord: 620.0 200.0
+userNum: 2
+New coord: 740.0 100.0
+Old coord: 660.0000000000205 149.99999999999716
+userNum: 3
+New coord: 820.0 150.0
+Old coord: 740.0000000000205 100.00000000000284
+userNum: 4
+New coord: 860.0 200.0
+Old coord: 819.9999999999795 150.00000000000284
+userNum: 1.5
+New coord: 660.0 150.0
+Old coord: 620.0 200.0
+userNum: 1
+New coord: 580.0 50.0
+Old coord: 580.0 50.0
+userNum: 2
+New coord: 740.0 100.0
+Old coord: 740.0000000000045 100.0
+userNum: 0
+New coord: 420.0 100.0
+Old coord: 420.00000000000404 100.0
+userNum: 3
+New coord: 820.0 150.0
+Old coord: 820.0000000000045 150.0
+userNum: 4
+New coord: 860.0 200.0
+Old coord: 860.0 200.0
+userNum: 1.5
+New coord: 660.0 150.0
+Old coord: 660.0000000000205 150.00000000000284
+userNum: 1
+New coord: 580.0 50.0
+Old coord: 580.0 50.0
+userNum: 2
+New coord: 580.0 50.0
+Old coord: 740.0000000000045 100.0
+userNum: 0
+New coord: 420.0 100.0
+Old coord: 420.00000000000404 100.0
+userNum: 3
+New coord: 820.0 150.0
+Old coord: 820.0000000000045 150.0
+userNum: 4
+New coord: 860.0 200.0
+Old coord: 860.0 200.0
+userNum: 1.5
+New coord: 660.0 150.0
+Old coord: 660.0000000000205 150.00000000000284
+userNum: 1
+New coord: 420.0 100.0
+Old coord: 580.0 50.0
+userNum: 0
+New coord: 340.0 150.0
+Old coord: 420.00000000000404 100.0
+userNum: 3
+New coord: 740.0 100.0
+Old coord: 820.0000000000045 150.0
+userNum: 4
+New coord: 820.0 150.0
+Old coord: 860.0 200.0
+userNum: 1.5
+New coord: 500.0 150.0
+Old coord: 660.0000000000205 150.00000000000284
+userNum: 4
+New coord: 820.0 150.0
+Old coord: 819.9999999999795 150.00000000000284
+userNum: 4
+New coord: 820.0 150.0
+Old coord: 819.9999999999795 150.00000000000284
+userNum: 4
+New coord: 740.0 100.0
+Old coord: 819.9999999999795 150.00000000000284
+Moving node: 1
+Moving node: 1
+Moving node: 0
+Moving node: 2
+Moving node: 1
+Moving node: 0
+Moving node: 2
+Moving node: 3
+Moving node: 3
+Moving node: 2
+Moving node: 4
+Moving node: 2
+Moving node: 1.5
+Moving node: 3
+Moving node: 4
+Moving node: 2
+Moving node: 1
+Moving node: 0
+Moving node: 1.5
+Moving node: 3
+Moving node: 4
+Moving node: 4
+userNum: 1
+New coord: 580.0 50.0
+Old coord: 580.0 50.0
+userNum: 1
+New coord: 580.0 50.0
+Old coord: 580.0 50.0
+userNum: 1
+New coord: 580.0 50.0
+Old coord: 580.0 50.0
+userNum: 2
+New coord: 620.0 100.0
+Old coord: 620.0 100.0
+userNum: 0
+New coord: 540.0 100.0
+Old coord: 540.0 100.0
+userNum: 1
+New coord: 580.0 50.0
+Old coord: 580.0 50.0
+userNum: 2
+New coord: 660.0 100.0
+Old coord: 620.0 100.0
+userNum: 0
+New coord: 500.0 100.0
+Old coord: 540.0 100.0
+userNum: 1
+New coord: 580.0 50.0
+Old coord: 580.0 50.0
+userNum: 2
+New coord: 660.0 100.0
+Old coord: 660.0000000000205 100.0
+userNum: 0
+New coord: 500.0 100.0
+Old coord: 499.9999999999881 100.0
+userNum: 3
+New coord: 700.0 150.0
+Old coord: 700.0 150.0
+userNum: 1
+New coord: 580.0 50.0
+Old coord: 580.0 50.0
+userNum: 2
+New coord: 740.0 100.0
+Old coord: 660.0000000000205 100.0
+userNum: 0
+New coord: 420.0 100.0
+Old coord: 499.9999999999881 100.0
+userNum: 3
+New coord: 820.0 150.0
+Old coord: 700.0 150.0
+userNum: 2
+New coord: 740.0 100.0
+Old coord: 740.0000000000045 100.0
+userNum: 3
+New coord: 820.0 150.0
+Old coord: 820.0000000000045 150.0
+userNum: 4
+New coord: 860.0 200.0
+Old coord: 860.0 200.0
+userNum: 2
+New coord: 740.0 100.0
+Old coord: 740.0000000000045 100.0
+userNum: 3
+New coord: 820.0 150.0
+Old coord: 820.0000000000045 150.0
+userNum: 4
+New coord: 860.0 200.0
+Old coord: 860.0 200.0
+userNum: 2
+New coord: 660.0 150.0
+Old coord: 740.0000000000045 100.0
+userNum: 3
+New coord: 740.0 100.0
+Old coord: 820.0000000000045 150.0
+userNum: 4
+New coord: 820.0 150.0
+Old coord: 860.0 200.0
+userNum: 2
+New coord: 660.0 150.0
+Old coord: 660.0000000000205 149.99999999999716
+userNum: 3
+New coord: 740.0 100.0
+Old coord: 740.0000000000205 100.00000000000284
+userNum: 4
+New coord: 820.0 150.0
+Old coord: 819.9999999999795 150.00000000000284
+userNum: 1.5
+New coord: 620.0 200.0
+Old coord: 620.0 200.0
+userNum: 2
+New coord: 660.0 150.0
+Old coord: 660.0000000000205 149.99999999999716
+userNum: 3
+New coord: 740.0 100.0
+Old coord: 740.0000000000205 100.00000000000284
+userNum: 4
+New coord: 820.0 150.0
+Old coord: 819.9999999999795 150.00000000000284
+userNum: 1.5
+New coord: 620.0 200.0
+Old coord: 620.0 200.0
+userNum: 2
+New coord: 740.0 100.0
+Old coord: 660.0000000000205 149.99999999999716
+userNum: 3
+New coord: 820.0 150.0
+Old coord: 740.0000000000205 100.00000000000284
+userNum: 4
+New coord: 860.0 200.0
+Old coord: 819.9999999999795 150.00000000000284
+userNum: 1.5
+New coord: 660.0 150.0
+Old coord: 620.0 200.0
+userNum: 1
+New coord: 580.0 50.0
+Old coord: 580.0 50.0
+userNum: 2
+New coord: 740.0 100.0
+Old coord: 740.0000000000045 100.0
+userNum: 0
+New coord: 420.0 100.0
+Old coord: 420.00000000000404 100.0
+userNum: 3
+New coord: 820.0 150.0
+Old coord: 820.0000000000045 150.0
+userNum: 4
+New coord: 860.0 200.0
+Old coord: 860.0 200.0
+userNum: 1.5
+New coord: 660.0 150.0
+Old coord: 660.0000000000205 150.00000000000284
+userNum: 1
+New coord: 580.0 50.0
+Old coord: 580.0 50.0
+userNum: 2
+New coord: 580.0 50.0
+Old coord: 740.0000000000045 100.0
+userNum: 0
+New coord: 420.0 100.0
+Old coord: 420.00000000000404 100.0
+userNum: 3
+New coord: 820.0 150.0
+Old coord: 820.0000000000045 150.0
+userNum: 4
+New coord: 860.0 200.0
+Old coord: 860.0 200.0
+userNum: 1.5
+New coord: 660.0 150.0
+Old coord: 660.0000000000205 150.00000000000284
+userNum: 1
+New coord: 420.0 100.0
+Old coord: 580.0 50.0
+userNum: 0
+New coord: 340.0 150.0
+Old coord: 420.00000000000404 100.0
+userNum: 3
+New coord: 740.0 100.0
+Old coord: 820.0000000000045 150.0
+userNum: 4
+New coord: 820.0 150.0
+Old coord: 860.0 200.0
+userNum: 1.5
+New coord: 500.0 150.0
+Old coord: 660.0000000000205 150.00000000000284
+userNum: 4
+New coord: 820.0 150.0
+Old coord: 819.9999999999795 150.00000000000284
+userNum: 4
+New coord: 820.0 150.0
+Old coord: 819.9999999999795 150.00000000000284
+userNum: 4
+New coord: 740.0 100.0
+Old coord: 819.9999999999795 150.00000000000284
+Moving node: 1
+Moving node: 2
+Moving node: 1
+Moving node: 1
+userNum: 1
+New coord: 580.0 50.0
+Old coord: 580.0 50.0
+userNum: 1
+New coord: 580.0 50.0
+Old coord: 580.0 50.0
+userNum: 2
+New coord: 580.0 50.0
+Old coord: 620.0 100.0
+userNum: 2
+New coord: 580.0 50.0
+Old coord: 579.9999999999795 50.00000000000185
+userNum: 1
+New coord: 620.0 100.0
+Old coord: 580.0 50.0
+userNum: 1
+New coord: 620.0 100.0
+Old coord: 620.0000000000205 99.99999999999815
+userNum: 1
+New coord: 620.0 100.0
+Moving node: 1
+Moving node: 2
+Moving node: 1
+Moving node: 1
+userNum: 1
+New coord: 580.0 50.0
+Old coord: 580.0 50.0
+userNum: 1
+New coord: 580.0 50.0
+Old coord: 580.0 50.0
+userNum: 2
+New coord: 580.0 50.0
+Old coord: 620.0 100.0
+userNum: 2
+New coord: 580.0 50.0
+Old coord: 579.9999999999795 50.00000000000185
+userNum: 1
+New coord: 620.0 100.0
+Old coord: 580.0 50.0
+userNum: 1
+New coord: 620.0 100.0
+Old coord: 620.0000000000205 99.99999999999815
+userNum: 1
+New coord: 620.0 100.0
+Moving node: 1
+userNum: 1
+New coord: 580.0 50.0
+Old coord: 580.0 50.0
+userNum: 1
+New coord: 580.0 50.0
+Old coord: 580.0 50.0
+Moving node: 1
+Moving node: 1
+Moving node: 2
+Moving node: 2
+Moving node: 1
+Moving node: 3
+Moving node: 2
+Moving node: 1
+Moving node: 3
+Moving node: 4
+Moving node: 4
+Moving node: 3
+Moving node: 5
+Moving node: 4
+Moving node: 2
+Moving node: 1
+Moving node: 3
+Moving node: 5
+Moving node: 6
+Moving node: 6
+Moving node: 5
+Moving node: 7
+Moving node: 4
+Moving node: 2
+Moving node: 1
+Moving node: 3
+Moving node: 6
+Moving node: 5
+Moving node: 7
+Moving node: 8
+Moving node: 8
+Moving node: 7
+Moving node: 9
+Moving node: 8
+Moving node: 6
+Moving node: 5
+Moving node: 7
+Moving node: 9
+Moving node: 10
+Moving node: 10
+Moving node: 9
+Moving node: 11
+Moving node: 8
+Moving node: 4
+Moving node: 2
+Moving node: 1
+Moving node: 3
+Moving node: 6
+Moving node: 5
+Moving node: 7
+Moving node: 10
+Moving node: 9
+Moving node: 11
+Moving node: 12
+Moving node: 12
+Moving node: 11
+Moving node: 13
+Moving node: 12
+Moving node: 10
+Moving node: 9
+Moving node: 11
+Moving node: 13
+Moving node: 14
+Moving node: 14
+Moving node: 13
+Moving node: 15
+userNum: 1
+New coord: 580.0 50.0
+Old coord: 580.0 50.0
+userNum: 1
+New coord: 580.0 50.0
+Old coord: 580.0 50.0
+userNum: 1
+New coord: 580.0 50.0
+Old coord: 580.0 50.0
+userNum: 2
+New coord: 620.0 100.0
+Old coord: 620.0 100.0
+userNum: 1
+New coord: 580.0 50.0
+Old coord: 580.0 50.0
+userNum: 2
+New coord: 660.0 100.0
+Old coord: 620.0 100.0
+userNum: 1
+New coord: 580.0 50.0
+Old coord: 580.0 50.0
+userNum: 2
+New coord: 660.0 100.0
+Old coord: 660.0000000000205 100.0
+userNum: 3
+New coord: 700.0 150.0
+Old coord: 700.0 150.0
+userNum: 1
+New coord: 580.0 50.0
+Old coord: 580.0 50.0
+userNum: 2
+New coord: 580.0 50.0
+Old coord: 660.0000000000205 100.0
+userNum: 3
+New coord: 700.0 150.0
+Old coord: 700.0 150.0
+userNum: 1
+New coord: 500.0 100.0
+Old coord: 580.0 50.0
+userNum: 3
+New coord: 660.0 100.0
+Old coord: 700.0 150.0
+userNum: 1
+New coord: 500.0 100.0
+Old coord: 500.00000000001165 99.99999999999815
+userNum: 2
+New coord: 580.0 50.0
+Old coord: 579.9999999999795 50.00000000000185
+userNum: 3
+New coord: 660.0 100.0
+Old coord: 659.9999999999795 100.00000000000284
+userNum: 4
+New coord: 700.0 150.0
+Old coord: 700.0 150.0
+userNum: 1
+New coord: 420.0 100.0
+Old coord: 500.00000000001165 99.99999999999815
+userNum: 2
+New coord: 580.0 50.0
+Old coord: 579.9999999999795 49.999999999998295
+userNum: 3
+New coord: 740.0 100.0
+Old coord: 659.9999999999795 100.00000000000284
+userNum: 4
+New coord: 820.0 150.0
+Old coord: 700.0 150.0
+userNum: 3
+New coord: 740.0 100.0
+Old coord: 740.0000000000205 100.00000000000284
+userNum: 4
+New coord: 820.0 150.0
+Old coord: 820.0000000000045 150.0
+userNum: 5
+New coord: 860.0 200.0
+Old coord: 860.0 200.0
+userNum: 3
+New coord: 740.0 100.0
+Old coord: 740.0000000000205 100.00000000000284
+userNum: 4
+New coord: 820.0 150.0
+Old coord: 820.0000000000045 150.0
+userNum: 5
+New coord: 860.0 200.0
+Old coord: 860.0 200.0
+userNum: 3
+New coord: 660.0 150.0
+Old coord: 740.0000000000205 100.00000000000284
+userNum: 4
+New coord: 740.0 100.0
+Old coord: 820.0000000000045 150.0
+userNum: 5
+New coord: 820.0 150.0
+Old coord: 860.0 200.0
+userNum: 1
+New coord: 420.0 100.0
+Old coord: 419.99999999999915 99.99999999999815
+userNum: 2
+New coord: 580.0 50.0
+Old coord: 579.9999999999795 49.999999999998295
+userNum: 3
+New coord: 660.0 150.0
+Old coord: 659.9999999999795 150.0
+userNum: 4
+New coord: 740.0 100.0
+Old coord: 740.0000000000205 100.00000000000284
+userNum: 5
+New coord: 820.0 150.0
+Old coord: 819.9999999999795 150.00000000000284
+userNum: 6
+New coord: 860.0 200.0
+Old coord: 860.0 200.0
+userNum: 1
+New coord: 420.0 100.0
+Old coord: 419.99999999999915 99.99999999999815
+userNum: 2
+New coord: 580.0 50.0
+Old coord: 579.9999999999795 49.999999999998295
+userNum: 3
+New coord: 660.0 150.0
+Old coord: 659.9999999999795 150.0
+userNum: 4
+New coord: 580.0 50.0
+Old coord: 740.0000000000205 100.00000000000284
+userNum: 5
+New coord: 820.0 150.0
+Old coord: 819.9999999999795 150.00000000000284
+userNum: 6
+New coord: 860.0 200.0
+Old coord: 860.0 200.0
+userNum: 1
+New coord: 340.0 150.0
+Old coord: 419.99999999999915 99.99999999999815
+userNum: 2
+New coord: 420.0 100.0
+Old coord: 579.9999999999795 49.999999999998295
+userNum: 3
+New coord: 500.0 150.0
+Old coord: 659.9999999999795 150.0
+userNum: 5
+New coord: 740.0 100.0
+Old coord: 819.9999999999795 150.00000000000284
+userNum: 6
+New coord: 820.0 150.0
+Old coord: 860.0 200.0
+userNum: 5
+New coord: 740.0 100.0
+Old coord: 739.9999999999955 100.0000000000017
+userNum: 6
+New coord: 820.0 150.0
+Old coord: 819.9999999999795 150.00000000000284
+userNum: 7
+New coord: 860.0 200.0
+Old coord: 860.0 200.0
+userNum: 5
+New coord: 740.0 100.0
+Old coord: 739.9999999999955 100.0000000000017
+userNum: 6
+New coord: 820.0 150.0
+Old coord: 819.9999999999795 150.00000000000284
+userNum: 7
+New coord: 860.0 200.0
+Old coord: 860.0 200.0
+userNum: 5
+New coord: 660.0 150.0
+Old coord: 739.9999999999955 100.0000000000017
+userNum: 6
+New coord: 740.0 100.0
+Old coord: 819.9999999999795 150.00000000000284
+userNum: 7
+New coord: 820.0 150.0
+Old coord: 860.0 200.0
+userNum: 1
+New coord: 340.0 150.0
+Old coord: 339.99999999998664 149.9999999999993
+userNum: 2
+New coord: 420.0 100.0
+Old coord: 420.00000000001137 100.00000000000156
+userNum: 3
+New coord: 500.0 150.0
+Old coord: 500.00000000001137 150.0
+userNum: 4
+New coord: 580.0 50.0
+Old coord: 579.9999999999955 49.99999999999858
+userNum: 5
+New coord: 660.0 150.0
+Old coord: 660.0000000000114 149.99999999999886
+userNum: 6
+New coord: 740.0 100.0
+Old coord: 739.9999999999955 100.0000000000017
+userNum: 7
+New coord: 820.0 150.0
+Old coord: 819.9999999999795 150.00000000000284
+userNum: 8
+New coord: 860.0 200.0
+Old coord: 860.0 200.0
+userNum: 1
+New coord: 100.0 150.0
+Old coord: 339.99999999998664 149.9999999999993
+userNum: 2
+New coord: 260.0 100.0
+Old coord: 420.00000000001137 100.00000000000156
+userNum: 3
+New coord: 420.0 150.0
+Old coord: 500.00000000001137 150.0
+userNum: 4
+New coord: 580.0 50.0
+Old coord: 579.9999999999955 49.99999999999858
+userNum: 5
+New coord: 740.0 150.0
+Old coord: 660.0000000000114 149.99999999999886
+userNum: 6
+New coord: 900.0 100.0
+Old coord: 739.9999999999955 100.0000000000017
+userNum: 7
+New coord: 1060.0 150.0
+Old coord: 819.9999999999795 150.00000000000284
+userNum: 8
+New coord: 1140.0 200.0
+Old coord: 860.0 200.0
+userNum: 7
+New coord: 1060.0 150.0
+Old coord: 1059.9999999999886 150.00000000000284
+userNum: 8
+New coord: 1140.0 200.0
+Old coord: 1139.9999999999727 200.0
+userNum: 9
+New coord: 1180.0 250.0
+Old coord: 1180.0 250.0
+userNum: 7
+New coord: 1060.0 150.0
+Old coord: 1059.9999999999886 150.00000000000284
+userNum: 8
+New coord: 1140.0 200.0
+Old coord: 1139.9999999999727 200.0
+userNum: 9
+New coord: 1180.0 250.0
+Old coord: 1180.0 250.0
+userNum: 7
+New coord: 980.0 200.0
+Old coord: 1059.9999999999886 150.00000000000284
+userNum: 8
+New coord: 1060.0 150.0
+Old coord: 1139.9999999999727 200.0
+userNum: 9
+New coord: 1140.0 200.0
+Old coord: 1180.0 250.0
+userNum: 5
+New coord: 740.0 150.0
+Old coord: 739.9999999999955 149.99999999999886
+userNum: 6
+New coord: 900.0 100.0
+Old coord: 900.0000000000205 100.0000000000017
+userNum: 7
+New coord: 980.0 200.0
+Old coord: 979.9999999999791 200.0
+userNum: 8
+New coord: 1060.0 150.0
+Old coord: 1060.0000000000455 150.00000000000284
+userNum: 9
+New coord: 1140.0 200.0
+Old coord: 1140.0000000000364 200.00000000000284
+userNum: 10
+New coord: 1180.0 250.0
+Old coord: 1180.0 250.0
+userNum: 5
+New coord: 740.0 150.0
+Old coord: 739.9999999999955 149.99999999999886
+userNum: 6
+New coord: 900.0 100.0
+Old coord: 900.0000000000205 100.0000000000017
+userNum: 7
+New coord: 980.0 200.0
+Old coord: 979.9999999999791 200.0
+userNum: 8
+New coord: 1060.0 150.0
+Old coord: 1060.0000000000455 150.00000000000284
+userNum: 9
+New coord: 1140.0 200.0
+Old coord: 1140.0000000000364 200.00000000000284
+userNum: 10
+New coord: 1180.0 250.0
+Old coord: 1180.0 250.0
+userNum: 5
+New coord: 660.0 200.0
+Old coord: 739.9999999999955 149.99999999999886
+userNum: 6
+New coord: 740.0 150.0
+Old coord: 900.0000000000205 100.0000000000017
+userNum: 7
+New coord: 820.0 200.0
+Old coord: 979.9999999999791 200.0
+userNum: 8
+New coord: 900.0 100.0
+Old coord: 1060.0000000000455 150.00000000000284
+userNum: 9
+New coord: 1060.0 150.0
+Old coord: 1140.0000000000364 200.00000000000284
+userNum: 10
+New coord: 1140.0 200.0
+Old coord: 1180.0 250.0
+userNum: 9
+New coord: 1060.0 150.0
+Old coord: 1059.9999999999955 150.00000000000568
+userNum: 10
+New coord: 1140.0 200.0
+Old coord: 1140.0000000000364 200.00000000000284
+userNum: 11
+New coord: 1180.0 250.0
+Old coord: 1180.0 250.0
+userNum: 9
+New coord: 1060.0 150.0
+Old coord: 1059.9999999999955 150.00000000000568
+userNum: 10
+New coord: 1140.0 200.0
+Old coord: 1140.0000000000364 200.00000000000284
+userNum: 11
+New coord: 1180.0 250.0
+Old coord: 1180.0 250.0
+userNum: 9
+New coord: 980.0 200.0
+Old coord: 1059.9999999999955 150.00000000000568
+userNum: 10
+New coord: 1060.0 150.0
+Old coord: 1140.0000000000364 200.00000000000284
+userNum: 11
+New coord: 1140.0 200.0
+Old coord: 1180.0 250.0
+userNum: 1
+New coord: 100.0 150.0
+Old coord: 100.00000000000513 149.9999999999993
+userNum: 2
+New coord: 260.0 100.0
+Old coord: 259.99999999998636 100.00000000000156
+userNum: 3
+New coord: 420.0 150.0
+Old coord: 419.99999999999886 150.0
+userNum: 4
+New coord: 580.0 50.0
+Old coord: 579.9999999999955 49.99999999999858
+userNum: 5
+New coord: 660.0 200.0
+Old coord: 660.0000000000114 199.99999999999602
+userNum: 6
+New coord: 740.0 150.0
+Old coord: 739.9999999999955 149.99999999999886
+userNum: 7
+New coord: 820.0 200.0
+Old coord: 820.0000000000109 200.0
+userNum: 8
+New coord: 900.0 100.0
+Old coord: 900.0000000000077 100.0000000000017
+userNum: 9
+New coord: 980.0 200.0
+Old coord: 979.9999999999859 200.00000000000284
+userNum: 10
+New coord: 1060.0 150.0
+Old coord: 1059.9999999999955 150.00000000000568
+userNum: 11
+New coord: 1140.0 200.0
+Old coord: 1140.0000000000364 200.00000000000284
+userNum: 12
+New coord: 1180.0 250.0
+Old coord: 1180.0 250.0
+userNum: 1
+New coord: 100.0 150.0
+Old coord: 99.99999999999802 149.9999999999993
+userNum: 2
+New coord: 260.0 100.0
+Old coord: 259.99999999998636 100.00000000000156
+userNum: 3
+New coord: 420.0 150.0
+Old coord: 419.99999999999886 150.0
+userNum: 4
+New coord: 580.0 50.0
+Old coord: 579.9999999999955 49.99999999999858
+userNum: 5
+New coord: 660.0 200.0
+Old coord: 660.0000000000114 199.99999999999602
+userNum: 6
+New coord: 740.0 150.0
+Old coord: 739.9999999999955 149.99999999999886
+userNum: 7
+New coord: 820.0 200.0
+Old coord: 820.0000000000109 200.0
+userNum: 8
+New coord: 580.0 50.0
+Old coord: 900.0000000000077 100.0000000000017
+userNum: 9
+New coord: 980.0 200.0
+Old coord: 979.9999999999859 200.00000000000284
+userNum: 10
+New coord: 1060.0 150.0
+Old coord: 1059.9999999999955 150.00000000000568
+userNum: 11
+New coord: 1140.0 200.0
+Old coord: 1140.0000000000364 200.00000000000284
+userNum: 12
+New coord: 1180.0 250.0
+Old coord: 1180.0 250.0
+userNum: 1
+New coord: 20.0 200.0
+Old coord: 99.99999999999802 149.9999999999993
+userNum: 2
+New coord: 100.0 150.0
+Old coord: 259.99999999998636 100.00000000000156
+userNum: 3
+New coord: 180.0 200.0
+Old coord: 419.99999999999886 150.0
+userNum: 4
+New coord: 260.0 100.0
+Old coord: 579.9999999999955 49.99999999999858
+userNum: 5
+New coord: 340.0 200.0
+Old coord: 660.0000000000114 199.99999999999602
+userNum: 6
+New coord: 420.0 150.0
+Old coord: 739.9999999999955 149.99999999999886
+userNum: 7
+New coord: 500.0 200.0
+Old coord: 820.0000000000109 200.0
+userNum: 9
+New coord: 740.0 150.0
+Old coord: 979.9999999999859 200.00000000000284
+userNum: 10
+New coord: 900.0 100.0
+Old coord: 1059.9999999999955 150.00000000000568
+userNum: 11
+New coord: 1060.0 150.0
+Old coord: 1140.0000000000364 200.00000000000284
+userNum: 12
+New coord: 1140.0 200.0
+Old coord: 1180.0 250.0
+userNum: 11
+New coord: 1060.0 150.0
+Old coord: 1059.9999999999955 150.00000000000568
+userNum: 12
+New coord: 1140.0 200.0
+Old coord: 1140.0000000000364 200.00000000000284
+userNum: 13
+New coord: 1180.0 250.0
+Old coord: 1180.0 250.0
+userNum: 11
+New coord: 1060.0 150.0
+Old coord: 1059.9999999999955 150.00000000000568
+userNum: 12
+New coord: 1140.0 200.0
+Old coord: 1140.0000000000364 200.00000000000284
+userNum: 13
+New coord: 1180.0 250.0
+Old coord: 1180.0 250.0
+userNum: 11
+New coord: 980.0 200.0
+Old coord: 1059.9999999999955 150.00000000000568
+userNum: 12
+New coord: 1060.0 150.0
+Old coord: 1140.0000000000364 200.00000000000284
+userNum: 13
+New coord: 1140.0 200.0
+Old coord: 1180.0 250.0
+userNum: 9
+New coord: 740.0 150.0
+Old coord: 739.9999999999768 150.00000000000568
+userNum: 10
+New coord: 900.0 100.0
+Old coord: 900.0000000000273 99.9999999999983
+userNum: 11
+New coord: 980.0 200.0
+Old coord: 979.9999999999859 200.00000000000284
+userNum: 12
+New coord: 1060.0 150.0
+Old coord: 1059.9999999999955 150.00000000000568
+userNum: 13
+New coord: 1140.0 200.0
+Old coord: 1140.0000000000364 200.00000000000284
+userNum: 14
+New coord: 1180.0 250.0
+Old coord: 1180.0 250.0
+userNum: 9
+New coord: 740.0 150.0
+Old coord: 739.9999999999768 150.00000000000568
+userNum: 10
+New coord: 900.0 100.0
+Old coord: 900.0000000000273 99.9999999999983
+userNum: 11
+New coord: 980.0 200.0
+Old coord: 979.9999999999859 200.00000000000284
+userNum: 12
+New coord: 1060.0 150.0
+Old coord: 1059.9999999999955 150.00000000000568
+userNum: 13
+New coord: 1140.0 200.0
+Old coord: 1140.0000000000364 200.00000000000284
+userNum: 14
+New coord: 1180.0 250.0
+Old coord: 1180.0 250.0
+userNum: 9
+New coord: 660.0 200.0
+Old coord: 739.9999999999768 150.00000000000568
+userNum: 10
+New coord: 740.0 150.0
+Old coord: 900.0000000000273 99.9999999999983
+userNum: 11
+New coord: 820.0 200.0
+Old coord: 979.9999999999859 200.00000000000284
+userNum: 12
+New coord: 900.0 100.0
+Old coord: 1059.9999999999955 150.00000000000568
+userNum: 13
+New coord: 1060.0 150.0
+Old coord: 1140.0000000000364 200.00000000000284
+userNum: 14
+New coord: 1140.0 200.0
+Old coord: 1180.0 250.0
+userNum: 13
+New coord: 1060.0 150.0
+Old coord: 1059.9999999999955 150.00000000000568
+userNum: 14
+New coord: 1140.0 200.0
+Old coord: 1140.0000000000364 200.00000000000284
+userNum: 15
+New coord: 1180.0 250.0
+Old coord: 1180.0 250.0
+userNum: 13
+New coord: 1060.0 150.0
+Old coord: 1059.9999999999955 150.00000000000568
+userNum: 14
+New coord: 1140.0 200.0
+Old coord: 1140.0000000000364 200.00000000000284
+userNum: 15
+New coord: 1180.0 250.0
+Old coord: 1180.0 250.0
+userNum: 13
+New coord: 980.0 200.0
+Old coord: 1059.9999999999955 150.00000000000568
+userNum: 14
+New coord: 1060.0 150.0
+Old coord: 1140.0000000000364 200.00000000000284
+userNum: 15
+New coord: 1140.0 200.0
+Old coord: 1180.0 250.0
+Moving node: 1
+Moving node: 1
+Moving node: 2
+Moving node: 2
+Moving node: 1
+Moving node: 3
+Moving node: 2
+Moving node: 1
+Moving node: 3
+Moving node: 4
+Moving node: 4
+Moving node: 3
+Moving node: 5
+Moving node: 4
+Moving node: 2
+Moving node: 1
+Moving node: 3
+Moving node: 5
+Moving node: 6
+Moving node: 6
+Moving node: 5
+Moving node: 7
+Moving node: 4
+Moving node: 2
+Moving node: 1
+Moving node: 3
+Moving node: 6
+Moving node: 5
+Moving node: 7
+Moving node: 8
+Moving node: 8
+Moving node: 7
+Moving node: 9
+Moving node: 8
+Moving node: 6
+Moving node: 5
+Moving node: 7
+Moving node: 9
+Moving node: 10
+Moving node: 10
+Moving node: 9
+Moving node: 11
+Moving node: 8
+Moving node: 4
+Moving node: 2
+Moving node: 1
+Moving node: 3
+Moving node: 6
+Moving node: 5
+Moving node: 7
+Moving node: 10
+Moving node: 9
+Moving node: 11
+Moving node: 12
+Moving node: 12
+Moving node: 11
+Moving node: 13
+Moving node: 12
+Moving node: 10
+Moving node: 9
+Moving node: 11
+Moving node: 13
+Moving node: 14
+Moving node: 14
+Moving node: 13
+Moving node: 15
+Moving node: 1
+Moving node: 1
+Moving node: 2
+Moving node: 2
+Moving node: 1
+Moving node: 3
+Moving node: 2
+Moving node: 1
+Moving node: 3
+Moving node: 4
+Moving node: 4
+Moving node: 3
+Moving node: 16
+userNum: 1
+New coord: 730.0 66.66666666666667
+Old coord: 730.0 66.66666666666667
+userNum: 1
+New coord: 730.0 66.66666666666667
+Old coord: 730.0 66.66666666666667
+userNum: 1
+New coord: 730.0 66.66666666666667
+Old coord: 730.0 66.66666666666667
+userNum: 2
+New coord: 770.0 116.66666666666667
+Old coord: 770.0 116.66666666666667
+userNum: 1
+New coord: 730.0 66.66666666666667
+Old coord: 730.0 66.66666666666667
+userNum: 2
+New coord: 810.0 116.66666666666667
+Old coord: 770.0 116.66666666666667
+userNum: 1
+New coord: 730.0 66.66666666666667
+Old coord: 730.0 66.66666666666667
+userNum: 2
+New coord: 810.0 116.66666666666667
+Old coord: 810.0000000000205 116.66666666666667
+userNum: 3
+New coord: 850.0 166.66666666666669
+Old coord: 850.0 166.66666666666669
+userNum: 1
+New coord: 730.0 66.66666666666667
+Old coord: 730.0 66.66666666666667
+userNum: 2
+New coord: 730.0 66.66666666666667
+Old coord: 810.0000000000205 116.66666666666667
+userNum: 3
+New coord: 850.0 166.66666666666669
+Old coord: 850.0 166.66666666666669
+userNum: 1
+New coord: 650.0 116.66666666666667
+Old coord: 730.0 66.66666666666667
+userNum: 3
+New coord: 810.0 116.66666666666667
+Old coord: 850.0 166.66666666666669
+userNum: 1
+New coord: 650.0 116.66666666666667
+Old coord: 650.0000000000159 116.66666666666383
+userNum: 2
+New coord: 730.0 66.66666666666667
+Old coord: 729.9999999999795 66.66666666666951
+userNum: 3
+New coord: 810.0 116.66666666666667
+Old coord: 809.9999999999795 116.66666666666953
+userNum: 4
+New coord: 850.0 166.66666666666669
+Old coord: 850.0 166.66666666666669
+userNum: 1
+New coord: 570.0 116.66666666666667
+Old coord: 650.0000000000159 116.66666666666383
+userNum: 2
+New coord: 730.0 66.66666666666667
+Old coord: 729.9999999999795 66.66666666666951
+userNum: 3
+New coord: 890.0 116.66666666666667
+Old coord: 809.9999999999795 116.66666666666953
+userNum: 4
+New coord: 970.0 166.66666666666669
+Old coord: 850.0 166.66666666666669
+userNum: 3
+New coord: 890.0 116.66666666666667
+Old coord: 890.0000000000205 116.66666666666953
+userNum: 4
+New coord: 970.0 166.66666666666669
+Old coord: 970.0000000000045 166.66666666666669
+userNum: 16
+New coord: 1010.0 216.66666666666669
+Old coord: 1010.0 216.66666666666669
+userNum: 3
+New coord: 890.0 116.66666666666667
+Old coord: 890.0000000000205 116.66666666666953
+userNum: 4
+New coord: 970.0 166.66666666666669
+Old coord: 970.0000000000045 166.66666666666669
+userNum: 16
+New coord: 1010.0 216.66666666666669
+Old coord: 1010.0 216.66666666666669
+userNum: 3
+New coord: 810.0 166.66666666666669
+Old coord: 890.0000000000205 116.66666666666953
+userNum: 4
+New coord: 890.0 116.66666666666667
+Old coord: 970.0000000000045 166.66666666666669
+userNum: 16
+New coord: 970.0 166.66666666666669
+Old coord: 1010.0 216.66666666666669
+Moving node: 1
+Moving node: 1
+Moving node: 2
+Moving node: 2
+Moving node: 1
+Moving node: 3
+Moving node: 2
+Moving node: 1
+Moving node: 3
+Moving node: 4
+Moving node: 4
+Moving node: 3
+Moving node: 16
+Moving node: 16
+Moving node: 4
+Moving node: 2
+Moving node: 1
+Moving node: 4
+userNum: 1
+New coord: 730.0 66.66666666666667
+Old coord: 730.0 66.66666666666667
+userNum: 1
+New coord: 730.0 66.66666666666667
+Old coord: 730.0 66.66666666666667
+userNum: 1
+New coord: 730.0 66.66666666666667
+Old coord: 730.0 66.66666666666667
+userNum: 2
+New coord: 770.0 116.66666666666667
+Old coord: 770.0 116.66666666666667
+userNum: 1
+New coord: 730.0 66.66666666666667
+Old coord: 730.0 66.66666666666667
+userNum: 2
+New coord: 810.0 116.66666666666667
+Old coord: 770.0 116.66666666666667
+userNum: 1
+New coord: 730.0 66.66666666666667
+Old coord: 730.0 66.66666666666667
+userNum: 2
+New coord: 810.0 116.66666666666667
+Old coord: 810.0000000000205 116.66666666666667
+userNum: 3
+New coord: 850.0 166.66666666666669
+Old coord: 850.0 166.66666666666669
+userNum: 1
+New coord: 730.0 66.66666666666667
+Old coord: 730.0 66.66666666666667
+userNum: 2
+New coord: 730.0 66.66666666666667
+Old coord: 810.0000000000205 116.66666666666667
+userNum: 3
+New coord: 850.0 166.66666666666669
+Old coord: 850.0 166.66666666666669
+userNum: 1
+New coord: 650.0 116.66666666666667
+Old coord: 730.0 66.66666666666667
+userNum: 3
+New coord: 810.0 116.66666666666667
+Old coord: 850.0 166.66666666666669
+userNum: 1
+New coord: 650.0 116.66666666666667
+Old coord: 650.0000000000159 116.66666666666383
+userNum: 2
+New coord: 730.0 66.66666666666667
+Old coord: 729.9999999999795 66.66666666666951
+userNum: 3
+New coord: 810.0 116.66666666666667
+Old coord: 809.9999999999795 116.66666666666953
+userNum: 4
+New coord: 850.0 166.66666666666669
+Old coord: 850.0 166.66666666666669
+userNum: 1
+New coord: 570.0 116.66666666666667
+Old coord: 650.0000000000159 116.66666666666383
+userNum: 2
+New coord: 730.0 66.66666666666667
+Old coord: 729.9999999999795 66.66666666666951
+userNum: 3
+New coord: 890.0 116.66666666666667
+Old coord: 809.9999999999795 116.66666666666953
+userNum: 4
+New coord: 970.0 166.66666666666669
+Old coord: 850.0 166.66666666666669
+userNum: 3
+New coord: 890.0 116.66666666666667
+Old coord: 890.0000000000205 116.66666666666953
+userNum: 4
+New coord: 970.0 166.66666666666669
+Old coord: 970.0000000000045 166.66666666666669
+userNum: 16
+New coord: 1010.0 216.66666666666669
+Old coord: 1010.0 216.66666666666669
+userNum: 3
+New coord: 890.0 116.66666666666667
+Old coord: 890.0000000000205 116.66666666666953
+userNum: 4
+New coord: 970.0 166.66666666666669
+Old coord: 970.0000000000045 166.66666666666669
+userNum: 16
+New coord: 1010.0 216.66666666666669
+Old coord: 1010.0 216.66666666666669
+userNum: 3
+New coord: 810.0 166.66666666666669
+Old coord: 890.0000000000205 116.66666666666953
+userNum: 4
+New coord: 890.0 116.66666666666667
+Old coord: 970.0000000000045 166.66666666666669
+userNum: 16
+New coord: 970.0 166.66666666666669
+Old coord: 1010.0 216.66666666666669
+userNum: 16
+New coord: 890.0 116.66666666666667
+Old coord: 969.9999999999795 166.66666666666953
+userNum: 16
+New coord: 890.0 116.66666666666667
+Old coord: 889.9999999999955 116.66666666667075
+userNum: 4
+New coord: 970.0 166.66666666666669
+Old coord: 890.0000000000205 116.66666666666953
+userNum: 4
+New coord: 970.0 166.66666666666669
+Old coord: 970.0000000000045 166.66666666666669
+userNum: 1
+New coord: 570.0 116.66666666666667
+Old coord: 569.999999999975 116.66666666666383
+userNum: 2
+New coord: 730.0 66.66666666666667
+Old coord: 729.9999999999795 66.66666666666951
+userNum: 4
+New coord: 970.0 166.66666666666669
