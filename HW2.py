@@ -2,7 +2,7 @@ from tkinter import *
 from queue import Queue
 from threading import Thread, Lock
 
-
+from rbtreeA import *
 
 class Object:
     def __init__(self,num):
@@ -23,7 +23,7 @@ class Movement:
         self.args = args
         self.newLine = newLine
         self.newObject = newObject
-    
+
 ###############################################################################################
 # A thread that produces data
 #Takes a list from mainAnimationList as an argument
@@ -274,10 +274,10 @@ mainAnimationList = []
 #Start algorithm thread with created list as argument
 mainAnimationList.append([])
 mainAnimationList.append([])
-t1 = Thread(target = example, args =(mainAnimationList[0], ))
-t2 = Thread(target = settingOrginExample, args =(mainAnimationList[1], ))
+t1 = Thread(target = RBTree.rbTree, args =(mainAnimationList[0], ))
+# t2 = Thread(target = settingOrginExample, args =(mainAnimationList[1], ))
 t1.start()
-t2.start()
+# t2.start()
 
 #TODO add more widgets
 #Start method contains Animation Loop
