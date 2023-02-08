@@ -150,6 +150,7 @@ def settingOrginExample(aniList):
 
     myList[0].aniQueue.put(Movement(myList[0].x, myList[0].y,step, ['delete_line']))
     myList[1].aniQueue.put(Movement(myList[1].x, myList[1].y,step,[], [myList[1].x + size, myList[1].y, myList[0].x, myList[0].y + size]))
+    myList[0].aniQueue.put(Movement(-1,-1,step,['change_text','test']))
 
     myList[0].aniQueue.put(Movement(-1, -1,step, ['lightblue']))
     myList[1].aniQueue.put(Movement(-1, -1,step, ['lightblue']))
@@ -203,8 +204,12 @@ def start(step=0):
 
                     #Check for delete commands in args list
                     #Else then it must me a color change
+                    textChange = 0
                     for arg in newCoords.args:
-                        if arg == 'delete_line':
+                        if textChange:
+                            canvas.itemconfig(aniObject.text, text=arg)
+                            textChange = 0
+                        elif arg == 'delete_line':
                             canvas.delete(aniObject.lineToParent)
                         elif arg == 'delete_shape':
                             canvas.delete(aniObject.shape)
@@ -212,6 +217,8 @@ def start(step=0):
                             canvas.delete(aniObject.lineToParent)
                             for i in range(delay-1):
                                     aniObject.moveQueue.put(Movement(-1,-1))
+                        elif arg == 'change_text':
+                            textChange = 1
                         else:
                             canvas.itemconfig(aniObject.shape, fill=arg)
                             for i in range(delay-1):
