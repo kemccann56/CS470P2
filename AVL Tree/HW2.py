@@ -2,7 +2,7 @@ from tkinter import *
 from queue import Queue
 from threading import Thread, Lock
 from animation import *
-import avl_tree
+from avl_tree import start_avl_tree
 
 ###############################################################################################
 # A thread that produces data
@@ -151,6 +151,7 @@ def settingOrginExample(aniList):
 
     myList[0].aniQueue.put(Movement(myList[0].x, myList[0].y,step, ['delete_line']))
     myList[1].aniQueue.put(Movement(myList[1].x, myList[1].y,step,[], [myList[1].x + size, myList[1].y, myList[0].x, myList[0].y + size]))
+    myList[0].aniQueue.put(Movement(-1,-1,step,['change_text','test']))
 
     myList[0].aniQueue.put(Movement(-1, -1,step, ['lightblue']))
     myList[1].aniQueue.put(Movement(-1, -1,step, ['lightblue']))
@@ -204,8 +205,12 @@ def start(step=0):
 
                     #Check for delete commands in args list
                     #Else then it must me a color change
+                    textChange = 0
                     for arg in newCoords.args:
-                        if arg == 'delete_line':
+                        if textChange:
+                            canvas.itemconfig(aniObject.text, text=arg)
+                            textChange = 0
+                        elif arg == 'delete_line':
                             canvas.delete(aniObject.lineToParent)
                         elif arg == 'delete_shape':
                             canvas.delete(aniObject.shape)
@@ -213,6 +218,8 @@ def start(step=0):
                             canvas.delete(aniObject.lineToParent)
                             for i in range(delay-1):
                                     aniObject.moveQueue.put(Movement(-1,-1))
+                        elif arg == 'change_text':
+                            textChange = 1
                         else:
                             canvas.itemconfig(aniObject.shape, fill=arg)
                             for i in range(delay-1):
@@ -221,13 +228,6 @@ def start(step=0):
                     #Movement objects on the aniQueue get divided by the delay and added to the moveQueue
                     #-1 in the x value will skip the movement
                     if newCoords.x != -1:
-                        file = open("output.txt", "a")
-                        file.write("userNum: " + str(aniObject.userNum) + "\n")
-                        file.write("New coord: " + str(newCoords.x) + " " + str(newCoords.y) + "\n")
-                        file.close()
-                        file = open("output.txt", "a")
-                        file.write("Old coord: " + str(oldCoords[0]) + " " + str(oldCoords[1]) + "\n")
-                        file.close()
                         movex = newCoords.x - oldCoords[0]
                         movey = newCoords.y - oldCoords[1]
                         movexx = movex / delay
@@ -254,12 +254,13 @@ def start(step=0):
 
     #This method recursivley calls this start method passing the current step as an argument
     tk.after(1, start, step)
+
+
 ############################################################################################## Program starts here
-W, H = 1500, 1000
+W, H = 1200, 500
 delay = 500
 tk = Tk()
 canvas = Canvas(tk,width=W,height=H)
-
 canvas.pack()
 mainAnimationList = []
 
@@ -267,7 +268,7 @@ mainAnimationList = []
 #Start algorithm thread with created list as argument
 mainAnimationList.append([])
 mainAnimationList.append([])
-t1 = Thread(target = lambda: avl_tree.start_avl_tree(mainAnimationList[0], 0, 0, W, H))
+t1 = Thread(target = lambda: start_avl_tree(mainAnimationList[0], 0, 0, W, H))
 t1.start()
 
 #TODO add more widgets
@@ -277,4 +278,3 @@ startButton.pack()
 
 #Runs the animation in the background
 tk.mainloop()
-
