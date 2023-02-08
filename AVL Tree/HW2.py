@@ -268,12 +268,8 @@ mainAnimationList = []
 #Start algorithm thread with created list as argument
 mainAnimationList.append([])
 mainAnimationList.append([])
-t1 = Thread(target = example, args =(mainAnimationList[0], ))
-t2 = Thread(target = settingOrginExample, args =(mainAnimationList[1], ))
-t3 = Thread(target = lambda: start_avl_tree(mainAnimationList[0], 0, 0, W, H))
-#t1.start()
-#t2.start()
-t3.start()
+t1 = Thread(target = lambda: start_avl_tree(mainAnimationList[0], 0, 0, W, H))
+t1.start()
 
 #TODO add more widgets
 #Start method contains Animation Loop
