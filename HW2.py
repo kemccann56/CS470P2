@@ -3,6 +3,7 @@ from queue import Queue
 from threading import Thread, Lock
 
 from rbtreeA import *
+import time
 
 class Object:
     def __init__(self,num):
@@ -256,6 +257,8 @@ def start(step=0):
     #After all objects have been looped through then check to see if any moves were made
     #TODO need functionality to signal when all animations are done and wait instead of spining           
     if allMovesDone:
+        # added for testing purposes
+        time.sleep(1)
         step+=1
 
     #This method recursivley calls this start method passing the current step as an argument
