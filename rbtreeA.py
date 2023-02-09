@@ -1,26 +1,7 @@
 import sys
 from tkinter import *
 from queue import Queue
-
-class Object:
-    def __init__(self,num):
-        self.shape = None
-        self.text = None
-        self.lineToParent = None
-        self.x = -1
-        self.y = -1
-        self.aniQueue = Queue()
-        self.moveQueue = Queue()
-        self.userNum = num
-
-class Movement:
-    def __init__(self,x,y,step=0,args=[],newLine=[],newObject=[]):
-        self.x = x
-        self.y = y
-        self.step = step
-        self.args = args
-        self.newLine = newLine
-        self.newObject = newObject
+from animation import *
 
 class Node(Object):
     def __init__(self, data):
@@ -41,7 +22,6 @@ class RBTree():
         self.animationList = aniList
         self.originx = originx
         self.originy = originy
-        self.step = 0
         self.size = 50
 
     def insert(self, val, step):
@@ -281,16 +261,28 @@ class RBTree():
                     x = self.root
         x.color = 0
 
-    def search(self, k):
-        return self.searchHelper(self.root, k)
+    def search(self, k, step):
+        node = self.searchHelper(self.root, k, step)
+        
 
-    def searchHelper(self, node, val):
-        if node == self.NULL or val == node.data:
+    def searchHelper(self, node, val, step):
+        node.aniQueue.put(Movement(-1,-1,step,[],[],['oval',node.x,node.y,self.size,str(node.data), 'gold']))
+        step += 1
+
+        if (node == self.NULL) or (val == node.data):
+            node.aniQueue.put(Movement(-1,-1,step,[],[],['oval',node.x,node.y,self.size,str(node.data), 'green']))
+            step += 1
+            node.aniQueue.put(Movement(-1,-1,step,[],[],['oval',node.x,node.y,self.size,str(node.data), 'red' if node.color == 1 else 'gray']))
+            step += 1
             return node
         if val < node.data:
-            return self.searchHelper(node.left, val)
+            node.aniQueue.put(Movement(-1,-1,step,[],[],['oval',node.x,node.y,self.size,str(node.data), 'red' if node.color == 1 else 'gray']))
+            step += 1
+            return self.searchHelper(node.left, val, step)
 
-        return self.searchHelper(node.right, val)
+        node.aniQueue.put(Movement(-1,-1,step,[],[],['oval',node.x,node.y,self.size,str(node.data), 'red' if node.color == 1 else 'gray']))
+        step += 1
+        return self.searchHelper(node.right, val, step)
 
     def rbtransplant(self, u, v):
         if u.parent == None:
@@ -354,6 +346,8 @@ class RBTree():
             bst.insert(myList[placeHolder].userNum, step)
             step += 1
             placeHolder += 1
+
+        bst.search(6, step)
 
         # while 1:
             # if delete button pressed:
