@@ -9,9 +9,7 @@ References:
 https://www.geeksforgeeks.org/introduction-to-avl-tree/
 https://www.programiz.com/dsa/avl-tree
 """
-import sys
 import animation
-import time
 from queue import Queue
 
 """
@@ -100,31 +98,38 @@ class AVLTreeAnimation():
         The root of each balanced subtree.
     """
     def insert_helper(self, key, current_node, parent):
-        if current_node is None: # Reached the bottom of the tree
+        # Reached the bottom of the tree
+        if current_node is None:
             # Create new node which includes the animation object
             new_object = animation.Object(key)
             self.aniList.append(new_object)
             new_node = AVLTreeNode(new_object, parent)
-            if parent is None: # Adding the root node
+            # Adding the root node
+            if parent is None:
                 new_object.x = self.xorigin + (self.width / 2) - (self.size / 2)
                 new_object.y = self.height / 15
                 self.tree_height = 1
                 self.draw_node(new_object, 'lightblue', True)
-            else: # New leaf is being added
+            # New leaf is being added
+            else:
                 new_node.level = self.get_depth(new_node)
-                if new_node.level > self.tree_height: # Adding a level -> Resize tree
+                # Adding a level -> Resize tree
+                if new_node.level > self.tree_height:
                     self.resize_tree(new_node.level)
                     self.tree_height += 1
-                # Calculate the nodes x and y coordinates
-                # The distance between a parent node and the child can be computed based off of the level in the tree
+                # Calculate the nodes x and y coordinates. The distance between
+                # a parent node and the child can be computed based off of the
+                # level in the tree.
                 seperator = 2**(self.tree_height - 2)
                 level_seperators = [0]
                 for idx in range(1, self.tree_height):
                     level_seperators.append(seperator)
                     seperator = seperator / 2
+                # If we are adding the node to the right of the parent, add the calculated value
                 if new_object.userNum > parent.object.userNum:
                     new_object.x = parent.object.x + (self.size * level_seperators[self.get_depth(new_node) - 1])
                     new_object.y = parent.object.y + self.y_distance
+                # If we are adding the node to the left of the parent, subtract the calculated value
                 else:
                     new_object.x = parent.object.x - (self.size * level_seperators[self.get_depth(new_node) - 1])
                     new_object.y = parent.object.y + self.y_distance
@@ -135,13 +140,17 @@ class AVLTreeAnimation():
                 # Reset the parent node's color
                 self.color_node(parent, 'lightblue', True)
             return new_node
-        elif key <= current_node.object.userNum: # New node is to the left of the current one
-            if parent is not None: # Show that we are moving on from the parent node
+        # New node is to the left of the current one
+        elif key <= current_node.object.userNum:
+            # Show that we are moving on from the parent node
+            if parent is not None:
                 self.color_node(parent, 'lightblue', False)
             self.color_node(current_node, 'gold', True)
             current_node.left_child_node = self.insert_helper(key, current_node.left_child_node, current_node)
-        else: # New node is to the right of the current one
-            if parent is not None: # Show that we are moving on from the parent node
+        # New node is to the right of the current one
+        else:
+            # Show that we are moving on from the parent node
+            if parent is not None:
                 self.color_node(parent, 'lightblue', False)
             self.color_node(current_node, 'gold', True)
             current_node.right_child_node = self.insert_helper(key, current_node.right_child_node, current_node)
@@ -211,22 +220,28 @@ class AVLTreeAnimation():
         The root of each balanced subtree.
     """
     def delete_node_helper(self, node, key):
-        if node is None: # Reached the bottom of the tree
+        # Reached the bottom of the tree
+        if node is None:
             return node
-        elif key < node.object.userNum: # Node to be deleted is to the left
+        # Node to be deleted is to the left
+        elif key < node.object.userNum:
             if node.parent is not None:
                 self.color_node(node.parent, 'lightblue', True)
             self.color_node(node, 'gold', True)
             node.left_child_node = self.delete_node_helper(node.left_child_node, key)
-        elif key > node.object.userNum: # Node to be deleted is to the right
+        # Node to be deleted is to the right
+        elif key > node.object.userNum:
             if node.parent is not None:
                 self.color_node(node.parent, 'lightblue', True)
             self.color_node(node, 'gold', True)
             node.right_child_node = self.delete_node_helper(node.right_child_node, key)
-        else: # This is the node that needs to be deleted
+        # This is the node that needs to be deleted
+        else:
+            # Indicate we have found the node to delete in the animation
             if node.parent is not None:
                 self.color_node(node.parent, 'lightblue', True)
             self.color_node(node, 'green', True)
+            # No children
             if node.left_child_node is None and node.right_child_node is None:
                 self.delete_node_from_animation(node, True)
                 if node.parent is not None:
@@ -235,7 +250,8 @@ class AVLTreeAnimation():
                     else:
                         node.parent.right_child_node = None
                 return None
-            elif node.left_child_node is None: # Right child only
+            # Right child only
+            elif node.left_child_node is None:
                 temp = node.right_child_node
                 self.color_node(temp, 'red1', True)
                 temp.parent = node.parent
@@ -247,7 +263,8 @@ class AVLTreeAnimation():
                 self.fix_tree(temp, False)
                 node = None
                 return temp
-            elif node.right_child_node is None: # Left child only
+            # Left child only
+            elif node.right_child_node is None:
                 temp = node.left_child_node
                 self.color_node(temp, 'red1', True)
                 temp.parent = node.parent
@@ -825,7 +842,7 @@ height : int
 """
 def start_avl_tree(aniList, x_origin, y_origin, width, height):
     # Initialize the AVL tree object
-    tree = AVLTreeAnimation(40, x_origin, width, height, aniList, 50)
+    tree = AVLTreeAnimation(20, x_origin, width, height, aniList, 50)
     # Loop and wait for more elements to insert, delete, and search for
     while True:
         tree.insert(1)
@@ -833,17 +850,5 @@ def start_avl_tree(aniList, x_origin, y_origin, width, height):
         tree.insert(3)
         tree.insert(4)
         tree.insert(5)
-        tree.insert(6)
-        tree.insert(7)
-        tree.insert(8)
-        tree.insert(9)
-        tree.insert(10)
-        tree.insert(11)
-        tree.insert(12)
-        tree.insert(13)
-        tree.insert(14)
-        tree.insert(15)
-        tree.insert(16)
-        tree.delete(8)
-        tree.delete(11)
+        tree.search(5)
         break
