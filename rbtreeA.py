@@ -166,18 +166,30 @@ class RBTree():
         y.right = node
         node.parent = y
     
-    def delete(self, data):
-        self.deleteHelper(self.root, data)
+    def delete(self, data, step):
+        self.deleteHelper(self.root, data, step)
 
-    def deleteHelper(self, node, val):
+    def deleteHelper(self, node, val, step):
+        #Find node to delete
         x = self.NULL
         while node != self.NULL:
+            x.aniQueue.put(Movement(-1, -1, step, ['gold']))
+            step += 1
+
             if node.data == val:
+                #Node to be deleted turns purple
+                x.aniQueue.put(Movement(-1, -1, step, ['purple']))
+                step += 1
                 x = node
+                break
             
             if node.data <= val:
+                x.aniQueue.put(Movement(-1, -1, step, ['red' if x.color == 1 else 'gray']))
+                step += 1
                 node = node.right
             else:
+                x.aniQueue.put(Movement(-1, -1, step, ['red' if x.color == 1 else 'gray']))
+                step += 1
                 node = node.left
 
         if x == self.NULL:
@@ -189,9 +201,13 @@ class RBTree():
         if x.left == self.NULL:
             z = x.right
             self.rbtransplant(x, x.right)
+            y.aniQueue.put(Movement(-1, -1, step, ['delete_shape']))
+            step += 1
         elif x.right == self.NULL:
             z = x.left
             self.rbtransplant(x, x.left)
+            y.aniQueue.put(Movement(-1, -1, step, ['delete_shape']))
+            step += 1
         else:
             y = self.minimum(x.right)
             yOrigColor = y.color
@@ -266,21 +282,21 @@ class RBTree():
         
 
     def searchHelper(self, node, val, step):
-        node.aniQueue.put(Movement(-1,-1,step,[],[],['oval',node.x,node.y,self.size,str(node.data), 'gold']))
+        node.aniQueue.put(Movement(-1, -1, step, ['gold']))
         step += 1
 
         if (node == self.NULL) or (val == node.data):
-            node.aniQueue.put(Movement(-1,-1,step,[],[],['oval',node.x,node.y,self.size,str(node.data), 'green']))
+            node.aniQueue.put(Movement(-1, -1, step, ['green']))
             step += 1
-            node.aniQueue.put(Movement(-1,-1,step,[],[],['oval',node.x,node.y,self.size,str(node.data), 'red' if node.color == 1 else 'gray']))
+            node.aniQueue.put(Movement(-1, -1, step, ['red']))
             step += 1
             return node
         if val < node.data:
-            node.aniQueue.put(Movement(-1,-1,step,[],[],['oval',node.x,node.y,self.size,str(node.data), 'red' if node.color == 1 else 'gray']))
+            node.aniQueue.put(Movement(-1, -1, step, ['red']))
             step += 1
             return self.searchHelper(node.left, val, step)
 
-        node.aniQueue.put(Movement(-1,-1,step,[],[],['oval',node.x,node.y,self.size,str(node.data), 'red' if node.color == 1 else 'gray']))
+        node.aniQueue.put(Movement(-1, -1, step, ['red']))
         step += 1
         return self.searchHelper(node.right, val, step)
 
@@ -328,6 +344,8 @@ class RBTree():
         # size = 50
 
         bst = RBTree(aniList, 600, 50)
+
+        #Populate Tree Belowm, align with input method we choose
         myList = []
 
         dataFile = open('smallerdataset.txt', 'r')
@@ -347,7 +365,8 @@ class RBTree():
             step += 1
             placeHolder += 1
 
-        bst.search(6, step)
+        #bst.search(6, step)
+        bst.delete(11, step)
 
         # while 1:
             # if delete button pressed:
