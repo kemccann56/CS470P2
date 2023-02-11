@@ -399,6 +399,7 @@ class RBTree():
                 self.step += 1
                 x = node
                 break
+                break
             
             if node.data <= val:
                 node.aniQueue.put(Movement(-1, -1, self.step, ['red' if node.color == 1 else 'gray']))
