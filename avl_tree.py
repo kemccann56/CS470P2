@@ -52,11 +52,12 @@ class AVLTreeAnimation():
     y_distance : int
         The distance between each level of the tree.
     """
-    def __init__(self, size, xorigin, width, height, aniList, y_distance):
+    def __init__(self, size, xorigin, yorigin, width, height, aniList, y_distance):
         self.step = 0 # Step of the animation the tree is currently on
         self.size = size # Size of each node in the tree
         self.tree_height = 0 # Num of levels in the tree
         self.xorigin = xorigin # xorigin of screen section
+        self.y_origin = yorigin # y origin of screen section
         self.width = width # Width of screen section
         self.height = height # Height of screen section
         self.root = None # The topmost node of the tree
@@ -107,7 +108,7 @@ class AVLTreeAnimation():
             # Adding the root node
             if parent is None:
                 new_object.x = self.xorigin + (self.width / 2) - (self.size / 2)
-                new_object.y = self.height / 15
+                new_object.y = self.y_origin + (self.height / 15)
                 self.tree_height = 1
                 self.draw_node(new_object, 'lightblue', True)
             # New leaf is being added
@@ -701,7 +702,7 @@ class AVLTreeAnimation():
                         self.draw_line(current_node, increment_step)
             else: # Node is the root so remove any line that was attatched to it
                 self.delete_line(current_node, increment_step)
-                self.move_node(self.xorigin + (self.width / 2) - (self.size / 2), self.height / 15, current_node, increment_step)
+                self.move_node(self.xorigin + (self.width / 2) - (self.size / 2), self.y_origin + (self.height / 15), current_node, increment_step)
 
             self.fix_tree_helper(subtree_root, current_node.left_child_node, level_seperators, increment_step)
             self.fix_tree_helper(subtree_root, current_node.right_child_node, level_seperators, increment_step)
@@ -905,7 +906,7 @@ height : int
 """
 def start_avl_tree(aniList, x_origin, y_origin, width, height):
     # Initialize the AVL tree object
-    tree = AVLTreeAnimation(35, x_origin, width, height, aniList, 50)
+    tree = AVLTreeAnimation(35, x_origin, y_origin, width, height, aniList, 50)
     # Loop and wait for more elements to insert, delete, and search for
     while True:
         tree.insert(1)
