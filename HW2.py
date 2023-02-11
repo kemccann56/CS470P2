@@ -1,6 +1,7 @@
-from tkinter import *
+from tkinter import * 
 from queue import Queue
 from threading import Thread, Lock
+from turtle import Screen
 from animation import *
 from avl_tree import start_avl_tree
 
@@ -84,9 +85,9 @@ def example(aniList):
 
 # A thread that produces data
 #Everyone should code like this so we can move animations where we want easily
-def settingOrginExample(aniList):
-    orginx = 600
-    orginy = 0
+def settingOrginExample(aniList, x=0, y=0):
+    orginx = x
+    orginy = y
 
     #You will need to keep thrack of what step you are on for animations
     step = 0
@@ -129,7 +130,7 @@ def settingOrginExample(aniList):
 
     myList[3].x = orginx+125
     myList[3].y = orginy+300
-    myList[3].aniQueue.put(Movement(-1,-1,step,[],[myList[3].x + size/2, myList[3].y, myList[1].x + size/2, myList[1].y + size],['rectangle',orginx+125,orginy+300,size,str(myList[3].userNum),'lightblue']))
+    myList[3].aniQueue.put(Movement(-1,-1,step,[],[myList[3].x + size/2, myList[3].y, myList[1].x + size/2, myList[1].y + size],['trueRectangle',orginx+125,orginy+300,size,str(myList[3].userNum),'lightblue']))
 
     step += 1
 
@@ -168,7 +169,7 @@ def settingOrginExample(aniList):
 
 ############################################################################################################
 #Animation Loop
-def start(step=0):
+def startAnimation(step=0):
     #Makes sure all objects have made their moves before the next step starts
     allMovesDone = True
 
@@ -187,6 +188,8 @@ def start(step=0):
                         aniObject.shape = canvas.create_oval(newCoords.newObject[1],newCoords.newObject[2],newCoords.newObject[1] + newCoords.newObject[3],newCoords.newObject[2] + newCoords.newObject[3],fill=newCoords.newObject[5])
                     elif newCoords.newObject[0] == 'rectangle':
                         aniObject.shape = canvas.create_rectangle(newCoords.newObject[1],newCoords.newObject[2],newCoords.newObject[1] + newCoords.newObject[3],newCoords.newObject[2] + newCoords.newObject[3],fill=newCoords.newObject[5])
+                    elif newCoords.newObject[0] == 'trueRectangle':
+                        aniObject.shape = canvas.create_rectangle(newCoords.newObject[1],newCoords.newObject[2],newCoords.newObject[1] + newCoords.newObject[3]/2,newCoords.newObject[2] + newCoords.newObject[3],fill=newCoords.newObject[5])
                     aniObject.text = canvas.create_text(newCoords.newObject[1]+(newCoords.newObject[3]/2),newCoords.newObject[2]+(newCoords.newObject[3]/2),text=newCoords.newObject[4],font=('Helvetica ' + str(newCoords.newObject[3]//len(newCoords.newObject[4])) + ' bold'))
                 elif newCoords.x != -1:
                     canvas.move(aniObject.shape, newCoords.x, newCoords.y)
@@ -253,32 +256,100 @@ def start(step=0):
         step+=1
 
     #This method recursivley calls this start method passing the current step as an argument
-    tk.after(1, start, step)
+    tk.after(1, startAnimation, step)
 
+def startThreads():
+    #Create a List for the objects to be animated
+    #Start algorithm thread with created list as argument
+    mainAnimationList.append([])
+    mainAnimationList.append([])
+
+    if AVL1.get():
+        t1 = Thread(target = lambda: start_avl_tree(mainAnimationList[0], 0, 0, screen_width, screen_height/8))
+    elif VEB1.get():
+        #TODO add VEB Tree
+        t1 = Thread(target = settingOrginExample, args =(mainAnimationList[0], ))
+    elif RBT1.get():
+        #TODO add RB Tree
+        t1 = Thread(target = settingOrginExample, args =(mainAnimationList[0], ))
+    else:
+        t1 = Thread(target = settingOrginExample, args =(mainAnimationList[0], ))
+
+    if AVL2.get():
+        t2 = Thread(target = lambda: start_avl_tree(mainAnimationList[1], 0, screen_height, screen_width, screen_height/8))
+    elif VEB2.get():
+        #TODO add VEB Tree
+        t2 = Thread(target = settingOrginExample, args =(mainAnimationList[1], 0, screen_height/3))
+    elif RBT2.get():
+        #TODO add RB Tree
+        t2 = Thread(target = settingOrginExample, args =(mainAnimationList[1], 0, screen_height/3))
+    else:
+        t2 = Thread(target = settingOrginExample, args =(mainAnimationList[1], 0, screen_height/3))
+    
+    t1.start()
+    t2.start()
+
+    tk.after(1000, startAnimation)
+
+def settingsWindow():
+    window = Toplevel()
+    window.geometry('500x300')
+    
+    newlabel = Label(window, text = "Settings Window")
+    newlabel.pack(padx=5, pady=5)
+
+
+    label1 = Label(window,text = "Tree 1")  
+    label1.pack(pady=10)
+
+    ChkBttn = Checkbutton(window, width = 15, text='AVL                       ', variable = AVL1)
+    ChkBttn.pack()
+ 
+    ChkBttn2 = Checkbutton(window, width = 15, text='VAN_EMDE_BOAS', variable = VEB1)
+    ChkBttn2.pack()
+
+    ChkBttn3 = Checkbutton(window, width = 15, text='RED_BLACK           ', variable = RBT1)
+    ChkBttn3.pack()  
+  
+    
+    label2 = Label(window,text = "Tree 2")  
+    label2.pack(pady=10)  
+
+    ChkBttn4 = Checkbutton(window, width = 15, text='AVL                       ', variable = AVL2)
+    ChkBttn4.pack()
+ 
+    ChkBttn5 = Checkbutton(window, width = 15, text='VAN_EMDE_BOAS', variable = VEB2)
+    ChkBttn5.pack()
+
+    ChkBttn6 = Checkbutton(window, width = 15, text='RED_BLACK           ', variable = RBT2)
+    ChkBttn6.pack()
+    
 
 ############################################################################################## Program starts here
-W, H = 1200, 500
-delay = 500
 tk = Tk()
-canvas = Canvas(tk,width=W,height=H)
+screen_width = tk.winfo_screenwidth()
+screen_height = tk.winfo_screenheight()
+canvas = Canvas(tk,width=screen_width * 0.98,height=screen_height * 0.85)
 canvas.pack()
+
+delay = 100
 mainAnimationList = []
-
-#Create a List for the objects to be animated
-#Start algorithm thread with created list as argument
-mainAnimationList.append([])
-mainAnimationList.append([])
-t1 = Thread(target = example, args =(mainAnimationList[0], ))
-t2 = Thread(target = settingOrginExample, args =(mainAnimationList[1], ))
-t3 = Thread(target = lambda: start_avl_tree(mainAnimationList[0], 0, 0, W, H))
-#t1.start()
-#t2.start()
-t3.start()
-
-#TODO add more widgets
+AVL1 = IntVar()
+VEB1 = IntVar()
+RBT1 = IntVar()
+AVL2 = IntVar()
+VEB2 = IntVar()
+RBT2 = IntVar()
+ 
 #Start method contains Animation Loop
-startButton = Button(tk, text='Start', width=10, command=start)
+startButton = Button(tk, text='Start', width=10, command=startThreads)
 startButton.pack()
+
+#settingsWindow
+settingsButton = Button(tk, text='Settings', width=10, command=settingsWindow)
+settingsButton.place(x=screen_width/8, y=screen_height - 100)
+startButton.pack()
+
 
 #Runs the animation in the background
 tk.mainloop()
