@@ -399,7 +399,6 @@ class RBTree():
                 self.step += 1
                 x = node
                 break
-                break
             
             if node.data <= val:
                 node.aniQueue.put(Movement(-1, -1, self.step, ['red' if node.color == 1 else 'gray']))
@@ -416,33 +415,62 @@ class RBTree():
 
         y = x
         yOrigColor = y.color
+        #if node to be deleted doesnt have a left child
         if x.left == self.NULL:
             z = x.right
             self.rbtransplant(x, x.right)
             y.aniQueue.put(Movement(-1, -1, self.step, ['delete_shape']))
             self.step += 1
+        #if node to be deleted doesnt have a right child
         elif x.right == self.NULL:
             z = x.left
             self.rbtransplant(x, x.left)
             y.aniQueue.put(Movement(-1, -1, self.step, ['delete_shape']))
             self.step += 1
+        #if node to be deleted has two children
         else:
+            #find successor
             y = self.minimum(x.right)
-            #y.aniQueue.put(Movement(-1, -1, self.step, ['orange']))
-            #self.step += 1
             yOrigColor = y.color
             z = y.right
+            #if node to be deleted is the parent of the sucessor
             if y.parent == x:
-                z.parent = y
+                if z.parent != None:
+                    y.aniQueue.put(Movement(z.parent.x,z.parent.y,self.step,['red' if y.color == 1 else 'gray']))
+                    y.x = z.parent.y
+                    y.y = z.parent.y
+                    self.step += 1
+                    z.parent = y
+                    z.aniQueue.put(Movement(z.x, z.y , self.step, ['delete_line']))
+                    self.step += 1
+                    z.aniQueue.put(Movement(-1,-1,self.step,[],[z.x + 20, z.y, z.parent.x + self.size - 20, z.parent.y + self.size]))
+                    self.step += 1
+            #if node to be deleted is not the parent of the successor
             else:
                 self.rbtransplant(y, y.right)
+                x.right.aniQueue.put(Movement(y.right.x,y.right.y,self.step,['red' if x.right.color == 1 else 'gray']))
+                x.right.x=y.right.x
+                x.right.y=y.right.y
+                self.step += 1
                 y.right = x.right
                 y.right.parent = y
 
+                x.right.aniQueue.put(Movement(x.right.x, x.right.y , self.step, ['delete_line']))
+                self.step += 1
+                x.right.aniQueue.put(Movement(-1,-1,self.step,[],[x.right.x + 20, x.right.y, y.x + self.size - 20, y.y + self.size]))
+                self.step += 1
+
             self.rbtransplant(x, y)
+            x.aniQueue.put(Movement(-1, -1, self.step, ['delete_shape']))
+            self.step += 1
             y.left = x.left
             y.left.parent = y
             y.color = x.color 
+
+            x.left.aniQueue.put(Movement(x.left.x, x.left.y , self.step, ['delete_line']))
+            self.step += 1
+            x.left.aniQueue.put(Movement(-1,-1,self.step,[],[x.left.x + 20, x.left.y, y.x + self.size - 20, y.y + self.size]))
+            self.step += 1
             y.aniQueue.put(Movement(-1, -1, self.step, ['red' if x.color == 1 else 'gray']))
             self.step += 1
 
@@ -450,7 +478,7 @@ class RBTree():
             self.fixDelete(z)
 
     def fixDelete(self, x):
-        while x != self.root and x.color == 0:
+        while x != self.root and x != self.NULL and x.color == 0:
             if x == x.parent.left:
                 s = x.parent.right
                 if s.color == 1:
@@ -556,7 +584,50 @@ class RBTree():
         self.step += 1
         return self.searchHelper(node.right, val)
 
+    def deleteLine(self, tempNode):
+        tempNode.aniQueue.put(Movement(tempNode.x, tempNode.y , self.step, ['delete_line']))
+        if tempNode.left != None:
+            self.deleteLine(tempNode.left)
+        if tempNode.right != None:
+            self.deleteLine(tempNode.right)
+    
+    def moveSubTree(self, tempNode, xFactor, yFactor):
+            tempNode.aniQueue.put(Movement(tempNode.x+xFactor,tempNode.y+yFactor,self.step,['red' if tempNode.color == 1 else 'gray']))
+            tempNode.x = tempNode.x+ xFactor
+            tempNode.y = tempNode.y+ yFactor
+            if tempNode.left != None:
+                self.moveSubTree(tempNode.left, xFactor, yFactor)
+            if tempNode.right != None:
+                self.moveSubTree(tempNode.right, xFactor, yFactor)
+    
+    def addSubTreeLines(self, tempNode):
+            if tempNode.parent != None:
+                tempNode.aniQueue.put(Movement(-1,-1,self.step,[],[tempNode.x + 20, tempNode.y, tempNode.parent.x + self.size - 20, tempNode.parent.y + self.size]))
+                if tempNode.left != None:
+                    self.addSubTreeLines(tempNode.left)
+                if tempNode.right != None:
+                    self.addSubTreeLines(tempNode.right)
+               
     def rbtransplant(self, u, v):
+        #Animation below
+        #General case
+            #u is to remove
+            #v is new subtree root
+                #0. Delete all lines
+                #1. Move to new location (diff of u and v)
+                #2. Add lines from v down
+
+        #Delete all lines in subtree
+        self.deleteLine(v)
+
+        #Calculate move factor for transplant
+        xFactor = u.x - v.x 
+        yFactor = u.y - v.y
+
+        #Move entire subtree, also update new coords
+        self.moveSubTree(v, xFactor, yFactor)
+
+        #Map pointers
         if u.parent == None:
             self.root = v
         elif u == u.parent.left:
@@ -564,6 +635,9 @@ class RBTree():
         else:
             u.parent.right = v
         v.parent = u.parent
+
+        #Add Lines for all subtrees
+        self.addSubTreeLines(v)
 
     def minimum(self, node):
         while node.left != self.NULL:
@@ -596,7 +670,6 @@ class RBTree():
     def rbTree(aniList):
         originx = 600
         originy = 25
-        # step = 0
         yDist = 75
         size = 50
 
@@ -619,14 +692,9 @@ class RBTree():
             bst.insert(myList[placeHolder].userNum)
             placeHolder += 1
 
-        bst.search(6)
-        bst.delete(10)
-
-        #transplant psuedo
-            #Find coord diff/offset between u and v
-            #Need to delete old nodes and lines, replace with offsetted nodes where v is the new root of the subtree
-                #update new coords as well (any other data to keep track of)?
-
+        bst.search(1)
+        bst.delete(2)
+        #bst.print()
 
         # while 1:
             # if delete button pressed:
