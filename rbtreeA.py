@@ -621,6 +621,12 @@ class RBTree():
         bst.search(6)
         bst.delete(10)
 
+        #transplant psuedo
+            #Find coord diff/offset between u and v
+            #Need to delete old nodes and lines, replace with offsetted nodes where v is the new root of the subtree
+                #update new coords as well (any other data to keep track of)?
+
+
         # while 1:
             # if delete button pressed:
                 # add the value to myList?? 
