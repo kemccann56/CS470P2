@@ -1,4 +1,5 @@
 from dataclasses import dataclass
+from math import floor
 
 @dataclass
 class MinMax():
@@ -30,7 +31,7 @@ x : int
     The integer that we need the index for.
 """
 def high(V, x):
-    high = x // V.n_galaxies
+    high = x // floor(V.universe**0.5)
     return high
 
 """
@@ -38,7 +39,7 @@ Returns the result of x modulo n_galaxies for the vEB tree. This will be used to
 find the number that we should now be looking for.
 """
 def low(V, x):
-    low = x % V.n_galaxies
+    low = x % floor(V.universe**0.5)
     return low
 
 def index(V, i, j):
@@ -47,6 +48,7 @@ def index(V, i, j):
 
 """
 Finds the successor the the given value in the vEB tree.
+"""
 """
 def successor(V, x):
     if V.universe == 2:
@@ -64,6 +66,24 @@ def successor(V, x):
         #print("3")
         j = V.galaxies[i].minimum
     return index(V, i, j)
+"""
+
+def successor(V, x):
+    print("Hello world")
+    if x < V.minimum:
+        return V.minimum
+    elif x > V.maximum:
+        return -1
+
+    i = high(V, x)
+    j = low(V, x)
+
+    if V.galaxies is None:
+        return -1
+
+    if j < V.galaxies[i].maximum:
+        return x - j + successor(V.galaxies[i], j)
+    return x - j + V.galaxies[successor(V.summary, i)].minimum
 
 def insert(V, x):
     #print(x)
@@ -98,6 +118,40 @@ def insert(V, x):
     insert(V.summary, high(V, x))
     return
 
+def delete(V, x):
+    if V.minimum is None or x < V.minimum or x > V.maximum:
+        return
+
+    if V.minimum == V.maximum:
+        V.minimum = V.maximum = None
+        return
+
+    if V.n_galaxies == 2:
+        if x == 0:
+            V.minimum = 1
+        else:
+            V.maximum = 0
+        return
+
+    if x == V.minimum:
+        i = V.summary.minimum
+        if i is None:
+            V.minimum = None
+            V.maximum = None
+            return
+        else:
+            V.minimum = index(i, V.galaxies[i].minimum)
+
+    delete(V.galaxies[high(V, x)], low(V, x))
+    if V.galaxies[high(V, x)].minimum is None:
+        delete(V.summary, high(V, x))
+    if x == V.maximum:
+        V.summary.maximum = None
+    else:
+        i = V.summary.maximum
+        V.maximum = index(i, V.galaxies[i].maximum)
+    return
+
 """
 Searches for the key, by looking at each vEB's min and max before traveling
 down the tree.
@@ -118,6 +172,7 @@ def search(V, key):
     # If we have made it this far, then we move on to the next level of the tree.
     return search(V.galaxies[high(V, key)], low(V, key))
 
+
 V = VEB(16)
 # for i in [1,2,7,8,12]:
 for i in range(16):
@@ -130,4 +185,7 @@ if found_val:
     print("Found all values!")
 else:
     print("Did not find all values")
-print(successor(V, 1))
+
+delete(V, 1)
+
+print(search(V, 1))
