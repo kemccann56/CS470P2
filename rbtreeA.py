@@ -39,7 +39,6 @@ class RBTree():
         self.NULL.left = None
         self.NULL.right = None
         self.root = self.NULL
-        self.height = 1
         self.animationList = aniList
         self.originx = originx
         self.originy = originy
@@ -48,7 +47,7 @@ class RBTree():
         self.yDist = yDist
 
     def insert(self, val):
-        separators = [0,4,2,1,.5,.5]
+        separators = [0,4,2,1,.5,.5,.5,.5]
 
         # create node
         node = Node(val)
@@ -58,6 +57,11 @@ class RBTree():
         node.right = self.NULL
         node.color = 1
 
+        # show node first on side of screen with color red
+        # change the x and y if we want it to start in a different place
+        self.animationList.append(node)
+        node.aniQueue.put(Movement(-1,-1,self.step,[],[],['oval',100,200,self.size,str(node.data),'red']))
+
         y = None
         x = self.root
 
@@ -66,7 +70,9 @@ class RBTree():
             x.aniQueue.put(Movement(-1, -1,self.step, ['gold']))
             if y is not None:
                 y.aniQueue.put(Movement(-1, -1,self.step,['gray' if y.color == 0 else 'red']))
-            time.sleep(1) # delay so color change can be seen
+            self.step += 1
+            # seems like coloring needs to have some type of delay [time.sleep()]
+            # in HW2.py start() "if allMovesDone" part before incrementing step
             y = x
             if node.data < x.data:
                 x = x.left
@@ -85,10 +91,6 @@ class RBTree():
         else:
             y.right = node
 
-        # show node first on side of screen with color red
-        self.animationList.append(node)
-        node.aniQueue.put(Movement(-1,-1,self.step,[],[],['oval',100,200,self.size,str(node.data),'red']))
-
         # put node at root and return
         if node.parent == None:
             node.x = self.originx
@@ -99,17 +101,18 @@ class RBTree():
             return
 
         node.y = node.parent.y + self.yDist
+        xOffset = self.size - (.6*self.size)
 
         # put node as either left or right child of root, add the line, return
         if node.parent.parent == None:
             if node.parent.right == node:
                 node.x = node.parent.x + (self.size * separators[self.getDepth(node) - 1])
                 node.aniQueue.put(Movement(node.x,node.y,self.step))
-                node.aniQueue.put(Movement(-1,-1,self.step,[],[node.x + 20, node.y, node.parent.x + self.size - 20, node.parent.y + self.size]))
+                node.aniQueue.put(Movement(-1,-1,self.step,[],[node.x + xOffset, node.y, node.parent.x + self.size - xOffset, node.parent.y + self.size]))
             else:
                 node.x = node.parent.x - (self.size * separators[self.getDepth(node) - 1])
                 node.aniQueue.put(Movement(node.x,node.y,self.step))
-                node.aniQueue.put(Movement(-1,-1,self.step,[],[node.x + self.size - 20, node.y, node.parent.x + 20, node.parent.y + self.size]))
+                node.aniQueue.put(Movement(-1,-1,self.step,[],[node.x + self.size - xOffset, node.y, node.parent.x + xOffset, node.parent.y + self.size]))
             self.step += 1
             return
 
@@ -117,11 +120,11 @@ class RBTree():
         if node.parent.right == node:
             node.x = node.parent.x + (self.size * separators[self.getDepth(node) - 1])
             node.aniQueue.put(Movement(node.x,node.y,self.step))
-            node.aniQueue.put(Movement(-1,-1,self.step,[],[node.x + 20, node.y, node.parent.x + self.size - 20, node.parent.y + self.size]))
+            node.aniQueue.put(Movement(-1,-1,self.step,[],[node.x + xOffset, node.y, node.parent.x + self.size - xOffset, node.parent.y + self.size]))
         else:
             node.x = node.parent.x - (self.size * separators[self.getDepth(node) - 1])
             node.aniQueue.put(Movement(node.x,node.y,self.step))
-            node.aniQueue.put(Movement(-1,-1,self.step,[],[node.x + self.size - 20, node.y, node.parent.x + 20, node.parent.y + self.size]))
+            node.aniQueue.put(Movement(-1,-1,self.step,[],[node.x + self.size - xOffset, node.y, node.parent.x + xOffset, node.parent.y + self.size]))
         
         self.insertHelper(node)
         self.step += 1
@@ -175,7 +178,7 @@ class RBTree():
         self.root.aniQueue.put(Movement(-1, -1,self.step, ['gray']))
 
     def leftRotate(self, node):
-        separators = [0, 4, 2, 1, .5, .5]
+        separators = [0, 4, 2, 1, .5, .5, .5, .5]
         y = node.right
         node.right = y.left
         if y.left != self.NULL:
@@ -238,21 +241,23 @@ class RBTree():
                 k = k.left
             z = z.right
 
+        xOffset = self.size - (.6*self.size)
+
         # put root where it's going 
         self.root.aniQueue.put(Movement(self.root.x,self.root.y,self.step,[],[],[]))
         # move everything to the left of root where it should be based on their coordinates
         # and add lines
         z = self.root.left
         while z != self.NULL:
-            z.aniQueue.put(Movement(-1,-1,self.step,[],[z.x + self.size - 20, z.y, z.parent.x + 20, z.parent.y + self.size]))
+            z.aniQueue.put(Movement(-1,-1,self.step,[],[z.x + self.size - xOffset, z.y, z.parent.x + xOffset, z.parent.y + self.size]))
             z.aniQueue.put(Movement(z.x,z.y,self.step,[],[],[]))
             k = z.right
             while k != self.NULL:
-                k.aniQueue.put(Movement(-1,-1,self.step,[],[k.x + 20, k.y, k.parent.x + self.size - 20, k.parent.y + self.size]))
+                k.aniQueue.put(Movement(-1,-1,self.step,[],[k.x + xOffset, k.y, k.parent.x + self.size - xOffset, k.parent.y + self.size]))
                 k.aniQueue.put(Movement(k.x,k.y,self.step,[],[],[]))
                 j = k.left
                 while j != self.NULL:
-                    j.aniQueue.put(Movement(-1,-1,self.step,[],[j.x + self.size - 20, j.y, j.parent.x + 20, j.parent.y + self.size]))
+                    j.aniQueue.put(Movement(-1,-1,self.step,[],[j.x + self.size - xOffset, j.y, j.parent.x + xOffset, j.parent.y + self.size]))
                     j.aniQueue.put(Movement(j.x,j.y,self.step,[],[],[]))
                     j = j.left
                 k = k.right
@@ -261,22 +266,22 @@ class RBTree():
         # and add lines
         z = self.root.right
         while z != self.NULL:
-            z.aniQueue.put(Movement(-1,-1,self.step,[],[z.x + 20, z.y, z.parent.x + self.size - 20, z.parent.y + self.size]))
+            z.aniQueue.put(Movement(-1,-1,self.step,[],[z.x + xOffset, z.y, z.parent.x + self.size - xOffset, z.parent.y + self.size]))
             z.aniQueue.put(Movement(z.x,z.y,self.step,[],[],[]))
             k = z.left
             while k != self.NULL:
-                k.aniQueue.put(Movement(-1,-1,self.step,[],[k.x + self.size - 20, k.y, k.parent.x + 20, k.parent.y + self.size]))
+                k.aniQueue.put(Movement(-1,-1,self.step,[],[k.x + self.size - xOffset, k.y, k.parent.x + xOffset, k.parent.y + self.size]))
                 k.aniQueue.put(Movement(k.x,k.y,self.step,[],[],[]))
                 j = k.right
                 while j != self.NULL:
-                    j.aniQueue.put(Movement(-1,-1,self.step,[],[j.x + 20, j.y, j.parent.x + self.size - 20, j.parent.y + self.size]))
+                    j.aniQueue.put(Movement(-1,-1,self.step,[],[j.x + xOffset, j.y, j.parent.x + self.size - xOffset, j.parent.y + self.size]))
                     j.aniQueue.put(Movement(j.x,j.y,self.step,[],[],[]))
                     j = j.right
                 k = k.left
             z = z.right
 
     def rightRotate(self, node):
-        separators = [0, 4, 2, 1, .5, .5]
+        separators = [0, 4, 2, 1, .5, .5, .5, .5]
         y = node.left
         node.left = y.right
         if y.right != self.NULL:
@@ -339,21 +344,23 @@ class RBTree():
                 k = k.left
             z = z.right
 
+        xOffset = self.size - (.6*self.size)
+
         # put root where it's going
         self.root.aniQueue.put(Movement(self.root.x,self.root.y,self.step,[],[],[]))
         # move everything to the left of root where it should be based on their coordinates
         # and add lines
         z = self.root.left
         while z != self.NULL:
-            z.aniQueue.put(Movement(-1,-1,self.step,[],[z.x + self.size - 20, z.y, z.parent.x + 20, z.parent.y + self.size]))
+            z.aniQueue.put(Movement(-1,-1,self.step,[],[z.x + self.size - xOffset, z.y, z.parent.x + xOffset, z.parent.y + self.size]))
             z.aniQueue.put(Movement(z.x,z.y,self.step,[],[],[]))
             k = z.right
             while k != self.NULL:
-                k.aniQueue.put(Movement(-1,-1,self.step,[],[k.x + 20, k.y, k.parent.x + + self.size - 20, k.parent.y + self.size]))
+                k.aniQueue.put(Movement(-1,-1,self.step,[],[k.x + xOffset, k.y, k.parent.x + + self.size - xOffset, k.parent.y + self.size]))
                 k.aniQueue.put(Movement(k.x,k.y,self.step,[],[],[]))
                 j = k.left
                 while j != self.NULL:
-                    j.aniQueue.put(Movement(-1,-1,self.step,[],[j.x + self.size - 20, j.y, j.parent.x + 20, j.parent.y + self.size]))
+                    j.aniQueue.put(Movement(-1,-1,self.step,[],[j.x + self.size - xOffset, j.y, j.parent.x + xOffset, j.parent.y + self.size]))
                     j.aniQueue.put(Movement(j.x,j.y,self.step,[],[],[]))
                     j = j.left
                 k = k.right
@@ -362,15 +369,15 @@ class RBTree():
         # and add lines
         z = self.root.right
         while z != self.NULL:
-            z.aniQueue.put(Movement(-1,-1,self.step,[],[z.x + 20, z.y, z.parent.x + self.size - 20, z.parent.y + self.size]))
+            z.aniQueue.put(Movement(-1,-1,self.step,[],[z.x + xOffset, z.y, z.parent.x + self.size - xOffset, z.parent.y + self.size]))
             z.aniQueue.put(Movement(z.x,z.y,self.step,[],[],[]))
             k = z.left
             while k != self.NULL:
-                k.aniQueue.put(Movement(-1,-1,self.step,[],[k.x + self.size - 20, k.y, k.parent.x + 20, k.parent.y + self.size]))
+                k.aniQueue.put(Movement(-1,-1,self.step,[],[k.x + self.size - xOffset, k.y, k.parent.x + xOffset, k.parent.y + self.size]))
                 k.aniQueue.put(Movement(k.x,k.y,self.step,[],[],[]))
                 j = k.right
                 while j != self.NULL:
-                    j.aniQueue.put(Movement(-1,-1,self.step,[],[j.x + 20, j.y, j.parent.x + self.size - 20, j.parent.y + self.size]))
+                    j.aniQueue.put(Movement(-1,-1,self.step,[],[j.x + xOffset, j.y, j.parent.x + self.size - xOffset, j.parent.y + self.size]))
                     j.aniQueue.put(Movement(j.x,j.y,self.step,[],[],[]))
                     j = j.right
                 k = k.left
@@ -527,9 +534,10 @@ class RBTree():
         self.printHelper(self.root, "", True)
 
     def rbTree(aniList):
+        # these can all be changed 
+        # or can be passed from HW2.py
         originx = 600
         originy = 25
-        # step = 0
         yDist = 75
         size = 50
 
