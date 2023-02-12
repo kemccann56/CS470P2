@@ -1,29 +1,10 @@
 from tkinter import *
 from queue import Queue
 from threading import Thread, Lock
-
+from animation import *
+from avl_tree import start_avl_tree
 from rbtreeA import *
 import time
-
-class Object:
-    def __init__(self,num):
-        self.shape = None
-        self.text = None
-        self.lineToParent = None
-        self.x = -1
-        self.y = -1
-        self.aniQueue = Queue()
-        self.moveQueue = Queue()
-        self.userNum = num
-
-class Movement:
-    def __init__(self,x,y,step=0,args=[],newLine=[],newObject=[]):
-        self.x = x
-        self.y = y
-        self.step = step
-        self.args = args
-        self.newLine = newLine
-        self.newObject = newObject
 
 ###############################################################################################
 # A thread that produces data
@@ -130,43 +111,41 @@ def settingOrginExample(aniList):
     #hard Coding for example
     size = 50
 
-    myList[0].aniQueue.put(Movement(-1,-1,step,[],[],['oval',orginx+300,orginy+50,size,str(myList[0].userNum),'lightblue']))
     myList[0].x = orginx+300
     myList[0].y = orginy+50
+    myList[0].aniQueue.put(Movement(-1,-1,step,[],[],['oval',orginx+300,orginy+50,size,str(myList[0].userNum),'lightblue']))
 
-    myList[1].aniQueue.put(Movement(-1,-1,step,[],[],['oval',orginx+150,orginy+200,size,str(myList[1].userNum),'lightblue']))
+    step += 1
+
     myList[1].x = orginx+150
     myList[1].y = orginy+200
-    #Create line to parent node
-    myList[1].aniQueue.put(Movement(-1,-1,step,[],[myList[1].x + size, myList[1].y, myList[0].x, myList[0].y + size]))
+    myList[1].aniQueue.put(Movement(-1,-1,step,[],[myList[1].x + size, myList[1].y, myList[0].x, myList[0].y + size],['oval',orginx+150,orginy+200,size,str(myList[1].userNum),'lightblue']))
 
-    myList[2].aniQueue.put(Movement(-1,-1,step,[],[],['oval',orginx+450,orginy+200,size,str(myList[2].userNum),'lightblue']))
+    step += 1
+
     myList[2].x = orginx+450
     myList[2].y = orginy+200
-    #Create line to parent node
-    myList[2].aniQueue.put(Movement(-1,-1,step,[],[myList[2].x, myList[2].y, myList[0].x + size, myList[0].y + size]))
+    myList[2].aniQueue.put(Movement(-1,-1,step,[],[myList[2].x, myList[2].y, myList[0].x + size, myList[0].y + size],['oval',orginx+450,orginy+200,size,str(myList[2].userNum),'lightblue']))
 
     step += 1
 
-    myList[3].aniQueue.put(Movement(-1,-1,step,[],[],['rectangle',orginx+125,orginy+300,size,str(myList[3].userNum),'lightblue']))
     myList[3].x = orginx+125
     myList[3].y = orginy+300
-    #Create line to parent node
-    myList[3].aniQueue.put(Movement(-1,-1,step,[],[myList[3].x + size/2, myList[3].y, myList[1].x + size/2, myList[1].y + size]))
+    myList[3].aniQueue.put(Movement(-1,-1,step,[],[myList[3].x + size/2, myList[3].y, myList[1].x + size/2, myList[1].y + size],['rectangle',orginx+125,orginy+300,size,str(myList[3].userNum),'lightblue']))
 
     step += 1
 
-    myList[4].aniQueue.put(Movement(-1,-1,step,[],[],['rectangle',orginx+175,orginy+300,size,str(myList[3].userNum),'lightblue']))
     myList[4].x = orginx+175
     myList[4].y = orginy+300
-    #Create line to parent node
-    myList[4].aniQueue.put(Movement(-1,-1,step,[],[myList[4].x + size/2, myList[4].y, myList[1].x + size/2, myList[1].y + size]))
+    myList[4].aniQueue.put(Movement(-1,-1,step,[],[myList[4].x + size/2, myList[4].y, myList[1].x + size/2, myList[1].y + size],['rectangle',orginx+175,orginy+300,size,str(myList[3].userNum),'lightblue']))
 
     step += 1
 
     #Swap exapmle with color change
     myList[0].aniQueue.put(Movement(-1, -1,step, ['red']))
     myList[1].aniQueue.put(Movement(-1, -1,step, ['red']))
+    step += 1
+
     myList[0], myList[1] = myList[1], myList[0]
 
     myList[0].x, myList[1].x = myList[1].x, myList[0].x
@@ -174,9 +153,11 @@ def settingOrginExample(aniList):
 
     myList[0].aniQueue.put(Movement(myList[0].x, myList[0].y,step, ['delete_line']))
     myList[1].aniQueue.put(Movement(myList[1].x, myList[1].y,step,[], [myList[1].x + size, myList[1].y, myList[0].x, myList[0].y + size]))
+    myList[0].aniQueue.put(Movement(-1,-1,step,['change_text','test']))
+
     myList[0].aniQueue.put(Movement(-1, -1,step, ['lightblue']))
     myList[1].aniQueue.put(Movement(-1, -1,step, ['lightblue']))
-    
+
     step += 1
 
     #Remove example
@@ -187,7 +168,7 @@ def settingOrginExample(aniList):
 
     print("Finished")
 
-############################################################################################################		       
+############################################################################################################
 #Animation Loop
 def start(step=0):
     #Makes sure all objects have made their moves before the next step starts
@@ -203,12 +184,18 @@ def start(step=0):
                 newCoords = aniObject.moveQueue.get()
                 if newCoords.newLine:
                     aniObject.lineToParent = canvas.create_line(newCoords.newLine[0], newCoords.newLine[1], newCoords.newLine[2], newCoords.newLine[3])
-                else:
+                elif newCoords.newObject:
+                    if newCoords.newObject[0] == 'oval':
+                        aniObject.shape = canvas.create_oval(newCoords.newObject[1],newCoords.newObject[2],newCoords.newObject[1] + newCoords.newObject[3],newCoords.newObject[2] + newCoords.newObject[3],fill=newCoords.newObject[5])
+                    elif newCoords.newObject[0] == 'rectangle':
+                        aniObject.shape = canvas.create_rectangle(newCoords.newObject[1],newCoords.newObject[2],newCoords.newObject[1] + newCoords.newObject[3],newCoords.newObject[2] + newCoords.newObject[3],fill=newCoords.newObject[5])
+                    aniObject.text = canvas.create_text(newCoords.newObject[1]+(newCoords.newObject[3]/2),newCoords.newObject[2]+(newCoords.newObject[3]/2),text=newCoords.newObject[4],font=('Helvetica ' + str(newCoords.newObject[3]//len(newCoords.newObject[4])) + ' bold'))
+                elif newCoords.x != -1:
                     canvas.move(aniObject.shape, newCoords.x, newCoords.y)
                     canvas.move(aniObject.text, newCoords.x, newCoords.y)
-            
+
             #This is the Queue that the algorithm threads add Movment objects too
-            elif not aniObject.aniQueue.empty():              
+            elif not aniObject.aniQueue.empty():
                 #Only remove from the Queue if on the right step
                 if aniObject.aniQueue.queue[0].step <= step:
                     allMovesDone = False
@@ -220,16 +207,26 @@ def start(step=0):
 
                     #Check for delete commands in args list
                     #Else then it must me a color change
+                    textChange = 0
                     for arg in newCoords.args:
-                        if arg == 'delete_line':
+                        if textChange:
+                            canvas.itemconfig(aniObject.text, text=arg)
+                            textChange = 0
+                        elif arg == 'delete_line':
                             canvas.delete(aniObject.lineToParent)
                         elif arg == 'delete_shape':
                             canvas.delete(aniObject.shape)
                             canvas.delete(aniObject.text)
                             canvas.delete(aniObject.lineToParent)
+                            for i in range(delay-1):
+                                    aniObject.moveQueue.put(Movement(-1,-1))
+                        elif arg == 'change_text':
+                            textChange = 1
                         else:
                             canvas.itemconfig(aniObject.shape, fill=arg)
-                    
+                            for i in range(delay-1):
+                                    aniObject.moveQueue.put(Movement(-1,-1))
+
                     #Movement objects on the aniQueue get divided by the delay and added to the moveQueue
                     #-1 in the x value will skip the movement
                     if newCoords.x != -1:
@@ -241,21 +238,19 @@ def start(step=0):
                             aniObject.moveQueue.put(Movement(movexx, moveyy))
                         if movexx * delay != movex:
                             aniObject.moveQueue.put(Movement(movex - (movexx * delay), movey - (moveyy * delay)))
-                    
+
                     #If the newLine list is not empty then add it to the .moveQueue
                     if newCoords.newLine:
-                        aniObject.moveQueue.put(newCoords)
-                    
-                    #If the newQbject list is not empty then generate shape immediatly
+                        aniObject.moveQueue.put(Movement(-1,-1,step,[],newCoords.newLine))
+
+                    #If the newQbject list is not empty then generate shape on moveQueue
                     if newCoords.newObject:
-                        if newCoords.newObject[0] == 'oval':
-                            aniObject.shape = canvas.create_oval(newCoords.newObject[1],newCoords.newObject[2],newCoords.newObject[1] + newCoords.newObject[3],newCoords.newObject[2] + newCoords.newObject[3],fill=newCoords.newObject[5])
-                        elif newCoords.newObject[0] == 'rectangle':
-                            aniObject.shape = canvas.create_rectangle(newCoords.newObject[1],newCoords.newObject[2],newCoords.newObject[1] + newCoords.newObject[3],newCoords.newObject[2] + newCoords.newObject[3],fill=newCoords.newObject[5])
-                        aniObject.text = canvas.create_text(newCoords.newObject[1]+(newCoords.newObject[3]/2),newCoords.newObject[2]+(newCoords.newObject[3]/2),text=newCoords.newObject[4],font=('Helvetica ' + str(newCoords.newObject[3]//len(newCoords.newObject[4])) + ' bold')) 
-                    
+                        aniObject.moveQueue.put(Movement(-1,-1,step,[],[],newCoords.newObject))
+                        for i in range(delay-1):
+                            aniObject.moveQueue.put(Movement(-1,-1))
+
     #After all objects have been looped through then check to see if any moves were made
-    #TODO need functionality to signal when all animations are done and wait instead of spining           
+    #TODO need functionality to signal when all animations are done and wait instead of spining
     if allMovesDone:
         # added for testing purposes
         time.sleep(1)
@@ -277,10 +272,14 @@ mainAnimationList = []
 #Start algorithm thread with created list as argument
 mainAnimationList.append([])
 mainAnimationList.append([])
-t1 = Thread(target = RBTree.rbTree, args =(mainAnimationList[0], ))
-# t2 = Thread(target = settingOrginExample, args =(mainAnimationList[1], ))
-t1.start()
-# t2.start()
+t1 = Thread(target = example, args =(mainAnimationList[0], ))
+t2 = Thread(target = settingOrginExample, args =(mainAnimationList[1], ))
+t3 = Thread(target = lambda: start_avl_tree(mainAnimationList[0], 0, 0, W, H))
+t4 = Thread(target = RBTree.rbTree, args =(mainAnimationList[0], ))
+#t1.start()
+#t2.start()
+#t3.start()
+t4.start()
 
 #TODO add more widgets
 #Start method contains Animation Loop
