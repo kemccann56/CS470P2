@@ -3,6 +3,8 @@ from queue import Queue
 from threading import Thread, Lock
 from animation import *
 from avl_tree import start_avl_tree
+from rbtreeA import *
+import time
 
 ###############################################################################################
 # A thread that produces data
@@ -250,6 +252,8 @@ def start(step=0):
     #After all objects have been looped through then check to see if any moves were made
     #TODO need functionality to signal when all animations are done and wait instead of spining
     if allMovesDone:
+        # added for testing purposes
+        time.sleep(1)
         step+=1
 
     #This method recursivley calls this start method passing the current step as an argument
@@ -270,10 +274,12 @@ mainAnimationList.append([])
 mainAnimationList.append([])
 t1 = Thread(target = example, args =(mainAnimationList[0], ))
 t2 = Thread(target = settingOrginExample, args =(mainAnimationList[1], ))
-t3 = Thread(target = lambda: start_avl_tree(mainAnimationList[0], 0, 200, W, H))
+t3 = Thread(target = lambda: start_avl_tree(mainAnimationList[0], 0, 0, W, H))
+t4 = Thread(target = RBTree.rbTree, args =(mainAnimationList[0], ))
 #t1.start()
 #t2.start()
-t3.start()
+#t3.start()
+t4.start()
 
 #TODO add more widgets
 #Start method contains Animation Loop
