@@ -3,6 +3,7 @@ from queue import Queue
 from threading import Thread, Lock
 from animation import *
 from avl_tree import start_avl_tree
+from veb_tree import start_veb
 
 ###############################################################################################
 # A thread that produces data
@@ -257,7 +258,7 @@ def start(step=0):
 
 
 ############################################################################################## Program starts here
-W, H = 1200, 500
+W, H = 1800, 500
 delay = 500
 tk = Tk()
 canvas = Canvas(tk,width=W,height=H)
@@ -270,10 +271,12 @@ mainAnimationList.append([])
 mainAnimationList.append([])
 t1 = Thread(target = example, args =(mainAnimationList[0], ))
 t2 = Thread(target = settingOrginExample, args =(mainAnimationList[1], ))
-t3 = Thread(target = lambda: start_avl_tree(mainAnimationList[0], 0, 200, W, H))
+#t3 = Thread(target = lambda: start_avl_tree(mainAnimationList[0], 0, 0, W, H))
+t4 = Thread(target = lambda: start_veb(mainAnimationList[0], 0, 0, W, H))
 #t1.start()
 #t2.start()
-t3.start()
+#t3.start()
+t4.start()
 
 #TODO add more widgets
 #Start method contains Animation Loop
