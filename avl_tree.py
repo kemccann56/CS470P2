@@ -906,20 +906,42 @@ width : int
 height : int
     The total heigth of the animation window we are allowed to use.
 """
-def start_avl_tree(aniList, x_origin, y_origin, width, height):
+def start_avl_tree(aniList, x_origin, y_origin, width, height, commandQueue):
     # Initialize the AVL tree object
     tree = AVLTreeAnimation(35, x_origin, y_origin, width, height, aniList, 50)
     # Loop and wait for more elements to insert, delete, and search for
     while True:
+        """
         tree.insert(1)
         tree.insert(2)
-        tree.delete(2)
-        tree.insert(0)
-        tree.delete(0)
-        tree.insert(0)
-        tree.insert(2)
+        tree.insert(3)
+        tree.insert(4)
+        tree.insert(5)
+        tree.insert(6)
+        tree.insert(7)
+
+        tree.insert(12)
+        tree.insert(13)
+        tree.insert(10)
+        tree.insert(15)
+        tree.insert(20)
+
+        tree.insert(8)
+        tree.delete(8)
+        tree.delete(7)
+        tree.delete(5)
+        tree.delete(3)
+        tree.delete(1)
         tree.insert(3)
         tree.insert(5)
         tree.insert(0.5)
         tree.insert(0.25)
-        break
+        """
+        command = commandQueue.get(True)
+        if command[0] == 'insert':
+            tree.insert(int(command[1]))
+        if command[0] == 'delete':
+            tree.delete(int(command[1]))
+        if command[0] == 'search':
+            tree.search(int(command[1]))
+        tree.step = 0
