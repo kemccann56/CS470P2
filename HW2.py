@@ -4,6 +4,8 @@ from threading import Thread, Lock
 from turtle import Screen
 from animation import *
 from avl_tree import start_avl_tree
+from rbtreeA import *
+import time
 
 ###############################################################################################
 # A thread that produces data
