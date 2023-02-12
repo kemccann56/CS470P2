@@ -260,10 +260,11 @@ class AVLTreeAnimation():
                 temp = node.right_child_node
                 self.color_node(temp, 'red1', True)
                 temp.parent = node.parent
-                if temp.object.userNum <= temp.parent.object.userNum:
-                    temp.parent.left_child_node = temp
-                else:
-                    temp.parent.right_child_node = temp
+                if temp.parent is not None:
+                    if temp.object.userNum <= temp.parent.object.userNum:
+                        temp.parent.left_child_node = temp
+                    else:
+                        temp.parent.right_child_node = temp
                 self.delete_node_from_animation(node, True)
                 self.fix_tree(temp, False)
                 node = None
@@ -273,10 +274,11 @@ class AVLTreeAnimation():
                 temp = node.left_child_node
                 self.color_node(temp, 'red1', True)
                 temp.parent = node.parent
-                if temp.object.userNum <= temp.parent.object.userNum:
-                    temp.parent.left_child_node = temp
-                else:
-                    temp.parent.right_child_node = temp
+                if temp.parent is not None:
+                    if temp.object.userNum <= temp.parent.object.userNum:
+                        temp.parent.left_child_node = temp
+                    else:
+                        temp.parent.right_child_node = temp
                 self.delete_node_from_animation(node, True)
                 self.fix_tree(temp, False)
                 node = None
@@ -909,6 +911,7 @@ def start_avl_tree(aniList, x_origin, y_origin, width, height, commandQueue):
     tree = AVLTreeAnimation(35, x_origin, y_origin, width, height, aniList, 50)
     # Loop and wait for more elements to insert, delete, and search for
     while True:
+        """
         tree.insert(1)
         tree.insert(2)
         tree.insert(3)
@@ -931,10 +934,14 @@ def start_avl_tree(aniList, x_origin, y_origin, width, height, commandQueue):
         tree.delete(1)
         tree.insert(3)
         tree.insert(5)
-        tree.insert(7)
-        tree.insert(8)
-        tree.delete(3)
-        tree.delete(8)
-        tree.delete(7)
-        tree.delete(5)
-        break
+        tree.insert(0.5)
+        tree.insert(0.25)
+        """
+        command = commandQueue.get(True)
+        if command[0] == 'insert':
+            tree.insert(int(command[1]))
+        if command[0] == 'delete':
+            tree.delete(int(command[1]))
+        if command[0] == 'search':
+            tree.search(int(command[1]))
+        tree.step = 0

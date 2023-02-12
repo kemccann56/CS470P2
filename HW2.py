@@ -1,4 +1,4 @@
-from tkinter import * 
+from tkinter import *
 from queue import Queue
 from threading import Thread, Lock
 from turtle import Screen
@@ -272,7 +272,7 @@ def startAnimation(step=0, delay=100, movePreformed=1, stepFlag=1):
                 movePreformed += 1
     else:
         movePreformed = 1
-        
+
 
     #This method recursivley calls this start method passing the current step as an argument
     if movePreformed != -1:
@@ -281,7 +281,7 @@ def startAnimation(step=0, delay=100, movePreformed=1, stepFlag=1):
 def startThreads():
     canvas.delete('all')
     mainAnimationList.clear()
- 
+
     #Create a List for the objects to be animated
     #Start algorithm thread with created list as argument
     mainAnimationList.append([])
@@ -308,7 +308,7 @@ def startThreads():
         t2 = Thread(target = settingOrginExample, args =(mainAnimationList[1], 0, screen_height/3))
     else:
         t2 = Thread(target = settingOrginExample, args =(mainAnimationList[1], 0, screen_height/3))
-    
+
     t1.start()
     t2.start()
 
@@ -317,36 +317,36 @@ def startThreads():
 def settingsWindow():
     window = Toplevel()
     window.geometry('500x300')
-    
+
     newlabel = Label(window, text = "Settings Window")
     newlabel.pack(padx=5, pady=5)
 
 
-    label1 = Label(window,text = "Tree 1")  
+    label1 = Label(window,text = "Tree 1")
     label1.pack(pady=10)
 
     ChkBttn = Checkbutton(window, width = 15, text='AVL                       ', variable = AVL1)
     ChkBttn.pack()
- 
+
     ChkBttn2 = Checkbutton(window, width = 15, text='VAN_EMDE_BOAS', variable = VEB1)
     ChkBttn2.pack()
 
     ChkBttn3 = Checkbutton(window, width = 15, text='RED_BLACK           ', variable = RBT1)
-    ChkBttn3.pack()  
-  
-    
-    label2 = Label(window,text = "Tree 2")  
-    label2.pack(pady=10)  
+    ChkBttn3.pack()
+
+
+    label2 = Label(window,text = "Tree 2")
+    label2.pack(pady=10)
 
     ChkBttn4 = Checkbutton(window, width = 15, text='AVL                       ', variable = AVL2)
     ChkBttn4.pack()
- 
+
     ChkBttn5 = Checkbutton(window, width = 15, text='VAN_EMDE_BOAS', variable = VEB2)
     ChkBttn5.pack()
 
     ChkBttn6 = Checkbutton(window, width = 15, text='RED_BLACK           ', variable = RBT2)
     ChkBttn6.pack()
-    
+
 def stepOnce():
     stepQueue.put(1)
 
@@ -362,8 +362,8 @@ def deleteCommand():
     startAnimation(0, delayScale.get())
 
 def searchCommand():
-    commandQueue1.put(['insert',searchEntry.get()])
-    commandQueue2.put(['insert',searchEntry.get()])
+    commandQueue1.put(['search',searchEntry.get()])
+    commandQueue2.put(['search',searchEntry.get()])
     startAnimation(0, delayScale.get())
 
 ############################################################################################## Program starts here
@@ -384,7 +384,7 @@ AVL2 = IntVar()
 VEB2 = IntVar()
 RBT2 = IntVar()
 stepVar = IntVar()
- 
+
 #settingsWindow
 settingsButton = Button(tk, text='Settings', width=10, command=settingsWindow)
 settingsButton.grid(row=1, column=0)
