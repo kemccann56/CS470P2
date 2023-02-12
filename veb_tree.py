@@ -158,36 +158,62 @@ class VEB():
         # If there is only one element in the VEB, we know that no sub elements
         # exist, so we can just set them both to None and exit
         if V.minimum == V.maximum:
+            self.color_box(V.minAniObject, 'red', False)
+            self.color_box(V.maxAniObject, 'red', True)
+            self.change_text(V.minAniObject, '0', True)
+            self.change_text(V.maxAniObject, '0', True)
             V.minimum = None
             V.maximum = None
+            self.color_box(V.minAniObject, 'lightblue', False)
+            self.color_box(V.maxAniObject, 'lightblue', False)
         # If we are at the bottom layer of the tree, the element we are going to
         # delete will either be this min or max value.
         elif V.universe == 2:
             # If x is the minimum, only the maximum will be left
+            self.color_box(V.maxAniObject, 'red', False)
             if x == 0:
+                self.change_text(V.maxAniObject, '1', True)
                 V.minimum = 1
             # If x is the maximum, only the minimum will be left
             else:
+                self.change_text(V.maxAniObject, '0', True)
                 V.minimum = 0
+            self.color_box(V.maxAniObject, 'red', True)
+            self.change_text(V.maxAniObject, str(V.minimum), True)
             V.maximum = V.minimum
+            self.color_box(V.maxAniObject, 'lightblue', False)
+            self.color_box(V.minAniObject, 'lightblue', False)
         # We must go down the tree, and update the summary VEB's along the way
         else:
             if x == V.minimum:
                 first_galaxy = V.summary.minimum
                 x = self.index(V, first_galaxy, V.galaxies[first_galaxy].minimum)
+                self.color_box(V.minAniObject, 'red', True)
+                self.change_text(V.minAniObject, str(x), True)
                 V.minimum = x
+                self.color_box(V.minAniObject, 'lightblue', False)
+
             self.delete(V.galaxies[self.high(V, x)], self.low(V, x))
             if V.galaxies[self.high(V, x)].minimum == None:
                 self.delete(V.summary, self.high(V, x))
                 if x == V.maximum:
                     summary_max = V.summary.maximum
+                    self.color_box(V.maxAniObject, 'red', True)
                     if summary_max == None:
+                        self.change_text(V.maxAniObject, str(V.minimum), True)
                         V.maximum = V.minimum
                     else:
-                        V.maximum = self.index(V, summary_max, V.galaxies[summary_max].maximum)
-            elif x == V.maximum:
-                V.maximum = self.index(V, self.high(V, x), V.galaxies[self.high(V, x)].maximum)
+                        new_max = self.index(V, summary_max, V.galaxies[summary_max].maximum)
+                        self.change_text(V.maxAniObject, str(new_max), True)
+                        V.maximum = new_max
+                    self.color_box(V.maxAniObject, 'lightblue', True)
 
+            elif x == V.maximum:
+                self.color_box(V.maxAniObject, 'red', True)
+                new_max = self.index(V, self.high(V, x), V.galaxies[self.high(V, x)].maximum)
+                self.change_text(V.maxAniObject, str(new_max), True)
+                V.maximum = new_max
+                self.color_box(V.maxAniObject, 'lightblue', True)
     """
     Searches for the given object in the VEB tree.
     Parameters:
@@ -202,12 +228,26 @@ class VEB():
         Whether or not the value is in the tree.
     """
     def search(self, V, x):
+        self.color_box(V.maxAniObject, 'orange', False)
+        self.color_box(V.maxAniObject, 'orange', True)
         if x == V.minimum or x == V.maximum:
+            if x == V.minimum:
+                self.color_box(V.minAniObject, 'green', True)
+            else:
+                self.color_box(V.maxAniObject, 'green', True)
+
+            self.color_box(V.minAniObject, 'lightblue', False)
+            self.color_box(V.maxAniObject, 'lightblue', True)
             return True
-        elif V.universe == 2:
+        if V.universe == 2:
+            self.color_box(V.minAniObject, 'red', False)
+            self.color_box(V.maxAniObject, 'red', True)
+            self.color_box(V.minAniObject, 'lightblue', False)
+            self.color_box(V.maxAniObject, 'lightblue', True)
             return False
-        else:
-            return self.search(V.galaxies[self.high(V, x)], self.low(V, x))
+        self.color_box(V.minAniObject, 'lightblue', False)
+        self.color_box(V.maxAniObject, 'lightblue', True)
+        return self.search(V.galaxies[self.high(V, x)], self.low(V, x))
 
     """
     """
@@ -308,4 +348,10 @@ def start_veb(aniList, x_origin, y_origin, width, height):
         # for i in [1,2,7,8,12]:
         for i in range(16):
             V.insert(V, i)
+        for i in range(16):
+            print(V.search(V, i))
+        for i in range(16):
+            V.delete(V, i)
+        for i in range(16):
+            print(V.search(V, i))
         break
