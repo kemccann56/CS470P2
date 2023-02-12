@@ -908,35 +908,9 @@ height : int
 """
 def start_avl_tree(aniList, x_origin, y_origin, width, height, commandQueue):
     # Initialize the AVL tree object
-    tree = AVLTreeAnimation(35, x_origin, y_origin, width, height, aniList, 50)
+    tree = AVLTreeAnimation(50, x_origin, y_origin, width, height, aniList, 75)
     # Loop and wait for more elements to insert, delete, and search for
     while True:
-        """
-        tree.insert(1)
-        tree.insert(2)
-        tree.insert(3)
-        tree.insert(4)
-        tree.insert(5)
-        tree.insert(6)
-        tree.insert(7)
-
-        tree.insert(12)
-        tree.insert(13)
-        tree.insert(10)
-        tree.insert(15)
-        tree.insert(20)
-
-        tree.insert(8)
-        tree.delete(8)
-        tree.delete(7)
-        tree.delete(5)
-        tree.delete(3)
-        tree.delete(1)
-        tree.insert(3)
-        tree.insert(5)
-        tree.insert(0.5)
-        tree.insert(0.25)
-        """
         command = commandQueue.get(True)
         if command[0] == 'insert':
             tree.insert(int(command[1]))

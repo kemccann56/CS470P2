@@ -126,7 +126,7 @@ class RBTree():
             node.x = node.parent.x - (self.size * separators[self.getDepth(node) - 1])
             node.aniQueue.put(Movement(node.x,node.y,self.step))
             node.aniQueue.put(Movement(-1,-1,self.step,[],[node.x + self.size - xOffset, node.y, node.parent.x + xOffset, node.parent.y + self.size]))
-        
+
         self.insertHelper(node)
         self.step += 1
 
@@ -170,10 +170,10 @@ class RBTree():
                     node.parent.parent.color = 1
                     node.parent.parent.aniQueue.put(Movement(-1, -1,self.step, ['red']))
                     self.rightRotate(node.parent.parent)
-            
+
             if node == self.root:
                 break
-                
+
         # make sure root node is always black
         self.root.color = 0
         self.root.aniQueue.put(Movement(-1, -1,self.step, ['gray']))
@@ -244,7 +244,7 @@ class RBTree():
 
         xOffset = self.size - (.6*self.size)
 
-        # put root where it's going 
+        # put root where it's going
         self.root.aniQueue.put(Movement(self.root.x,self.root.y,self.step,[],[],[]))
         # move everything to the left of root where it should be based on their coordinates
         # and add lines
@@ -390,7 +390,7 @@ class RBTree():
             depth += 1
             node = node.parent
         return depth
-    
+
     def delete(self, data):
         self.deleteHelper(self.root, data)
 
@@ -407,7 +407,7 @@ class RBTree():
                 self.step += 1
                 x = node
                 break
-            
+
             if node.data <= val:
                 node.aniQueue.put(Movement(-1, -1, self.step, ['red' if node.color == 1 else 'gray']))
                 self.step += 1
@@ -473,7 +473,7 @@ class RBTree():
             self.step += 1
             y.left = x.left
             y.left.parent = y
-            y.color = x.color 
+            y.color = x.color
 
             x.left.aniQueue.put(Movement(x.left.x, x.left.y , self.step, ['delete_line']))
             self.step += 1
@@ -571,7 +571,7 @@ class RBTree():
 
     def search(self, k):
         node = self.searchHelper(self.root, k)
-        
+
 
     def searchHelper(self, node, val):
         node.aniQueue.put(Movement(-1, -1, self.step, ['gold']))
@@ -598,7 +598,7 @@ class RBTree():
             self.deleteLine(tempNode.left)
         if tempNode.right != None:
             self.deleteLine(tempNode.right)
-    
+
     def moveSubTree(self, tempNode, xFactor, yFactor):
             tempNode.aniQueue.put(Movement(tempNode.x+xFactor,tempNode.y+yFactor,self.step,['red' if tempNode.color == 1 else 'gray']))
             tempNode.x = tempNode.x+ xFactor
@@ -607,7 +607,7 @@ class RBTree():
                 self.moveSubTree(tempNode.left, xFactor, yFactor)
             if tempNode.right != None:
                 self.moveSubTree(tempNode.right, xFactor, yFactor)
-    
+
     def addSubTreeLines(self, tempNode):
             if tempNode.parent != None:
                 tempNode.aniQueue.put(Movement(-1,-1,self.step,[],[tempNode.x + 20, tempNode.y, tempNode.parent.x + self.size - 20, tempNode.parent.y + self.size]))
@@ -615,7 +615,7 @@ class RBTree():
                     self.addSubTreeLines(tempNode.left)
                 if tempNode.right != None:
                     self.addSubTreeLines(tempNode.right)
-               
+
     def rbtransplant(self, u, v):
         #Animation below
         #General case
@@ -629,7 +629,7 @@ class RBTree():
         self.deleteLine(v)
 
         #Calculate move factor for transplant
-        xFactor = u.x - v.x 
+        xFactor = u.x - v.x
         yFactor = u.y - v.y
 
         #Move entire subtree, also update new coords
@@ -651,7 +651,7 @@ class RBTree():
         while node.left != self.NULL:
             node = node.left
         return node
-    
+
     def maximum(self, node):
         while node.right != self.NULL:
             node = node.right
@@ -675,15 +675,26 @@ class RBTree():
     def print(self):
         self.printHelper(self.root, "", True)
 
-    def rbTree(aniList):
-        # these can all be changed 
+    def rbTree(aniList, originx, originy, commandQueue):
+        # these can all be changed
         # or can be passed from HW2.py
-        originx = 600
-        originy = 25
         yDist = 75
         size = 50
 
         bst = RBTree(aniList, originx, originy, yDist, size)
+
+        while True:
+            command = commandQueue.get(True)
+            if command[0] == 'insert':
+                bst.insert(int(command[1]))
+            if command[0] == 'delete':
+                bst.delete(int(command[1]))
+            if command[0] == 'search':
+                bst.search(int(command[1]))
+            bst.step = 0
+
+
+        """
         myList = []
 
         dataFile = open('smallerdataset.txt', 'r')
@@ -705,10 +716,11 @@ class RBTree():
         bst.search(1)
         bst.delete(2)
         #bst.print()
+        """
 
         # while 1:
             # if delete button pressed:
-                # add the value to myList?? 
+                # add the value to myList??
                 # bst.delete(value written in box, myList, step, size, placeHolder)
             # if insert button pressed:
                 # add value written in box to myList
