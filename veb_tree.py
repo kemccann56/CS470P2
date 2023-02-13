@@ -340,21 +340,21 @@ width : int
 height : int
     The total height of the animation window we are allowed to use.
 """
-# def start_veb(aniList, x_origin, y_origin, width, height):
-#     # Initialize the VEB tree object
-#     V = VEB(16, aniList, x_origin + (width / 2), y_origin + (height // 15), width, height, 25, True)
-#     # Loop and wait for more elements to insert, delete, and search for
-#     while True:
-#         # for i in [1,2,7,8,12]:
-#         for i in range(16):
-#             V.insert(V, i)
-#         for i in range(16):
-#             print(V.search(V, i))
-#         for i in range(16):
-#             V.delete(V, i)
-#         for i in range(16):
-#             print(V.search(V, i))
-#         break
+def start_veb_auto(aniList, x_origin, y_origin, width, height):
+    # Initialize the VEB tree object
+    V = VEB(16, aniList, x_origin + (width / 2), y_origin + (height // 15), width, height, 25, True)
+    # Loop and wait for more elements to insert, delete, and search for
+    while True:
+        # for i in [1,2,7,8,12]:
+        for i in range(16):
+            V.insert(V, i)
+        for i in range(16):
+            print(V.search(V, i))
+        for i in range(4,12):
+            V.delete(V, i)
+        for i in range(16):
+            print(V.search(V, i))
+        break
 
 def start_veb(aniList, x_origin, y_origin, width, height, commandQueue):
     # Initialize the AVL tree object
