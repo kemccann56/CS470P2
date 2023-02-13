@@ -5,6 +5,7 @@ from turtle import Screen
 from animation import *
 from avl_tree import start_avl_tree
 from rbtreeA import *
+from veb_tree import start_veb
 import time
 
 ###############################################################################################
@@ -292,10 +293,8 @@ def startThreads():
     if AVL1.get():
         t1 = Thread(target = lambda: start_avl_tree(mainAnimationList[0], 0, 0, screen_width, screen_height/7, commandQueue1))
     elif VEB1.get():
-        #TODO add VEB Tree
-        t1 = Thread(target = settingOrginExample, args =(mainAnimationList[0], ))
+        t1 = Thread(target = lambda: start_veb(mainAnimationList[1], 0, 0, screen_width, screen_height/7, commandQueue1))
     elif RBT1.get():
-        #TODO add RB Tree
         t1 = Thread(target = lambda: RBTree.rbTree(mainAnimationList[0], screen_width/2, 10, commandQueue1))
     else:
         t1 = Thread(target = settingOrginExample, args =(mainAnimationList[0], ))
@@ -303,10 +302,8 @@ def startThreads():
     if AVL2.get():
         t2 = Thread(target = lambda: start_avl_tree(mainAnimationList[1], 0, screen_height/2, screen_width, screen_height/7, commandQueue2))
     elif VEB2.get():
-        #TODO add VEB Tree
-        t2 = Thread(target = settingOrginExample, args =(mainAnimationList[1], screen_height/2, screen_height/3))
+        t2 = Thread(target = lambda: start_veb(mainAnimationList[1], 0, screen_height/2, screen_width, screen_height/7, commandQueue2))
     elif RBT2.get():
-        #TODO add RB Tree
         t2 = Thread(target = lambda: RBTree.rbTree(mainAnimationList[0], screen_width/2, screen_height/2, commandQueue2))
     else:
         t2 = Thread(target = settingOrginExample, args =(mainAnimationList[1], 0, screen_height/3))
