@@ -260,10 +260,11 @@ class AVLTreeAnimation():
                 temp = node.right_child_node
                 self.color_node(temp, 'red1', True)
                 temp.parent = node.parent
-                if temp.object.userNum <= temp.parent.object.userNum:
-                    temp.parent.left_child_node = temp
-                else:
-                    temp.parent.right_child_node = temp
+                if temp.parent is not None:
+                    if temp.object.userNum <= temp.parent.object.userNum:
+                        temp.parent.left_child_node = temp
+                    else:
+                        temp.parent.right_child_node = temp
                 self.delete_node_from_animation(node, True)
                 self.fix_tree(temp, False)
                 node = None
@@ -273,10 +274,11 @@ class AVLTreeAnimation():
                 temp = node.left_child_node
                 self.color_node(temp, 'red1', True)
                 temp.parent = node.parent
-                if temp.object.userNum <= temp.parent.object.userNum:
-                    temp.parent.left_child_node = temp
-                else:
-                    temp.parent.right_child_node = temp
+                if temp.parent is not None:
+                    if temp.object.userNum <= temp.parent.object.userNum:
+                        temp.parent.left_child_node = temp
+                    else:
+                        temp.parent.right_child_node = temp
                 self.delete_node_from_animation(node, True)
                 self.fix_tree(temp, False)
                 node = None
@@ -904,15 +906,16 @@ width : int
 height : int
     The total heigth of the animation window we are allowed to use.
 """
-def start_avl_tree(aniList, x_origin, y_origin, width, height):
+def start_avl_tree(aniList, x_origin, y_origin, width, height, commandQueue):
     # Initialize the AVL tree object
-    tree = AVLTreeAnimation(35, x_origin, y_origin, width, height, aniList, 50)
+    tree = AVLTreeAnimation(50, x_origin, y_origin, width, height, aniList, 75)
     # Loop and wait for more elements to insert, delete, and search for
     while True:
-        tree.insert(1)
-        tree.insert(2)
-        tree.insert(3)
-        tree.insert(4)
-        tree.insert(5)
-        tree.delete(2)
-        break
+        command = commandQueue.get(True)
+        if command[0] == 'insert':
+            tree.insert(int(command[1]))
+        if command[0] == 'delete':
+            tree.delete(int(command[1]))
+        if command[0] == 'search':
+            tree.search(int(command[1]))
+        tree.step = 0
