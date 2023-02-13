@@ -342,7 +342,7 @@ height : int
 """
 def start_veb(aniList, x_origin, y_origin, width, height, commandQueue):
     # Initialize the VEB tree object
-    V = VEB(16, aniList, x_origin + (width / 2), y_origin + (height // 15), width, height, 28, True)
+    V = VEB(16, aniList, x_origin + (width / 2), y_origin + (height // 15), width, height, 20, True)
     # Loop and wait for more elements to insert, delete, and search for
     while True:
         """
