@@ -340,11 +340,12 @@ width : int
 height : int
     The total height of the animation window we are allowed to use.
 """
-def start_veb(aniList, x_origin, y_origin, width, height):
+def start_veb(aniList, x_origin, y_origin, width, height, commandQueue):
     # Initialize the VEB tree object
-    V = VEB(16, aniList, x_origin + (width / 2), y_origin + (height // 15), width, height, 25, True)
+    V = VEB(16, aniList, x_origin + (width / 2), y_origin + (height // 15), width, height, 28, True)
     # Loop and wait for more elements to insert, delete, and search for
     while True:
+        """
         # for i in [1,2,7,8,12]:
         for i in range(16):
             V.insert(V, i)
@@ -355,3 +356,13 @@ def start_veb(aniList, x_origin, y_origin, width, height):
         for i in range(16):
             print(V.search(V, i))
         break
+        """
+        command = commandQueue.get(True)
+        if command[0] == 'insert':
+            V.insert(V, int(command[1]))
+        if command[0] == 'delete':
+            V.delete(V, int(command[1]))
+        if command[0] == 'search':
+            V.search(V, int(command[1]))
+        global step_count
+        step_count = 0
