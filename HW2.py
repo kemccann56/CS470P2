@@ -283,6 +283,7 @@ def startAnimation(step=0, delay=100, movePreformed=1, stepFlag=1):
 def startThreads():
     canvas.delete('all')
     mainAnimationList.clear()
+    breakCommand()
 
     #Create a List for the objects to be animated
     #Start algorithm thread with created list as argument
@@ -367,6 +368,10 @@ def searchCommand():
     commandQueue1.put(['search',searchEntry.get()])
     commandQueue2.put(['search',searchEntry.get()])
     startAnimation(0, delayScale.get())
+
+def breakCommand():
+    commandQueue1.put(['break'])
+    commandQueue2.put(['break'])
 
 ############################################################################################## Program starts here
 tk = Tk()
