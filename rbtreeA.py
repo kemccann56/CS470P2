@@ -678,8 +678,8 @@ class RBTree():
     def rbTree(aniList, originx, originy, commandQueue):
         # these can all be changed
         # or can be passed from HW2.py
-        yDist = 75
-        size = 50
+        yDist = 65
+        size = 35
 
         bst = RBTree(aniList, originx, originy, yDist, size)
 

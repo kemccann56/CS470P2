@@ -43,7 +43,7 @@ class VanEmdeBoasTree:
             self.cluster = dict()
             self.lsbSize = floor(halfBitSize)
             self.lsqrt = 1 << self.lsbSize
-            self.hsqrt = 1 << ceil(halfBitSize) 
+            self.hsqrt = 1 << ceil(halfBitSize)
             self.lsbMask = self.lsqrt - 1
         self.aniTree = animationTree
 
@@ -52,14 +52,14 @@ class VanEmdeBoasTree:
         """
         Returns the index of the cluster holding x.
         """
-        return x >> self.lsbSize 
+        return x >> self.lsbSize
 
 
     def valueIndex(self, x):
         """
         Returns the index of x inside its cluster.
         """
-        return x & self.lsbMask 
+        return x & self.lsbMask
 
 
     def value(self, clusterIndex, valueIndex):
@@ -126,7 +126,7 @@ class VanEmdeBoasTree:
 
         curAniCluster.min.aniQueue.put(animation.Movement(-1, -1,step, ['lightblue']))
         curAniCluster.max.aniQueue.put(animation.Movement(-1, -1,step, ['lightblue']))
- 
+
         xCluster = self.cluster.get(self.clusterIndex(x), None)
         return (xCluster != None) and xCluster.contains(self.valueIndex(x), curAniCluster.clusters[self.clusterIndex(x)])
 
@@ -177,8 +177,8 @@ class VanEmdeBoasTree:
             succClusterIndex = self.summary.successor(xClusterIndex)
             if succClusterIndex != None:
                 return self.value(succClusterIndex, self.cluster[succClusterIndex].min)
-        
-        return self.max if (self.max != None and x < self.max) else None 
+
+        return self.max if (self.max != None and x < self.max) else None
 
 
     def insert(self, x, curAniCluster, curValue):
@@ -272,7 +272,7 @@ class VanEmdeBoasTree:
 
             xCluster = VanEmdeBoasTree(self.lsqrt)
             self.cluster[xClusterIndex] = xCluster
-        
+
         curAniCluster.min.aniQueue.put(animation.Movement(-1, -1,step, ['lightblue']))
         curAniCluster.max.aniQueue.put(animation.Movement(-1, -1,step, ['lightblue']))
         step += 1
@@ -402,7 +402,7 @@ class VanEmdeBoasTree:
         """
         value = self.min
         while value != None:
-            yield value 
+            yield value
             value = self.successor(value)
 
 
@@ -425,7 +425,7 @@ def startVEBtree(aniQueue, orginx, orginy, screen_width, screen_height, commandQ
     size = screen_height//9
 ###Draw Tree Start
     #Root Node
-    VEBtreeAni =  VEBanimation(aniQueue, size, 'null', screen_width//2 - size, 0, orginx, orginy)  
+    VEBtreeAni =  VEBanimation(aniQueue, size, 'null', screen_width//2 - size, 0, orginx, orginy)
     VEBtreeAni.summary = VEBanimation(aniQueue, size, 'null', screen_width//6 - size, size * 2, orginx, orginy, screen_width//2, size)
     temp = animation.Object(0)
     aniQueue.append(temp)
@@ -472,12 +472,12 @@ def startVEBtree(aniQueue, orginx, orginy, screen_width, screen_height, commandQ
     aniQueue.append(temp5)
     temp5.aniQueue.put(animation.Movement(-1,-1,0,[],[],['truerectangle',orginx+screen_width//14 * 12 - size,orginy+size*3.3,size,'summary','pink']))
     VEBtreeAni.clusters[3].clusters[0] = VEBanimation(aniQueue, size, 'null', (screen_width//14) * 13 - size, size * 4, orginx, orginy, screen_width//6 * 5, size * 3)
-    
+
     ###Draw Tree End
     step += 1
 
     VEBtree = VanEmdeBoasTree(16, VEBtreeAni)
-    
+
     #for i in range(16):
     #    print(i)
     #    VEBtree.insert(i, VEBtreeAni)
@@ -488,7 +488,6 @@ def startVEBtree(aniQueue, orginx, orginy, screen_width, screen_height, commandQ
     while 1:
         step = 0
         command = commandQueue.get()
-        print(command[0])
         if command[0] == 'break':
             break
         elif command[0] == 'insert':
