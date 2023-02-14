@@ -178,7 +178,7 @@ class AVLTreeAnimation():
             node = self.left_rotate(current_node.left_child_node)
             self.fix_tree(node, False)
             current_node.left_child_node = node
-            node = self.right_rotate(node)
+            node = self.right_rotate(current_node)
             self.fix_tree(node, False)
             return node
         # Right-Left Rotation
@@ -314,7 +314,7 @@ class AVLTreeAnimation():
             new_node = self.left_rotate(node.left_child_node)
             self.fix_tree(new_node, False)
             node.left_child_node = new_node
-            new_node = self.right_rotate(new_node)
+            new_node = self.right_rotate(node)
             self.fix_tree(new_node, False)
             return new_node
         # Right-Left Rotate
