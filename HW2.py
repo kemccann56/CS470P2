@@ -5,7 +5,7 @@ from turtle import Screen
 from animation import *
 from avl_tree import start_avl_tree
 from rbtreeA import *
-from veb_tree import start_veb
+from VEBtree import startVEBtree
 import time
 
 ###############################################################################################
@@ -193,7 +193,7 @@ def startAnimation(step=0, delay=100, movePreformed=1, stepFlag=1):
                         elif newCoords.newObject[0] == 'rectangle':
                             aniObject.shape = canvas.create_rectangle(newCoords.newObject[1],newCoords.newObject[2],newCoords.newObject[1] + newCoords.newObject[3],newCoords.newObject[2] + newCoords.newObject[3],fill=newCoords.newObject[5])
                         elif newCoords.newObject[0] == 'trueRectangle':
-                            aniObject.shape = canvas.create_rectangle(newCoords.newObject[1],newCoords.newObject[2],newCoords.newObject[1] + newCoords.newObject[3]/2,newCoords.newObject[2] + newCoords.newObject[3],fill=newCoords.newObject[5])
+                            aniObject.shape = canvas.create_rectangle(newCoords.newObject[1],newCoords.newObject[2],newCoords.newObject[1] + newCoords.newObject[3],newCoords.newObject[2] + newCoords.newObject[3]/4,fill=newCoords.newObject[5])
                         aniObject.text = canvas.create_text(newCoords.newObject[1]+(newCoords.newObject[3]/2),newCoords.newObject[2]+(newCoords.newObject[3]/2),text=newCoords.newObject[4],font=('Helvetica ' + str(newCoords.newObject[3]//len(newCoords.newObject[4])) + ' bold'))
                     elif newCoords.x != -1:
                         canvas.move(aniObject.shape, newCoords.x, newCoords.y)
@@ -282,8 +282,12 @@ def startAnimation(step=0, delay=100, movePreformed=1, stepFlag=1):
         tk.after(1, startAnimation, step, delay, movePreformed, stepFlag)
 
 def startThreads():
+    global t1, t2
     canvas.delete('all')
     mainAnimationList.clear()
+    
+    if t1 or t2:
+        breakCommand()
 
     #Create a List for the objects to be animated
     #Start algorithm thread with created list as argument
@@ -293,18 +297,22 @@ def startThreads():
     if AVL1.get():
         t1 = Thread(target = lambda: start_avl_tree(mainAnimationList[0], 0, 0, screen_width, screen_height/7, commandQueue1))
     elif VEB1.get():
-        t1 = Thread(target = lambda: start_veb(mainAnimationList[1], 0, 0, screen_width, screen_height/7, commandQueue1))
+        #TODO add VEB Tree
+        t1 = Thread(target = lambda: startVEBtree(mainAnimationList[0], 0, 10, screen_width, screen_height//2, commandQueue1))
     elif RBT1.get():
+        #TODO add RB Tree
         t1 = Thread(target = lambda: RBTree.rbTree(mainAnimationList[0], screen_width/2, 10, commandQueue1))
     else:
         t1 = Thread(target = settingOrginExample, args =(mainAnimationList[0], ))
 
     if AVL2.get():
-        t2 = Thread(target = lambda: start_avl_tree(mainAnimationList[1], 0, screen_height/2, screen_width, screen_height/7, commandQueue2))
+        t2 = Thread(target = lambda: start_avl_tree(mainAnimationList[1], 0, screen_height/2 - 30, screen_width, screen_height/7, commandQueue2))
     elif VEB2.get():
-        t2 = Thread(target = lambda: start_veb(mainAnimationList[1], 0, screen_height/2, screen_width, screen_height/7, commandQueue2))
+        #TODO add VEB Tree
+        t2 = Thread(target = lambda: startVEBtree(mainAnimationList[0], 0, screen_height//2, screen_width, screen_height//2, commandQueue2))
     elif RBT2.get():
-        t2 = Thread(target = lambda: RBTree.rbTree(mainAnimationList[0], screen_width/2, screen_height/2, commandQueue2))
+        #TODO add RB Tree
+        t2 = Thread(target = lambda: RBTree.rbTree(mainAnimationList[0], screen_width/2, screen_height/2 - 30, commandQueue2))
     else:
         t2 = Thread(target = settingOrginExample, args =(mainAnimationList[1], 0, screen_height/3))
 
@@ -365,6 +373,10 @@ def searchCommand():
     commandQueue2.put(['search',searchEntry.get()])
     startAnimation(0, delayScale.get())
 
+def breakCommand():
+    commandQueue1.put(['break'])
+    commandQueue2.put(['break'])
+
 ############################################################################################## Program starts here
 tk = Tk()
 screen_width = tk.winfo_screenwidth()
@@ -373,6 +385,8 @@ canvas = Canvas(tk,width=screen_width * 0.98,height=screen_height * 0.85)
 canvas.grid(row=0, column=0, columnspan=51)
 
 mainAnimationList = []
+t1 = None
+t2 = None
 commandQueue1 = Queue()
 commandQueue2 = Queue()
 
