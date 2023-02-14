@@ -691,6 +691,8 @@ class RBTree():
                 bst.delete(int(command[1]))
             if command[0] == 'search':
                 bst.search(int(command[1]))
+            if command[0] == 'break':
+                break
             bst.step = 0
 
 
