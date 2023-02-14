@@ -918,4 +918,6 @@ def start_avl_tree(aniList, x_origin, y_origin, width, height, commandQueue):
             tree.delete(int(command[1]))
         if command[0] == 'search':
             tree.search(int(command[1]))
+        if command[0] == 'break':
+            break
         tree.step = 0

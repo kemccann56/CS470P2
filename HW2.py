@@ -359,9 +359,16 @@ def stepOnce():
 
 #Command methods start step back at 0
 def insertCommand():
-    commandQueue1.put(['insert',insertEntry.get()])
-    commandQueue2.put(['insert',insertEntry.get()])
-    startAnimation(0, delayScale.get())
+    if insertEntry.get() == 'all':
+        startThreads()
+        for i in range(16):
+            commandQueue1.put(['insert',str(i)])
+            commandQueue2.put(['insert',str(i)])
+            startAnimation(0, delayScale.get())
+    else:
+        commandQueue1.put(['insert',insertEntry.get()])
+        commandQueue2.put(['insert',insertEntry.get()])
+        startAnimation(0, delayScale.get())
 
 def deleteCommand():
     commandQueue1.put(['delete',deleteEntry.get()])
