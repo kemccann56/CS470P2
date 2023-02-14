@@ -14,6 +14,9 @@ class VEBanimation():
         self.summary = None
         self.clusters = dict()
 
+        self.maxAni = None
+        self.minAni = None
+
         self.min.aniQueue.put(animation.Movement(-1,-1,0,[],[],['rectangle',orginx+x,orginy+y,size,text,'lightblue']))
         self.max.aniQueue.put(animation.Movement(-1,-1,0,[],[],['rectangle',orginx+x+size,orginy+y,size,text,'lightblue']))
         if linex:
@@ -178,7 +181,7 @@ class VanEmdeBoasTree:
         return self.max if (self.max != None and x < self.max) else None 
 
 
-    def insert(self, x, curAniCluster):
+    def insert(self, x, curAniCluster, curValue):
         global step
         """
         Inserts value x into the veb-tree.
@@ -204,8 +207,10 @@ class VanEmdeBoasTree:
         if self.min == None:
             curAniCluster.min.aniQueue.put(animation.Movement(-1, -1,step, ['green']))
             curAniCluster.max.aniQueue.put(animation.Movement(-1, -1,step, ['green']))
-            curAniCluster.min.aniQueue.put(animation.Movement(-1, -1,step, ['change_text', str(x)]))
-            curAniCluster.max.aniQueue.put(animation.Movement(-1, -1,step, ['change_text', str(x)]))
+            curAniCluster.min.aniQueue.put(animation.Movement(-1, -1,step, ['change_text', str(curValue)]))
+            curAniCluster.max.aniQueue.put(animation.Movement(-1, -1,step, ['change_text', str(curValue)]))
+            curAniCluster.minAni = curValue
+            curAniCluster.maxAni = curValue
             step += 1
             curAniCluster.min.aniQueue.put(animation.Movement(-1, -1,step, ['lightblue']))
             curAniCluster.max.aniQueue.put(animation.Movement(-1, -1,step, ['lightblue']))
@@ -217,7 +222,8 @@ class VanEmdeBoasTree:
             if x < self.min:
                 curAniCluster.min.aniQueue.put(animation.Movement(-1, -1,step, ['green']))
                 curAniCluster.max.aniQueue.put(animation.Movement(-1, -1,step, ['lightblue']))
-                curAniCluster.min.aniQueue.put(animation.Movement(-1, -1,step, ['change_text', str(x)]))
+                curAniCluster.min.aniQueue.put(animation.Movement(-1, -1,step, ['change_text', str(curValue)]))
+                curAniCluster.minAni = curValue
                 step += 1
                 curAniCluster.min.aniQueue.put(animation.Movement(-1, -1,step, ['lightblue']))
                 step += 1
@@ -225,7 +231,8 @@ class VanEmdeBoasTree:
             elif x > self.max:
                 curAniCluster.min.aniQueue.put(animation.Movement(-1, -1,step, ['lightblue']))
                 curAniCluster.max.aniQueue.put(animation.Movement(-1, -1,step, ['green']))
-                curAniCluster.max.aniQueue.put(animation.Movement(-1, -1,step, ['change_text', str(x)]))
+                curAniCluster.max.aniQueue.put(animation.Movement(-1, -1,step, ['change_text', str(curValue)]))
+                curAniCluster.maxAni = curValue
                 step += 1
                 curAniCluster.max.aniQueue.put(animation.Movement(-1, -1,step, ['lightblue']))
                 step += 1
@@ -240,7 +247,8 @@ class VanEmdeBoasTree:
             curAniCluster.min.aniQueue.put(animation.Movement(-1, -1,step, ['purple']))
             curAniCluster.max.aniQueue.put(animation.Movement(-1, -1,step, ['lightblue']))
             step += 1
-            curAniCluster.min.aniQueue.put(animation.Movement(-1, -1,step, ['change_text', str(x)]))
+            curAniCluster.min.aniQueue.put(animation.Movement(-1, -1,step, ['change_text', str(curValue)]))
+            curValue, curAniCluster.minAni = curAniCluster.minAni, curValue
             step += 1
             self.min, x = x, self.min
 
@@ -248,7 +256,8 @@ class VanEmdeBoasTree:
             curAniCluster.min.aniQueue.put(animation.Movement(-1, -1,step, ['lightblue']))
             curAniCluster.max.aniQueue.put(animation.Movement(-1, -1,step, ['purple']))
             step += 1
-            curAniCluster.max.aniQueue.put(animation.Movement(-1, -1,step, ['change_text', str(x)]))
+            curAniCluster.max.aniQueue.put(animation.Movement(-1, -1,step, ['change_text', str(curValue)]))
+            curValue, curAniCluster.maxAni = curAniCluster.maxAni, curValue
             step += 1
             self.max, x = x, self.max
 
@@ -259,7 +268,7 @@ class VanEmdeBoasTree:
         if xCluster == None:
             if self.summary == None:
                 self.summary = VanEmdeBoasTree(self.hsqrt)
-            self.summary.insert(xClusterIndex, curAniCluster.summary)
+            self.summary.insert(xClusterIndex, curAniCluster.summary, xClusterIndex)
 
             xCluster = VanEmdeBoasTree(self.lsqrt)
             self.cluster[xClusterIndex] = xCluster
@@ -268,7 +277,7 @@ class VanEmdeBoasTree:
         curAniCluster.max.aniQueue.put(animation.Movement(-1, -1,step, ['lightblue']))
         step += 1
 
-        xCluster.insert(xIndex, curAniCluster.clusters[xClusterIndex])
+        xCluster.insert(xIndex, curAniCluster.clusters[xClusterIndex], curValue)
 
 
     def delete(self, x, curAniCluster):
@@ -304,7 +313,7 @@ class VanEmdeBoasTree:
             if x == 0:
                 curAniCluster.min.aniQueue.put(animation.Movement(-1, -1,step, ['green']))
                 curAniCluster.max.aniQueue.put(animation.Movement(-1, -1,step, ['lightblue']))
-                curAniCluster.min.aniQueue.put(animation.Movement(-1, -1,step, ['change_text', '1']))
+                curAniCluster.min.aniQueue.put(animation.Movement(-1, -1,step, ['change_text', str(curAniCluster.maxAni)]))
                 step += 1
                 curAniCluster.min.aniQueue.put(animation.Movement(-1, -1,step, ['lightblue']))
                 step += 1
@@ -312,7 +321,7 @@ class VanEmdeBoasTree:
             else:
                 curAniCluster.min.aniQueue.put(animation.Movement(-1, -1,step, ['lightblue']))
                 curAniCluster.max.aniQueue.put(animation.Movement(-1, -1,step, ['green']))
-                curAniCluster.max.aniQueue.put(animation.Movement(-1, -1,step, ['change_text', '0']))
+                curAniCluster.max.aniQueue.put(animation.Movement(-1, -1,step, ['change_text', str(curAniCluster.minAni)]))
                 step += 1
                 curAniCluster.max.aniQueue.put(animation.Movement(-1, -1,step, ['lightblue']))
                 step += 1
@@ -324,7 +333,8 @@ class VanEmdeBoasTree:
             curAniCluster.max.aniQueue.put(animation.Movement(-1, -1,step, ['lightblue']))
             step += 1
             if self.summary == None:
-                curAniCluster.min.aniQueue.put(animation.Movement(-1, -1,step, ['change_text', str(self.max)]))
+                curAniCluster.min.aniQueue.put(animation.Movement(-1, -1,step, ['change_text', str(curAniCluster.maxAni)]))
+                curAniCluster.minAni = curAniCluster.maxAni
                 step += 1
                 curAniCluster.min.aniQueue.put(animation.Movement(-1, -1,step, ['lightblue']))
                 step += 1
@@ -335,7 +345,8 @@ class VanEmdeBoasTree:
             xCluster = self.cluster[xClusterIndex]
             xIndex = xCluster.min
 
-            curAniCluster.min.aniQueue.put(animation.Movement(-1, -1,step, ['change_text', str(self.value(xClusterIndex, xIndex))]))
+            curAniCluster.min.aniQueue.put(animation.Movement(-1, -1,step, ['change_text', str(curAniCluster.clusters[xClusterIndex].minAni)]))
+            curAniCluster.minAni = curAniCluster.clusters[xClusterIndex].minAni
             step += 1
             self.min = self.value(xClusterIndex, xIndex)
 
@@ -344,7 +355,8 @@ class VanEmdeBoasTree:
             curAniCluster.max.aniQueue.put(animation.Movement(-1, -1,step, ['green']))
             step += 1
             if self.summary == None:
-                curAniCluster.max.aniQueue.put(animation.Movement(-1, -1,step, ['change_text', str(self.min)]))
+                curAniCluster.max.aniQueue.put(animation.Movement(-1, -1,step, ['change_text', str(curAniCluster.minAni)]))
+                curAniCluster.maxAni = curAniCluster.minAni
                 step += 1
                 curAniCluster.max.aniQueue.put(animation.Movement(-1, -1,step, ['lightblue']))
                 step += 1
@@ -355,7 +367,8 @@ class VanEmdeBoasTree:
             xCluster = self.cluster[xClusterIndex]
             xIndex = xCluster.max
 
-            curAniCluster.max.aniQueue.put(animation.Movement(-1, -1,step, ['change_text', str(self.value(xClusterIndex, xIndex))]))
+            curAniCluster.max.aniQueue.put(animation.Movement(-1, -1,step, ['change_text', str(curAniCluster.clusters[xClusterIndex].maxAni)]))
+            curAniCluster.maxAni = curAniCluster.clusters[xClusterIndex].maxAni
             step += 1
             self.max = self.value(xClusterIndex, xIndex)
 
@@ -479,7 +492,7 @@ def startVEBtree(aniQueue, orginx, orginy, screen_width, screen_height, commandQ
         if command[0] == 'break':
             break
         elif command[0] == 'insert':
-            VEBtree.insert(int(command[1]), VEBtreeAni)
+            VEBtree.insert(int(command[1]), VEBtreeAni, int(command[1]))
         elif command[0] == 'delete':
             VEBtree.delete(int(command[1]), VEBtreeAni)
         elif command[0] == 'search':
