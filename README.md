@@ -1,12 +1,15 @@
 # CS470P2
 
+## Group 3:
+Andrew Hankins, Alex Reese, Manjiri Gunaji, Kyle McCann, Nicholas Callahan, Luke Lindsay, and Shelby Deerman
+
 ## File Structure
 ### Python Files
 - `HW2.py` : Presented file containing multiple threaded animations and animation class examples
 - `VEBtree.py` : Primary version of VEB Tree animation
-- `veb_tree.py` : VEB animation without hash maps or summary vectors
-- `rbtreeA.py` : Primary Red Black Tree animation
-- `avl_tree.py` : Primary AVL Tree animation
+- `VEBtree2.py` : VEB animation without hash maps or summary vectors
+- `RBtree.py` : Primary Red Black Tree animation
+- `AVLtree.py` : Primary AVL Tree animation
 - `animation.py` : Animation utility classes
 ### Sample Datasets
 - `smalldataset.txt` : Initial testing dataset

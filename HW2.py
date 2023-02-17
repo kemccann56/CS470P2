@@ -3,8 +3,8 @@ from queue import Queue
 from threading import Thread, Lock
 from turtle import Screen
 from animation import *
-from avl_tree import start_avl_tree
-from rbtreeA import *
+from AVLtree import start_avl_tree
+from RBtree import *
 from VEBtree import startVEBtree
 import time
 
@@ -285,7 +285,7 @@ def startThreads():
     global t1, t2
     canvas.delete('all')
     mainAnimationList.clear()
-    
+
     if t1 or t2:
         breakCommand()
 
