@@ -345,18 +345,6 @@ def start_veb(aniList, x_origin, y_origin, width, height, commandQueue):
     V = VEB(16, aniList, x_origin + (width / 2), y_origin + (height // 15), width, height, 20, True)
     # Loop and wait for more elements to insert, delete, and search for
     while True:
-        """
-        # for i in [1,2,7,8,12]:
-        for i in range(16):
-            V.insert(V, i)
-        for i in range(16):
-            print(V.search(V, i))
-        for i in range(16):
-            V.delete(V, i)
-        for i in range(16):
-            print(V.search(V, i))
-        break
-        """
         command = commandQueue.get(True)
         if command[0] == 'insert':
             V.insert(V, int(command[1]))

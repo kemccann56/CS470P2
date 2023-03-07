@@ -478,13 +478,6 @@ def startVEBtree(aniQueue, orginx, orginy, screen_width, screen_height, commandQ
 
     VEBtree = VanEmdeBoasTree(16, VEBtreeAni)
 
-    #for i in range(16):
-    #    print(i)
-    #    VEBtree.insert(i, VEBtreeAni)
-    #for i in range(16):
-    #    print(i)
-    #    VEBtree.delete(i, VEBtreeAni)
-
     while 1:
         step = 0
         command = commandQueue.get()
