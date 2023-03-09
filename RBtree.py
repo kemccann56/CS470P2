@@ -4,6 +4,13 @@ from queue import Queue
 import time
 
 class Object:
+    """
+    Constructor for generic object class used for animation and node operations. Contains value and animation values (Line/Value,Animation Queue, Position on screen)
+
+    Parameters:
+    -----------
+    num - this is the value of the node, used for operations and displaying in the animation
+    """
     def __init__(self,num):
         self.shape = None
         self.text = None
@@ -15,6 +22,19 @@ class Object:
         self.userNum = num
 
 class Movement:
+    """
+    Constructor for movement object that will be processed by HW2.py when it evaluates data from the thread. Details changes of the object and the numerical step is happens
+    in the animation to keep it concurrent and synced with other threads
+
+    Parameters:
+    -----------
+    x - New x position to place on screen, used for refrencing for animation
+    y - New y position to place on screen, used for refrencing for animation 
+    step - Logical step in thread that movement occurs
+    args - Specific information on the type/nature of animation to occur (i.e. movement, recolor, new line, delete line, etc.)
+    newLine - Specific information if a new line is needed to be added
+    newObject -Specific information if the animation results in a new node
+    """
     def __init__(self,x,y,step=0,args=[],newLine=[],newObject=[]):
         self.x = x
         self.y = y
@@ -23,6 +43,14 @@ class Movement:
         self.newLine = newLine
         self.newObject = newObject
 
+"""
+Constructor for Node object, foundation of RBTree Data Structure. 
+
+Parameters:
+-----------
+Object - Previously created Object, usually a default constructed one to hold values of the node later
+
+"""
 class Node(Object):
     def __init__(self, data):
         super().__init__(data)
@@ -31,6 +59,19 @@ class Node(Object):
         self.left = None
         self.right = None
         self.color = 1 # 1 = red, 0 = black
+
+"""
+Constructor for entire RBTree data structure, only one needed per thread. All operations for RBTree part of this class
+
+Parameters:
+-----------
+aniList - aniList for the tree, passed to main HW2.py to process movements created on Thread
+originX - X Coordinate of RBTree, used to place root in animation, all other calculations based on root
+originy - Y Coordinate of RBTree, used to place root in animation, all other calculations based on root
+yDist - Y Distance between nodes for spacing in animation
+size - Number of nodes in RBTree
+
+"""
 
 class RBTree():
     def __init__(self, aniList, originx, originy, yDist, size):
@@ -46,6 +87,15 @@ class RBTree():
         self.step = 0
         self.size = size
         self.yDist = yDist
+
+    """
+    Insert a new node into the RBTree, function creates the node and only takes in the value to be inserted
+
+    Parameters:
+    -----------
+    val - value of the node to be inserted
+
+    """
 
     def insert(self, val):
         separators = [0,4,2,1,.5,.5,.5,.5]
@@ -129,7 +179,14 @@ class RBTree():
 
         self.insertHelper(node)
         self.step += 1
+    """
+    Insert Helper that runs rebalancing of tree after the insert, depending on characteristics of tree (Color of surrounding nodes)
 
+    Parameters:
+    -----------
+    node - recently inserted node
+
+    """
     def insertHelper(self, node):
         while node.parent.color == 1:
             if node.parent == node.parent.parent.right:
@@ -178,6 +235,14 @@ class RBTree():
         self.root.color = 0
         self.root.aniQueue.put(Movement(-1, -1,self.step, ['gray']))
 
+    """
+    LeftRotate operation used in any rebalancing scheme, either for insert/delete fixups
+
+    Parameters:
+    -----------
+    node - node to be rotated, pointers from used to analyze and adjust surrounding nodes as well
+
+    """
     def leftRotate(self, node):
         separators = [0, 4, 2, 1, .5, .5, .5, .5]
         y = node.right
@@ -280,6 +345,15 @@ class RBTree():
                     j = j.right
                 k = k.left
             z = z.right
+
+    """
+    RightRotate operation used in any rebalancing scheme, either for insert/delete fixups
+
+    Parameters:
+    -----------
+    node - node to be rotated, pointers from used to analyze and adjust surrounding nodes as well
+
+    """
 
     def rightRotate(self, node):
         separators = [0, 4, 2, 1, .5, .5, .5, .5]
@@ -384,6 +458,14 @@ class RBTree():
                 k = k.left
             z = z.right
 
+    """
+    Function calculates and returns depth by traversing back up towards the root to determine number of nodes between calculated node and root
+
+    Parameters:
+    -----------
+    node- node analyzed in recurive function, starts with highest node in tree/subtree being analyzed
+
+    """
     def getDepth(self, node):
         depth = 0
         while node is not None:
@@ -393,6 +475,16 @@ class RBTree():
 
     def delete(self, data):
         self.deleteHelper(self.root, data)
+
+    """
+    Main delete operation, starts by finding node to be deleted then works to settle subtrees attatchment to tree, depending on the structure of the deleted nodes subtree
+
+    Parameters:
+    -----------
+    node - Current node being analyzed, skipped over if not matching node to be deleted
+    val - value of the node that needs to be deleted
+
+    """
 
     def deleteHelper(self, node, val):
         #Find node to delete
@@ -484,6 +576,15 @@ class RBTree():
 
         if yOrigColor == 0:
             self.fixDelete(z)
+    
+    """
+    Function to determine rebalancing operations needs after a delete occurs, depending on color/structure of the RBTree after the delete
+
+    Parameters:
+    -----------
+    x - "z" node from delete function, takes the identity of other nodes on the way to root as control goes up
+
+    """
 
     def fixDelete(self, x):
         while x != self.root and x != self.NULL and x.color == 0:
@@ -569,10 +670,19 @@ class RBTree():
         x.aniQueue.put(Movement(-1, -1, self.step, ['gray']))
         self.step += 1
 
+
     def search(self, k):
         node = self.searchHelper(self.root, k)
 
+    """
+    Function that starts with the root and traverses tree to locate specific node
 
+    Parameters:
+    -----------
+    node- node analyzed in recurive function
+    val - value of node to be found
+
+    """
     def searchHelper(self, node, val):
         node.aniQueue.put(Movement(-1, -1, self.step, ['gold']))
         self.step += 1
@@ -592,6 +702,14 @@ class RBTree():
         self.step += 1
         return self.searchHelper(node.right, val)
 
+    """
+    Recursive helper function for animation that deletes all lines within a subtree that starts at the root of the subtree given
+
+    Parameters:
+    -----------
+    tempNode - starts with root of subtree and moves to all children, analyze to remove all lines of a subtree
+
+    """
     def deleteLine(self, tempNode):
         tempNode.aniQueue.put(Movement(tempNode.x, tempNode.y , self.step, ['delete_line']))
         if tempNode.left != None:
@@ -599,6 +717,16 @@ class RBTree():
         if tempNode.right != None:
             self.deleteLine(tempNode.right)
 
+    """
+    Recursive helper function for animations that moves an entire subtree
+
+    Parameters:
+    -----------
+    tempNode - Current node being moved and position adjusted
+    xFactor - x Factor value used to determine x spacing between nodes at the same level
+    yFactor - y Factor value used to determine y spacing between nodes at the same level
+
+    """
     def moveSubTree(self, tempNode, xFactor, yFactor):
             tempNode.aniQueue.put(Movement(tempNode.x+xFactor,tempNode.y+yFactor,self.step,['red' if tempNode.color == 1 else 'gray']))
             tempNode.x = tempNode.x+ xFactor
@@ -608,6 +736,14 @@ class RBTree():
             if tempNode.right != None:
                 self.moveSubTree(tempNode.right, xFactor, yFactor)
 
+    """
+    Recursive function that adds back lines after the subtree has been moved to new position
+
+    Parameters:
+    -----------
+    tempNode - Currrent node being analyzed to add line from it to parent
+
+    """
     def addSubTreeLines(self, tempNode):
             if tempNode.parent != None:
                 tempNode.aniQueue.put(Movement(-1,-1,self.step,[],[tempNode.x + 20, tempNode.y, tempNode.parent.x + self.size - 20, tempNode.parent.y + self.size]))
@@ -616,6 +752,15 @@ class RBTree():
                 if tempNode.right != None:
                     self.addSubTreeLines(tempNode.right)
 
+    """
+    Transplant function that moves up subtrees, part of delete function that requires adjustment of pointers for subtree
+
+    Parameters:
+    -----------
+    u - Node to be deleted
+    v - Node that replaces v, new root of the subtree
+
+    """
     def rbtransplant(self, u, v):
         #Animation below
         #General case
@@ -646,17 +791,30 @@ class RBTree():
 
         #Add Lines for all subtrees
         self.addSubTreeLines(v)
+    
+    
+    """
+    Calculates and returns the mainimum value of a subtree, starting at passed in node, by traversing as far left as possible
 
+    """
     def minimum(self, node):
         while node.left != self.NULL:
             node = node.left
         return node
+    
+    """
+    Calculates and returns the maximum value of a subtree, starting at passed in node, by traversing as far right as possible
 
+    """
     def maximum(self, node):
         while node.right != self.NULL:
             node = node.right
         return node
 
+    """
+    Utility print functions below to print out values of RBTree, used for testing of underlying data structure, before animations implemented
+
+    """
     def printHelper(self, node, indent, last):
         if node != self.NULL:
             sys.stdout.write(indent)
@@ -675,6 +833,17 @@ class RBTree():
     def print(self):
         self.printHelper(self.root, "", True)
 
+    """
+    Main function that is ran with thread from HW2.py, waits on commands from HW2.py from user input
+
+    Parameters:
+    -----------
+    aniList - aniList passed to down to be used in RBTree init
+    originx - passed in x origin of x, specific for the bottom or top tree on our main interface
+    originy - passed in y origin of y, specific for the bottom or top tree on our main interface
+    comandQueue - Main command queue that is passed from HW2.py to process/hold wanted operations from user
+
+    """
     def rbTree(aniList, originx, originy, commandQueue):
         # these can all be changed
         # or can be passed from HW2.py
