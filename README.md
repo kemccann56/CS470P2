@@ -12,8 +12,8 @@ In addition to the code and animations, we created a presentation highlighting t
 The application has been designed to work with Python 3, and as such, the only requirement is to have Python 3 installed on your system. Fortunately, Python 3 already includes the necessary tkinter library, so there's no need to install anything else. It's worth noting that the application has been tested extensively with Python version 3.10.6, so we recommend using this version to ensure compatibility.
 
 ## Repository Structure
-**CS470P2/**
 ```
+CS470P2/
 ├── AVLtree.py : Primary implementation of the AVL tree including animations.
 ├── HW2.py : The main file that will be run in order to start the animation.
 ├── RBtree.py : Primary implementation of the RB tree including animations.
