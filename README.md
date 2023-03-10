@@ -33,12 +33,9 @@ CS470P2/
 4. Click the `Start` button.
 5. Enter an integer value into either the `Insert`, `Delete`, or `Search` boxes and click the correlating button.
 
-**Note:**
-The speed of the animation can be modified using the scroller at the bottom right corner of the screen. This should only be used when an operation is not currently in progress.
-**Note:**
-The keyword `all` may be used to insert 0...15 into the data structures.
-**Note:**
-Clicking the start button will reset the page with the selected data structures.
+* **Note:** The speed of the animation can be modified using the scroller at the bottom right corner of the screen. This should only be used when an operation is not currently in progress.
+* **Note:** The keyword `all` may be used to insert 0...15 into the data structures.
+* **Note:** Clicking the start button will reset the page with the selected data structures.
 
 ## References
 ### van Emde Boas
