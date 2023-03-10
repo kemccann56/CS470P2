@@ -17,8 +17,10 @@ CS470P2/
 ├── AVLtree.py : Primary implementation of the AVL tree including animations.
 ├── HW2.py : The main file that will be run in order to start the animation.
 ├── RBtree.py : Primary implementation of the RB tree including animations.
-├── VEBtree.py : Primary implementation of the VEB tree including animations.
-├── VEBtree2.py : Secondary implementation of the VEB tree including animations.
+├── VEBtree.py : Primary implementation of the VEB tree including animations. This version optimizes 
+|                the storage space used, and is the version that will be shown in the animation application.
+├── VEBtree2.py : Secondary implementation of the VEB tree including animations. This version does not optimize 
+|                 the storage of the VEB tree, and is not shown in the animation application.
 ├── animation.py : Animation utility classes.
 ├── README.md : File containing information on the project, including how to run code and other relevant details.
 ├── smalldataset.txt : Initial testing dataset.
@@ -31,7 +33,7 @@ CS470P2/
 2. Click the `Settings` button in the lower left-hand corner.
 3. Select the two data structures to be displayed and exit the settings menu.
 4. Click the `Start` button.
-5. Enter an integer value into either the `Insert`, `Delete`, or `Search` boxes and click the correlating button.
+5. Enter an integer values into either the `Insert`, `Delete`, or `Search` boxes and then click the corresponding button.
 
 **Additional Info:**
 * The speed of the animation can be modified using the scroller at the bottom right corner of the screen. This should only be used when an operation is not currently in progress.
