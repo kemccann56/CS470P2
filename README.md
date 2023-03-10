@@ -13,18 +13,19 @@ The application has been designed to work with Python 3, and as such, the only r
 
 ## Repository Structure
 **CS470P2/**
-├── `AVLtree.py` : Primary implementation of the AVL tree including animations.
-├── `HW2.py` : The main file that will be run in order to start the animation.
-├── `RBtree.py` : Primary implementation of the RB tree including animations.
-├── `VEBtree.py` : Primary implementation of the VEB tree including animations.
-├── `VEBtree2.py` : Secondary implementation of the VEB tree including animations.
-├── `animation.py` : Animation utility classes.
-├── `README.md` : File containing information on the project, including how to run code and other relevant details.
-├── `smalldataset.txt` : Initial testing dataset.
-├── `smallerdataset.txt` : Reduced testing dataset
-├── `Presentation.pptx` : Powerpoint Presentation of the data structures.
-├── `Presentation.pdf` : Presentation in pdf form.
-
+```
+├── AVLtree.py : Primary implementation of the AVL tree including animations.
+├── HW2.py : The main file that will be run in order to start the animation.
+├── RBtree.py : Primary implementation of the RB tree including animations.
+├── VEBtree.py : Primary implementation of the VEB tree including animations.
+├── VEBtree2.py : Secondary implementation of the VEB tree including animations.
+├── animation.py : Animation utility classes.
+├── README.md : File containing information on the project, including how to run code and other relevant details.
+├── smalldataset.txt : Initial testing dataset.
+├── smallerdataset.txt : Reduced testing dataset
+├── Presentation.pptx : Powerpoint Presentation of the data structures.
+├── Presentation.pdf : Presentation in pdf form.
+```
 ## Instructions
 1. Run 'python3 HW2.py' to launch the animation application.
 2. Click the `Settings` button in the lower left-hand corner.
