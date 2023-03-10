@@ -27,7 +27,7 @@ CS470P2/
 ├── Presentation.pdf : Presentation in pdf form.
 ```
 ## Instructions
-1. Run 'python3 HW2.py' to launch the animation application.
+1. Run `python3 HW2.py` to launch the animation application.
 2. Click the `Settings` button in the lower left-hand corner.
 3. Select the two data structures to be displayed and exit the settings menu.
 4. Click the `Start` button.
